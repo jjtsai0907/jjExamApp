@@ -39,31 +39,44 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+
+
+
         // Add a marker in Sydney and move the camera
         val chingShui = LatLng(24.2616609, 120.5543753)
-        mMap.addMarker(MarkerOptions().position(chingShui).title("JJ's hometown <3"))
+        mMap.addMarker(MarkerOptions().position(chingShui).title("Taiwan - questions about JJ's hometown"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(chingShui, 1.0F))
 
         val sandBol = LatLng(58.9367904,12.5238587)
-        mMap.addMarker(MarkerOptions().position(sandBol).title("Olala's home-village <3"))
+        mMap.addMarker(MarkerOptions().position(sandBol).title("Sweden - questions about Sweden"))
+
 
         val homeNacka = LatLng(18.2081305,9.309901)
-        mMap.addMarker(MarkerOptions().position(homeNacka).title("Our home!! <3"))
+        mMap.addMarker(MarkerOptions().position(homeNacka).title("Africccca - questions about the continent"))
 
         val grandCanyon = LatLng(36.0911045,-113.4036111)
-        mMap.addMarker(MarkerOptions().position(grandCanyon).title("We hiked here!!"))
+        mMap.addMarker(MarkerOptions().position(grandCanyon).title("USA - questions about Grand Canyon"))
+
+
+
+
+        mMap.setOnInfoWindowClickListener {
+            val intent = Intent (this, QuestionActivity::class.java)
+            startActivity(intent)
+
+        }
+
 
         mMap.setOnMarkerClickListener { marker ->
             if (marker.isInfoWindowShown) {
-                Toast.makeText(applicationContext,"this is toast message",Toast.LENGTH_SHORT).show()
+
                 marker.hideInfoWindow()
-                val intent: Intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_LONG).show()
+
             } else {
-                Toast.makeText(applicationContext,"this is toast message",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_LONG).show()
                 marker.showInfoWindow()
-                val intent: Intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+
             }
             true
         }
