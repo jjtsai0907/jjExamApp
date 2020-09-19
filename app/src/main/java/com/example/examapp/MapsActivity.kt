@@ -1,9 +1,9 @@
 package com.example.examapp
 
 import android.content.Intent
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -44,38 +44,54 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         val chingShui = LatLng(24.2616609, 120.5543753)
-        mMap.addMarker(MarkerOptions().position(chingShui).title("Taiwan - questions about JJ's hometown"))
+        var taiwanMarker = mMap.addMarker(MarkerOptions().position(chingShui).title("Taiwan - questions about JJ's hometown"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(chingShui, 1.0F))
+        taiwanMarker.tag = "Taiwan"
+
+
 
         val sandBol = LatLng(58.9367904,12.5238587)
-        mMap.addMarker(MarkerOptions().position(sandBol).title("Sweden - questions about Sweden"))
+        var sandBolMarker = mMap.addMarker(MarkerOptions().position(sandBol).title("Sweden - questions about Sweden"))
+        sandBolMarker.tag = "SandBol"
 
 
         val homeNacka = LatLng(18.2081305,9.309901)
-        mMap.addMarker(MarkerOptions().position(homeNacka).title("Africccca - questions about the continent"))
+        var homeNackaMarker = mMap.addMarker(MarkerOptions().position(homeNacka).title("Africccca - questions about the continent"))
+        homeNackaMarker.tag = "Nacka"
 
         val grandCanyon = LatLng(36.0911045,-113.4036111)
-        mMap.addMarker(MarkerOptions().position(grandCanyon).title("USA - questions about Grand Canyon"))
+        var gcMarker = mMap.addMarker(MarkerOptions().position(grandCanyon).title("USA - questions about Grand Canyon"))
+        gcMarker.tag ="Grand Canyon"
 
+        //val markers = mMap.addMarker(MarkerOptions())
+        //markers.tag= "Heeeeeelo"
 
+        lateinit var currentPosition: String
 
 
         mMap.setOnInfoWindowClickListener {
+
+
             val intent = Intent (this, QuestionActivity::class.java)
+            intent.putExtra("currentCountry",currentPosition)
             startActivity(intent)
 
         }
 
 
         mMap.setOnMarkerClickListener { marker ->
+
+            currentPosition=marker.tag.toString()
+
             if (marker.isInfoWindowShown) {
 
                 marker.hideInfoWindow()
                 Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_LONG).show()
 
             } else {
-                Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_SHORT).show()
                 marker.showInfoWindow()
+
 
             }
             true
