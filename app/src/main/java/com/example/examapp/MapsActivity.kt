@@ -46,22 +46,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val chingShui = LatLng(24.2616609, 120.5543753)
         var taiwanMarker = mMap.addMarker(MarkerOptions().position(chingShui).title("Taiwan - questions about JJ's hometown"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(chingShui, 1.0F))
-        taiwanMarker.tag = "Taiwan"
+        taiwanMarker.tag = "Taiwan,Taichung,Kaushiuong,Hualian,Taipei"
 
 
 
         val sandBol = LatLng(58.9367904,12.5238587)
         var sandBolMarker = mMap.addMarker(MarkerOptions().position(sandBol).title("Sweden - questions about Sweden"))
-        sandBolMarker.tag = "SandBol"
+        sandBolMarker.tag = "SandBol,Trollhättan,Uddevalla,Sandbol,Åmål"
 
 
         val homeNacka = LatLng(18.2081305,9.309901)
         var homeNackaMarker = mMap.addMarker(MarkerOptions().position(homeNacka).title("Africccca - questions about the continent"))
-        homeNackaMarker.tag = "Nacka"
+        homeNackaMarker.tag = "Nacka,Stockholm,Nacka,Liljehomlen,Orminge"
 
         val grandCanyon = LatLng(36.0911045,-113.4036111)
         var gcMarker = mMap.addMarker(MarkerOptions().position(grandCanyon).title("USA - questions about Grand Canyon"))
-        gcMarker.tag ="Grand Canyon"
+        gcMarker.tag ="Grand Canyon,New York,Fargo,Yosemite,Death Valley"
 
         //val markers = mMap.addMarker(MarkerOptions())
         //markers.tag= "Heeeeeelo"
@@ -89,6 +89,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_LONG).show()
 
             } else {
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 4.0F))
                 Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_SHORT).show()
                 marker.showInfoWindow()
 
