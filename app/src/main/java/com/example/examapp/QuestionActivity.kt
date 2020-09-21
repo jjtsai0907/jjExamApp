@@ -1,10 +1,12 @@
 package com.example.examapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_question.*
@@ -15,6 +17,7 @@ class QuestionActivity : AppCompatActivity() {
 
     lateinit var currentCountryTV: TextView
     lateinit var walletTextView: TextView
+    lateinit var shoppingImageView: ImageButton
     lateinit var button0: Button
     lateinit var button1: Button
     lateinit var button2: Button
@@ -48,6 +51,7 @@ fun checkAnswer (view: View){
 
         currentCountryTV = findViewById(R.id.currentCountryTextView)
         walletTextView = findViewById(R.id.walletTextView)
+        shoppingImageView = findViewById(R.id.shoppingImageButton)
         button0 = findViewById(R.id.button0)
         button1 = findViewById(R.id.button1)
         button2 = findViewById(R.id.button2)
@@ -96,7 +100,11 @@ fun checkAnswer (view: View){
 
     }
 
+    fun goShopping (view: View){
+        //intent = Intent(this, )
 
+        Toast.makeText(this, "Go Shopping!!", Toast.LENGTH_SHORT).show()
+    }
 
         //Toast.makeText(this, currentCountry, Toast.LENGTH_LONG).show()
     }
