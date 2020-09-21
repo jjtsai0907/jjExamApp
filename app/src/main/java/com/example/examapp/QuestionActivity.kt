@@ -7,23 +7,37 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_question.*
 import java.util.*
 import kotlin.random.Random.Default.nextInt
 
 class QuestionActivity : AppCompatActivity() {
 
     lateinit var currentCountryTV: TextView
+    lateinit var walletTextView: TextView
     lateinit var button0: Button
     lateinit var button1: Button
     lateinit var button2: Button
     lateinit var button3: Button
+    var wallet: Int = 0
+    var trys: Int = 0
     var locationArray = mutableListOf<Int>(0,0,0,0)
 
 fun checkAnswer (view: View){
     if (locationArray[0].toString() == view.tag.toString()){
         Toast.makeText(this,"Correct!", Toast.LENGTH_SHORT).show()
+        view.isEnabled = false
+        wallet += (- (trys * 3000)) + 10000
+        walletTextView.setText(wallet.toString())
+        trys ++
+
+
     }else {
         Toast.makeText(this,"Wrong!", Toast.LENGTH_SHORT).show()
+        wallet +=  - (trys * 1000) - 3000
+        walletTextView.setText(wallet.toString())
+        view.isEnabled = false
+        trys ++
     }
 }
 
@@ -33,6 +47,7 @@ fun checkAnswer (view: View){
         setContentView(R.layout.activity_question)
 
         currentCountryTV = findViewById(R.id.currentCountryTextView)
+        walletTextView = findViewById(R.id.walletTextView)
         button0 = findViewById(R.id.button0)
         button1 = findViewById(R.id.button1)
         button2 = findViewById(R.id.button2)
