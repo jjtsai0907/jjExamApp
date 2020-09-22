@@ -67,6 +67,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         //markers.tag= "Heeeeeelo"
 
         lateinit var currentPosition: String
+        var walletFromQuestion: Int = 0
 
 
         mMap.setOnInfoWindowClickListener {
@@ -74,6 +75,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             val intent = Intent (this, QuestionActivity::class.java)
             intent.putExtra("currentCountry",currentPosition)
+            intent.putExtra("WALLET_MAPS", walletFromQuestion)
             startActivity(intent)
 
         }
@@ -93,6 +95,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_SHORT).show()
                 marker.showInfoWindow()
 
+                walletFromQuestion = intent.getIntExtra("WALLET_QUESTION", 0)
+                Toast.makeText(this, walletFromQuestion.toString(), Toast.LENGTH_LONG).show()
 
             }
             true

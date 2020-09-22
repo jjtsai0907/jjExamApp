@@ -23,6 +23,7 @@ class QuestionActivity : AppCompatActivity() {
     lateinit var button2: Button
     lateinit var button3: Button
     var wallet: Int = 0
+    var walletFromMaps: Int = 0
     var trys: Int = 0
     var locationArray = mutableListOf<Int>(0,0,0,0)
 
@@ -30,6 +31,7 @@ class QuestionActivity : AppCompatActivity() {
         if (locationArray[0].toString() == view.tag.toString()){
             Toast.makeText(this,"Correct!", Toast.LENGTH_SHORT).show()
             view.isEnabled = false
+            wallet = walletFromMaps
             wallet += (- (trys * 3000)) + 10000
             walletTextView.setText(wallet.toString())
             trys ++
@@ -37,6 +39,7 @@ class QuestionActivity : AppCompatActivity() {
 
         }else {
             Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show()
+            wallet = walletFromMaps
             wallet += -(trys * 1000) - 3000
             walletTextView.setText(wallet.toString())
             view.isEnabled = false
@@ -96,8 +99,9 @@ class QuestionActivity : AppCompatActivity() {
         button3.setText(buttonTextList[3])
 
 
-
-
+        walletFromMaps = intent.getIntExtra("WALLET_MAPS", 0)
+        Toast.makeText(this, walletFromMaps.toString(), Toast.LENGTH_LONG).show()
+        walletTextView.setText(walletFromMaps.toString())
 
     }
 
@@ -114,9 +118,10 @@ class QuestionActivity : AppCompatActivity() {
 
 
     fun goBackToMaps (view: View){
-        var backToMaps = Intent(this, MapsActivity::class.java)
-        //backToMaps.putExtra()
-        startActivity(backToMaps)
+        var intent = Intent(this, MapsActivity::class.java)
+        intent.putExtra("WALLET_QUESTION", wallet)
+        //Toast.makeText(this, wallet.toString(), Toast.LENGTH_LONG).show()
+        startActivity(intent)
 
     }
 
