@@ -101,8 +101,11 @@ fun checkAnswer (view: View){
     }
 
     fun goShopping (view: View){
-        //intent = Intent(this, )
+        intent = Intent(this, ShoppingActivity::class.java)
+        intent.putExtra("WALLET", wallet)
 
+
+        startActivity(intent)
         Toast.makeText(this, "Go Shopping!!", Toast.LENGTH_SHORT).show()
     }
 
