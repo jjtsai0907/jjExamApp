@@ -26,23 +26,24 @@ class QuestionActivity : AppCompatActivity() {
     var trys: Int = 0
     var locationArray = mutableListOf<Int>(0,0,0,0)
 
-fun checkAnswer (view: View){
-    if (locationArray[0].toString() == view.tag.toString()){
-        Toast.makeText(this,"Correct!", Toast.LENGTH_SHORT).show()
-        view.isEnabled = false
-        wallet += (- (trys * 3000)) + 10000
-        walletTextView.setText(wallet.toString())
-        trys ++
+    fun checkAnswer (view: View){
+        if (locationArray[0].toString() == view.tag.toString()){
+            Toast.makeText(this,"Correct!", Toast.LENGTH_SHORT).show()
+            view.isEnabled = false
+            wallet += (- (trys * 3000)) + 10000
+            walletTextView.setText(wallet.toString())
+            trys ++
 
 
-    }else {
-        Toast.makeText(this,"Wrong!", Toast.LENGTH_SHORT).show()
-        wallet +=  - (trys * 1000) - 3000
-        walletTextView.setText(wallet.toString())
-        view.isEnabled = false
-        trys ++
+        }else {
+            Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show()
+            wallet += -(trys * 1000) - 3000
+            walletTextView.setText(wallet.toString())
+            view.isEnabled = false
+            trys++
+        }
     }
-}
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -110,4 +111,16 @@ fun checkAnswer (view: View){
     }
 
         //Toast.makeText(this, currentCountry, Toast.LENGTH_LONG).show()
+
+
+    fun goBackToMaps (view: View){
+        var backToMaps = Intent(this, MapsActivity::class.java)
+        //backToMaps.putExtra()
+        startActivity(backToMaps)
+
     }
+
+
+
+
+}
