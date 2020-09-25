@@ -14,10 +14,15 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlin.properties.Delegates
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+
+    open var wallet=0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +31,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+    }
+
+
+    
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        wallet = data!!.getIntExtra("WALLET_QUESTION", 9);
+        Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
+
+
+
+
+
     }
 
     /**
@@ -39,6 +59,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+
+
 
         // create markers:
         val taiwan = QuestionClass("Which is the capital of Taiwan?", "Correct", "Taipei", "Taichung", "Hulian", LatLng(24.2616609, 120.5543753), false)
@@ -54,14 +76,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         var indoMarker = mMap.addMarker(MarkerOptions().position(indo.position).title("BJ"))
         indoMarker.tag = indo
 
-        //val listofmarkers = mutableListOf<QuestionClass>()
+
 
 
 
 
 
         lateinit var currentPosition: Marker
-        var walletFromQuestion: Int = 0
+
 
 
         lateinit var activeMarker: Marker
@@ -93,10 +115,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.setOnInfoWindowClickListener {
 
 
-
             val intent = Intent (this, QuestionActivity::class.java)
+
             //intent.putExtra("currentCountry",currentPosition)
-            //intent.putExtra("WALLET_MAPS", walletFromQuestion)
+            intent.putExtra("WALLET_MAPS", wallet)
             intent.putExtra("TAG_QUESTION", (activeMarker.tag as QuestionClass).question)
             intent.putExtra("TAG_A1", (activeMarker.tag as QuestionClass).answer1)
             intent.putExtra("TAG_A2", (activeMarker.tag as QuestionClass).answer2)
@@ -104,9 +126,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             intent.putExtra("TAG_A4", (activeMarker.tag as QuestionClass).answer4)
             intent.putExtra("TAG_Closed", (activeMarker.tag as QuestionClass).cleared)
             //Log.d("ooo", (activeMarker.tag as QuestionClass).question.toString())
-            //activeMarker.isVisible = false
+            activeMarker.isVisible = false
 
-            startActivity(intent)
+            //startActivity(intent)
+            startActivityForResult(intent,999)
 
         }
 

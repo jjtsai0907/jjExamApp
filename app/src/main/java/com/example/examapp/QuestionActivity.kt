@@ -85,8 +85,7 @@ class QuestionActivity : AppCompatActivity() {
         Log.d("!!answerList", buttonTextList.toString())
 
         //var currentCountry = intent.getStringExtra("currentCountry")
-        //var delimiter = ","
-        //var splitTag = currentCountry!!.split(delimiter)
+
         questionTextView.setText(intent.getStringExtra("TAG_QUESTION"))
         button0.setText(buttonTextList[0])
         button1.setText(buttonTextList[1])
@@ -95,27 +94,14 @@ class QuestionActivity : AppCompatActivity() {
 
 
 
-        //Log.d("!!!!", splitTag.toString())
 
 
 
 
 
-
-
-
-
-
-        //currentCountryTV.setText(splitTag[0])
-        //button0.setText(buttonTextList[0])
-        //button1.setText(buttonTextList[1])
-        //button2.setText(buttonTextList[2])
-        //button3.setText(buttonTextList[3])
-
-
-        //walletFromMaps = intent.getIntExtra("WALLET_MAPS", 0)
-        //Toast.makeText(this, walletFromMaps.toString(), Toast.LENGTH_LONG).show()
-        //walletTextView.setText(walletFromMaps.toString())
+        walletFromMaps = intent.getIntExtra("WALLET_MAPS", 0)
+        Toast.makeText(this, walletFromMaps.toString(), Toast.LENGTH_LONG).show()
+        walletTextView.setText(walletFromMaps.toString())
 
     }
 
@@ -132,10 +118,14 @@ class QuestionActivity : AppCompatActivity() {
 
     */
     fun goBackToMaps (view: View){
-        //var intent = Intent(this, MapsActivity::class.java)
-        //intent.putExtra("WALLET_QUESTION", wallet)
+        var intent = Intent(this, MapsActivity::class.java)
+
+        intent.putExtra("WALLET_QUESTION", wallet)
         //Toast.makeText(this, wallet.toString(), Toast.LENGTH_LONG).show()
         //startActivity(intent)
+
+
+        setResult(999,intent)
         finish()
 
     }
