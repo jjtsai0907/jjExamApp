@@ -41,16 +41,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // create markers:
-        val taiwan = QuestionClass("Which is the capital of Taiwan?", "Kaoshuong", "Taipei", "Taichung", "Hulian", LatLng(24.2616609, 120.5543753), false)
+        val taiwan = QuestionClass("Which is the capital of Taiwan?", "Correct", "Taipei", "Taichung", "Hulian", LatLng(24.2616609, 120.5543753), false)
         val taiwanMarker = mMap.addMarker(MarkerOptions().position(taiwan.position).title("You are in Taiwan"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(taiwan.position, 1.0F))
         taiwanMarker.tag = taiwan
 
-        val hongkong = QuestionClass("How many harbours does HK have?", "12", "6", "13", "21", LatLng(20.2616609, 115.5543753), false)
+        val hongkong = QuestionClass("How many harbours does HK have?", "Correct", "6", "13", "21", LatLng(20.2616609, 115.5543753), false)
         val hkMarker = mMap.addMarker(MarkerOptions().position(hongkong.position).title("HK"))
         hkMarker.tag = hongkong
 
-        val indo = QuestionClass("How many official languages are there in this nation?", "6", "2", "9", "20", LatLng(4.2616609, 120.5543753), false)
+        val indo = QuestionClass("How many official languages are there in this nation?", "Correct", "2", "9", "20", LatLng(4.2616609, 120.5543753), false)
         var indoMarker = mMap.addMarker(MarkerOptions().position(indo.position).title("BJ"))
         indoMarker.tag = indo
 

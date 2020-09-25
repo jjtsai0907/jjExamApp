@@ -55,6 +55,27 @@ class QuestionActivity : AppCompatActivity() {
 
         Log.d("!!answerList", answerList.toString())
 
+        // To create random numbers
+        locationArray = mutableListOf<Int>(0,0,0,0)
+        locationArray[0] = Random().nextInt(4)
+
+        locationArray[1] = Random().nextInt(4)
+        while (locationArray[1] == locationArray[0]) {
+            locationArray[1] = Random().nextInt(4)
+        }
+
+        locationArray[2] = Random().nextInt(4)
+        while (locationArray[2] == locationArray[0] || locationArray[2] == locationArray[1]) {
+            locationArray[2] = Random().nextInt(4)
+        }
+
+        locationArray[3] = Random().nextInt(4)
+        while (locationArray[3] == locationArray[0] || locationArray[3] == locationArray[1] || locationArray[3] == locationArray[2]) {
+            locationArray[3] = Random().nextInt(4)
+        }
+
+
+
         var buttonTextList = mutableListOf<String>("","","","")
         for (i in 0..3) {
             buttonTextList[locationArray[i]] = answerList[i]
@@ -76,21 +97,7 @@ class QuestionActivity : AppCompatActivity() {
 
         //Log.d("!!!!", splitTag.toString())
 
-        // To create random numbers
-        locationArray = mutableListOf<Int>(0,0,0,0)
-        locationArray[0] = Random().nextInt(4)
-        locationArray[1] = Random().nextInt(4)
-        locationArray[2] = Random().nextInt(4)
-        locationArray[3] = Random().nextInt(4)
-        while (locationArray[1] == locationArray[0]) {
-            locationArray[1] = Random().nextInt(4)
-        }
-        while (locationArray[2] == locationArray[0] || locationArray[2] == locationArray[1]) {
-            locationArray[2] = Random().nextInt(4)
-        }
-        while (locationArray[3] == locationArray[0] || locationArray[3] == locationArray[1] || locationArray[3] == locationArray[2]) {
-            locationArray[3] = Random().nextInt(4)
-        }
+
 
 
 
