@@ -4,6 +4,7 @@ import android.content.Intent
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -39,51 +40,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        // create markers:
+        val taiwan = QuestionClass("Which is the capital of Taiwan?", "Kaoshuong", "Taipei", "Taichung", "Hulian", LatLng(24.2616609, 120.5543753), false)
+        val taiwanMarker = mMap.addMarker(MarkerOptions().position(taiwan.position).title("You are in Taiwan"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(taiwan.position, 1.0F))
+        taiwanMarker.tag = taiwan
+
+        val hongkong = QuestionClass("How many harbours does HK have?", "12", "6", "13", "21", LatLng(20.2616609, 115.5543753), false)
+        val hkMarker = mMap.addMarker(MarkerOptions().position(hongkong.position).title("HK"))
+        hkMarker.tag = hongkong
+
+        val indo = QuestionClass("How many official languages are there in this nation?", "6", "2", "9", "20", LatLng(4.2616609, 120.5543753), false)
+        var indoMarker = mMap.addMarker(MarkerOptions().position(indo.position).title("BJ"))
+        indoMarker.tag = indo
+
+        //val listofmarkers = mutableListOf<QuestionClass>()
 
 
 
-        // Add a marker in Sydney and move the camera
-        val chingShui = LatLng(24.2616609, 120.5543753)
-        var taiwanMarker = mMap.addMarker(MarkerOptions().position(chingShui).title("Taiwan - questions about JJ's hometown"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(chingShui, 1.0F))
-        taiwanMarker.tag = "Taiwan,Taichung,Kaushiuong,Hualian,Taipei"
 
 
-
-        val sandBol = LatLng(58.9367904,12.5238587)
-        var sandBolMarker = mMap.addMarker(MarkerOptions().position(sandBol).title("Sweden - questions about Sweden"))
-        sandBolMarker.tag = "SandBol,Trollhättan,Uddevalla,Sandbol,Åmål"
-
-
-        val homeNacka = LatLng(18.2081305,9.309901)
-        var homeNackaMarker = mMap.addMarker(MarkerOptions().position(homeNacka).title("Africccca - questions about the continent"))
-        homeNackaMarker.tag = "Nacka,Stockholm,Nacka,Liljehomlen,Orminge"
-
-        val grandCanyon = LatLng(36.0911045,-113.4036111)
-        var gcMarker = mMap.addMarker(MarkerOptions().position(grandCanyon).title("USA - questions about Grand Canyon"))
-        gcMarker.tag ="Grand Canyon,New York,Fargo,Yosemite,Death Valley"
-
-        //val markers = mMap.addMarker(MarkerOptions())
-        //markers.tag= "Heeeeeelo"
-
-        lateinit var currentPosition: String
+        lateinit var currentPosition: Marker
         var walletFromQuestion: Int = 0
 
 
-        mMap.setOnInfoWindowClickListener {
-
-
-            val intent = Intent (this, QuestionActivity::class.java)
-            intent.putExtra("currentCountry",currentPosition)
-            intent.putExtra("WALLET_MAPS", walletFromQuestion)
-            startActivity(intent)
-
-        }
+        lateinit var activeMarker: Marker
 
 
         mMap.setOnMarkerClickListener { marker ->
 
-            currentPosition=marker.tag.toString()
+            activeMarker = marker
+            Log.d("ooo", (marker.tag as QuestionClass).question.toString())
 
             if (marker.isInfoWindowShown) {
 
@@ -95,13 +82,33 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_SHORT).show()
                 marker.showInfoWindow()
 
-                walletFromQuestion = intent.getIntExtra("WALLET_QUESTION", 0)
-                Toast.makeText(this, walletFromQuestion.toString(), Toast.LENGTH_LONG).show()
+                //walletFromQuestion = intent.getIntExtra("WALLET_QUESTION", 0)
+                //Toast.makeText(this, walletFromQuestion.toString(), Toast.LENGTH_LONG).show()
 
             }
             true
         }
 
+
+        mMap.setOnInfoWindowClickListener {
+
+
+
+            val intent = Intent (this, QuestionActivity::class.java)
+            //intent.putExtra("currentCountry",currentPosition)
+            //intent.putExtra("WALLET_MAPS", walletFromQuestion)
+            intent.putExtra("TAG_QUESTION", (activeMarker.tag as QuestionClass).question)
+            intent.putExtra("TAG_A1", (activeMarker.tag as QuestionClass).answer1)
+            intent.putExtra("TAG_A2", (activeMarker.tag as QuestionClass).answer2)
+            intent.putExtra("TAG_A3", (activeMarker.tag as QuestionClass).answer3)
+            intent.putExtra("TAG_A4", (activeMarker.tag as QuestionClass).answer4)
+            intent.putExtra("TAG_Closed", (activeMarker.tag as QuestionClass).cleared)
+            //Log.d("ooo", (activeMarker.tag as QuestionClass).question.toString())
+            //activeMarker.isVisible = false
+
+            startActivity(intent)
+
+        }
 
     }
 
