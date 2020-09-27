@@ -8,10 +8,22 @@
 
     <TextView
         android:id="@+id/shoppingWalletTextView"
-        android:layout_width="238dp"
-        android:layout_height="159dp"
+        android:layout_width="270dp"
+        android:layout_height="92dp"
         android:text="TextView"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="213dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shoppingWalletTextView"
+        tools:listitem="@layout/list_nation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

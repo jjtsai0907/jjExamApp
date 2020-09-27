@@ -105,18 +105,18 @@ class QuestionActivity : AppCompatActivity() {
 
     }
 
-    /*fun goShopping (view: View){
-        intent = Intent(this, ShoppingActivity::class.java)
-        intent.putExtra("WALLET", wallet)
-
-
-        startActivity(intent)
+    fun goShopping (view: View){
+        var intent2 = Intent(this, ShoppingActivity::class.java)
+        intent2.putExtra("WALLET", wallet)
         Toast.makeText(this, "Go Shopping!!", Toast.LENGTH_SHORT).show()
+
+        startActivity(intent2)
+        //Toast.makeText(this, "Go Shopping!!", Toast.LENGTH_SHORT).show()
     }
 
         //Toast.makeText(this, currentCountry, Toast.LENGTH_LONG).show()
 
-    */
+
     fun goBackToMaps (view: View){
         var intent = Intent(this, MapsActivity::class.java)
 
