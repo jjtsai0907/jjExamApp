@@ -3,6 +3,7 @@ package com.example.examapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,13 @@ class ShoppingActivity : AppCompatActivity() {
 
     lateinit var shoppingWalletTextVIew: TextView
 
+    var nationList = listOf<NationClass>(NationClass("Sweden", 100),
+                                         NationClass("France", 355),
+                                         NationClass("Norway", 270),
+                                         NationClass("Spain", 600))
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +29,9 @@ class ShoppingActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = NationListRecycleAdapter(this)
+        val adapter = NationListRecycleAdapter(this, nationList)
+
+        Log.d ("!!!", nationList.toString())
         recyclerView.adapter = adapter
 
 

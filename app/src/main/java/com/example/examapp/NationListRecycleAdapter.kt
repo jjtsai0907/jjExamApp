@@ -8,13 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class NationListRecycleAdapter(val context: Context) : RecyclerView.Adapter<NationListRecycleAdapter.ViewHolder>() {
+class NationListRecycleAdapter(val context: Context, val nationList: List<NationClass>) :
+    RecyclerView.Adapter<NationListRecycleAdapter.ViewHolder>() {
 
     val layoutInflater = LayoutInflater.from(context)
 
 
     override fun getItemCount (): Int {
-        return 10
+        return nationList.size
 
     }
 
@@ -26,8 +27,8 @@ class NationListRecycleAdapter(val context: Context) : RecyclerView.Adapter<Nati
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.nationTextView.text = "Sweden"
-        holder.nationPriceTextView.text = "Ticket Fare 29"
+        holder.nationTextView.text = nationList[position].nation
+        holder.nationPriceTextView.text = nationList[position].ticketFare.toString()
         //holder.nationImageView = @drawable/taipei
     }
 
