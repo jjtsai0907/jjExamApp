@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_question.*
+import kotlinx.android.synthetic.main.activity_shopping.*
 import java.util.*
 import kotlin.random.Random.Default.nextInt
 
@@ -44,6 +45,8 @@ class QuestionActivity : AppCompatActivity() {
         button2 = findViewById(R.id.button2)
         button3 = findViewById(R.id.button3)
         questionTextView = findViewById(R.id.questionTextView)
+
+
 
 
         var answerList = listOf<String>(
@@ -149,7 +152,10 @@ class QuestionActivity : AppCompatActivity() {
             trys++
         }
     }
-
+    /*override fun onResume(){
+        super.onResume()
+        recyclerView.adapter?.notifyDataSetChanged()
+    }*/
 
 
 }

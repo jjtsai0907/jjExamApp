@@ -1,7 +1,9 @@
 package com.example.examapp
 
-open class NationClass (var nation: String,
-                        var ticketFare: Int){
+class NationClass (var nation: String,
+                   var ticketFare: Int,
+                   var questionClass: QuestionClass,
+                   var shown: Boolean = false){
 
 
 }
