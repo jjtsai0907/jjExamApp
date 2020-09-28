@@ -9,8 +9,7 @@ class QuestionClass (val question: String,
                      val answer2: String,
                      val answer3: String,
                      val answer4: String,
-                     val position: LatLng,
-                     val cleared: Boolean) {
+                     val position: LatLng) {
 
 
     

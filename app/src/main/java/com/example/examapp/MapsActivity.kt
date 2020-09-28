@@ -1,7 +1,6 @@
 package com.example.examapp
 
 import android.content.Intent
-import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +13,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlin.properties.Delegates
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -42,26 +40,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         wallet = data!!.getIntExtra("WALLET_QUESTION", 9);
         Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
 
-        //DataManager.nations[1].questionClass.position
-        var sweden: Marker
-        var swedenQuestion: QuestionClass
-        swedenQuestion = QuestionClass("Are you cure?", "Correct", "Not at all", "Nicke","Haha", LatLng(22.2616609, 130.5543753),false)
-
-        if (DataManager.nations[1].shown) {
-
-                sweden = mMap.addMarker(MarkerOptions().position(LatLng(22.2616609, 130.5543753)).title("HAHA"))
-
-                sweden.tag = swedenQuestion
-
-
-                     /*
-         val hongkong = QuestionClass("How many harbours does HK have?", "Correct", "6", "13", "21", LatLng(20.2616609, 115.5543753), false)
-        //DataManager.nations.add(hongkong)
-        val hkMarker = mMap.addMarker(MarkerOptions().position(hongkong.position).title("HK"))
-        hkMarker.tag = hongkong
-                      */
-
+        if (DataManager.nations[1].shown){
+            addMarkers(1)
         }
+
 
 
 
@@ -79,22 +61,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        asd = asd + 100
+
 
 
 
         // create markers:
-        val taiwan = QuestionClass("Which is the capital of Taiwan?", "Correct", "Taipei", "Taichung", "Hulian", LatLng(24.2616609, 120.5543753), false)
+        val taiwan = QuestionClass("Which is the capital of Taiwan?", "Correct", "Taipei", "Taichung", "Hulian", LatLng(24.2616609, 120.5543753))
         //DataManager.nations.add(taiwan)
         val taiwanMarker = mMap.addMarker(MarkerOptions().position(taiwan.position).title("You are in Taiwan"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(taiwan.position, 1.0F))
         taiwanMarker.tag = taiwan
 
-        val hongkong = QuestionClass("How many harbours does HK have?", "Correct", "6", "13", "21", LatLng(20.2616609, 115.5543753), false)
+        val hongkong = QuestionClass("How many harbours does HK have?", "Correct", "6", "13", "21", LatLng(20.2616609, 115.5543753))
         //DataManager.nations.add(hongkong)
         val hkMarker = mMap.addMarker(MarkerOptions().position(hongkong.position).title("HK"))
         hkMarker.tag = hongkong
 
-        val indo = QuestionClass("How many official languages are there in this nation?", "Correct", "2", "9", "20", LatLng(4.2616609, 120.5543753), false)
+        val indo = QuestionClass("How many official languages are there in this nation?", "Correct", "2", "9", "20", LatLng(4.2616609, 120.5543753))
         //DataManager.nations.add(indo)
         var indoMarker = mMap.addMarker(MarkerOptions().position(indo.position).title("BJ"))
         indoMarker.tag = indo
@@ -103,11 +87,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-        //addMarkers()
-
-        lateinit var currentPosition: Marker
 
 
+        //lateinit var currentPosition: Marker
 
         lateinit var activeMarker: Marker
 
@@ -147,7 +129,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             intent.putExtra("TAG_A2", (activeMarker.tag as QuestionClass).answer2)
             intent.putExtra("TAG_A3", (activeMarker.tag as QuestionClass).answer3)
             intent.putExtra("TAG_A4", (activeMarker.tag as QuestionClass).answer4)
-            intent.putExtra("TAG_Closed", (activeMarker.tag as QuestionClass).cleared)
+            //intent.putExtra("TAG_Closed", (activeMarker.tag as QuestionClass).cleared)
             //Log.d("ooo", (activeMarker.tag as QuestionClass).question.toString())
             activeMarker.isVisible = false
             DataManager.nations[1].shown = false
@@ -166,15 +148,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }*/
 
-    /*fun addMarkers (){
+    fun addMarkers (position: Int){
 
-        for (i in 0..DataManager.nations.size) {
-            mMap.addMarker(
-                MarkerOptions().position(DataManager.nations[DataManager.ClickedItemPosition[0]].questionClass.position)
-                    .title(DataManager.nations[DataManager.ClickedItemPosition[0]].nation))
+        var newMarker = mMap.addMarker(
+            MarkerOptions().position(DataManager.nations[position].questionClass.position)
+                .title("You are in ${DataManager.nations[position].nation}"))
 
-        }
-    }*/
+        var newMarkerQuestionClass = QuestionClass(DataManager.nations[position].questionClass.question,
+            DataManager.nations[position].questionClass.answer1,
+            DataManager.nations[position].questionClass.answer2,
+            DataManager.nations[position].questionClass.answer3,
+            DataManager.nations[position].questionClass.answer4,
+            DataManager.nations[position].questionClass.position)
+
+        newMarker.tag = newMarkerQuestionClass
+    }
+
 
 
 

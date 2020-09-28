@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.model.LatLng
+import kotlinx.android.synthetic.main.activity_shopping.*
 
 class NationListRecycleAdapter(val context: Context, val nationList: List<NationClass>) :
     RecyclerView.Adapter<NationListRecycleAdapter.ViewHolder>() {
@@ -34,14 +35,24 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         holder.nationPriceTextView.text = nationInfo.ticketFare.toString()
         //holder.nationImageView =
         holder.nationListPosition = position
+        nationInfo.ticketFare
+
+        if (!DataManager.nations[position].alphaInShoppingList){
+            holder.itemView.isEnabled
+            holder.itemView.alpha = 0.5F
+            holder.nationTextView.text = "${DataManager.nations[position].nation} Purchased"
+
+
+
+        }
+
+
 
         //DataManager.ClickedItemPosition[0] = position
 
         /*holder.itemView.setOnClickListener{
             Log.d("!!!", "item is clicked")
             //holder.itemView.isVisible = false
-
-
 
         }*/
 
@@ -79,10 +90,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
      */
 
-    /*open fun removeNation (position: Int){
-        nationList[position].
-        //notifyDataChanged()
-    } */
+
 
 
 
@@ -98,24 +106,22 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
 
 
+
         init{
             itemView.setOnClickListener {
                 //Log.d("!!!", "first")
                 nationTextView.text = "${DataManager.nations[nationListPosition].nation} Purchased"
                 DataManager.nations[nationListPosition].shown = true
-                itemView.alpha = 0.2F
-                itemView.isClickable = false
+                //itemView.alpha = 0.2F
+                DataManager.nations[nationListPosition].alphaInShoppingList = false
+
+
+
+                notifyDataSetChanged()
+                //itemView.isClickable = false
                 //itemView.isEnabled = false
                 //remove(nationListPosition)
-
-
-
-
-
-
-                //DataManager.nations.add(QuestionClass("How old?", "34", "11","22", "33", LatLng(33.2616609, 115.5543753), false))
-                //Log.d("!!!", "second")
-                //notifyItemRemoved(nationList[nationListPosition].toString().toInt())
+                // set false    DataManager.nations[nationListPosition]
 
 
 
@@ -125,17 +131,6 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         }
 
     }
-
-    /*
-    fun editStudent(position: Int){
-
-        DataManager.students[position].name = nameTextView.text.toString()
-        DataManager.students[position].className = classTextView.text.toString()
-        finish()
-    }
-     */
-
-
 
 
 

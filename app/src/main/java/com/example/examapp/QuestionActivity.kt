@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_shopping.*
 import java.util.*
 import kotlin.random.Random.Default.nextInt
 
+var asd = 2
+
 class QuestionActivity : AppCompatActivity() {
 
     lateinit var currentCountryTV: TextView
@@ -156,6 +158,8 @@ class QuestionActivity : AppCompatActivity() {
         super.onResume()
         recyclerView.adapter?.notifyDataSetChanged()
     }*/
+
+
 
 
 }
