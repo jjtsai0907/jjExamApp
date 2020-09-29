@@ -30,16 +30,16 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         holder.nationPriceTextView.text = nationInfo.ticketFare.toString()
         //holder.nationImageView =
         holder.nationListPosition = position
-        nationInfo.ticketFare
+        //nationInfo.ticketFare
 
-        /*if (!DataManager.nations[position].alphaInShoppingList){
-            holder.itemView.isEnabled
-
+        if (DataManager.nations[position].purchased){
+            holder.itemView.isEnabled = false
+            holder.itemView.alpha = 0.2F
             holder.nationTextView.text = "${DataManager.nations[position].nation} Purchased"
 
 
 
-        }*/
+        }
 
 
 
@@ -109,9 +109,12 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
                 //DataManager.nations[nationListPosition].shown = true
                 itemView.alpha = 0.2F
                 //DataManager.nations[nationListPosition].alphaInShoppingList = false
-                itemView.isClickable = false
-
                 myOnItemClickListener.onClick(adapterPosition)
+                //itemView.isClickable = false
+                //itemView.isActivated = false
+                itemView.isEnabled = false
+
+
                 notifyDataSetChanged()
 
 

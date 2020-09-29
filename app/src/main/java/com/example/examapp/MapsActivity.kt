@@ -40,7 +40,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         wallet = data!!.getIntExtra("WALLET_QUESTION", 9);
         Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
 
-        if (DataManager.nations[1].shown){
+        if (DataManager.nations[1].markerShown){
             addMarkers(1)
         }
 
@@ -132,7 +132,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             //intent.putExtra("TAG_Closed", (activeMarker.tag as QuestionClass).cleared)
             //Log.d("ooo", (activeMarker.tag as QuestionClass).question.toString())
             activeMarker.isVisible = false
-            DataManager.nations[1].shown = false
+            DataManager.nations[1].markerShown = false
 
 
             //startActivity(intent)

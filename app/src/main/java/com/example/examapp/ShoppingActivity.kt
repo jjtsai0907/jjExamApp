@@ -1,5 +1,7 @@
 package com.example.examapp
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -17,6 +19,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.onItemCli
     lateinit var shoppingWalletTextVIew: TextView
     lateinit var recyclerView: RecyclerView
     var wallet: Int = 0
+    var walletAfterPurchase : Int = 0
 
 
 
@@ -43,15 +46,15 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.onItemCli
 
 
         shoppingWalletTextVIew = findViewById(R.id.shoppingWalletTextView)
-        wallet = intent.getIntExtra("WALLET",990)
+        wallet = intent.getIntExtra("WALLET_QUESTION",0)
         shoppingWalletTextVIew.text = wallet.toString()
 
 
 
-        if (DataManager.nations[1].purchased){
+        /*if (DataManager.nations[1].purchased){
             wallet -= DataManager.nations[1].ticketFare
             shoppingWalletTextVIew.text = wallet.toString()
-        }
+        }*/
 
         /*var ttt = NationListRecycleAdapter(this, DataManager.nations).calculate()
         wallet -= ttt
@@ -65,27 +68,37 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.onItemCli
     } */
 
     fun goBackToQuestion (view: View){
+        var intent = Intent(this, QuestionActivity::class.java)
+        intent.putExtra("WALLET_SHOPPING", wallet)
+        //Toast.makeText(this, wallet.toString(), Toast.LENGTH_LONG).show()
+        //startActivity(intent)
+
+        setResult(111,intent)
+        finish()
 
         //recyclerView.adapter?.notifyDataSetChanged()
         //var intent = Intent(this, MapsActivity::class.java)
         //Toast.makeText(this, DataManager.nations[].nation,Toast.LENGTH_LONG).show()
-        finish()
+
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onClick(position: Int) {
-        Toast.makeText(this, "Bajs!!!",Toast.LENGTH_SHORT).show()
 
-        if (!DataManager.nations[1].purchased) {
-            wallet -= DataManager.nations[position].ticketFare
-            shoppingWalletTextVIew.text = wallet.toString()
-            nationTextView.text = "${DataManager.nations[position].nation} Purchased"
-            DataManager.nations[position].shown = true
+
+
+        wallet -= DataManager.nations[position].ticketFare
+        //walletAfterPurchase = wallet
+        shoppingWalletTextVIew.text = wallet.toString()
+        nationTextView.text = "${DataManager.nations[position].nation} Purchased"
+        DataManager.nations[position].markerShown = true
             //this.alpha = 0.2F
+        //Toast.makeText(this, "Bajs!!!",Toast.LENGTH_SHORT).show()
+        DataManager.nations[position].purchased = true
+        //DataManager.nations[position].ticketFare = 0
 
-            DataManager.nations[position].purchased = true
+        recyclerView.adapter?.notifyDataSetChanged()
 
-            recyclerView.adapter?.notifyDataSetChanged()
-        }
 
     }
 

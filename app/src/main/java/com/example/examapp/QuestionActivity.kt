@@ -27,7 +27,8 @@ class QuestionActivity : AppCompatActivity() {
     lateinit var button2: Button
     lateinit var button3: Button
     var wallet: Int = 0
-    var walletFromMaps: Int = 0
+    //var walletFromActivity: Int = 0
+    //var walletFromShopping: Int = 0
     var trys: Int = 0
     var locationArray = mutableListOf<Int>(0,0,0,0)
 
@@ -104,18 +105,29 @@ class QuestionActivity : AppCompatActivity() {
 
 
 
-        walletFromMaps = intent.getIntExtra("WALLET_MAPS", 0)
-        Toast.makeText(this, walletFromMaps.toString(), Toast.LENGTH_LONG).show()
-        walletTextView.setText(walletFromMaps.toString())
+        wallet = intent.getIntExtra("WALLET_MAPS", 0)
+        Toast.makeText(this, wallet.toString(), Toast.LENGTH_LONG).show()
+        walletTextView.setText(wallet.toString())
+
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        wallet= data!!.getIntExtra("WALLET_SHOPPING", 9);
+        walletTextView.setText(wallet.toString())
+        Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
+        
+
 
     }
 
+
+
     fun goShopping (view: View){
         var intent2 = Intent(this, ShoppingActivity::class.java)
-        intent2.putExtra("WALLET", wallet)
+        intent2.putExtra("WALLET_QUESTION", wallet)
         Toast.makeText(this, "Go Shopping!!", Toast.LENGTH_SHORT).show()
 
-        startActivity(intent2)
+        startActivityForResult(intent2,111)
         //Toast.makeText(this, "Go Shopping!!", Toast.LENGTH_SHORT).show()
     }
 
@@ -139,7 +151,7 @@ class QuestionActivity : AppCompatActivity() {
         if (locationArray[0].toString() == view.tag.toString()){
             Toast.makeText(this,"Correct!", Toast.LENGTH_SHORT).show()
             view.isEnabled = false
-            wallet = walletFromMaps
+            //wallet = walletFromActivity
             wallet += (- (trys * 3000)) + 10000
             walletTextView.setText(wallet.toString())
             trys ++
@@ -147,7 +159,7 @@ class QuestionActivity : AppCompatActivity() {
 
         }else {
             Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show()
-            wallet = walletFromMaps
+            //wallet = walletFromActivity
             wallet += -(trys * 1000) - 3000
             walletTextView.setText(wallet.toString())
             view.isEnabled = false
