@@ -1,18 +1,13 @@
 package com.example.examapp
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.maps.model.LatLng
-import kotlinx.android.synthetic.main.activity_shopping.*
 
-class NationListRecycleAdapter(val context: Context, val nationList: List<NationClass>) :
+class NationListRecycleAdapter(val context: Context, val nationList: List<NationClass>, private val myOnItemClickListener: ShoppingActivity) :
     RecyclerView.Adapter<NationListRecycleAdapter.ViewHolder>() {
 
     val layoutInflater = LayoutInflater.from(context)
@@ -25,7 +20,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = layoutInflater.inflate(R.layout.list_nation, parent, false)
 
-        return ViewHolder(itemView)
+        return ViewHolder(itemView, myOnItemClickListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -37,14 +32,14 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         holder.nationListPosition = position
         nationInfo.ticketFare
 
-        if (!DataManager.nations[position].alphaInShoppingList){
+        /*if (!DataManager.nations[position].alphaInShoppingList){
             holder.itemView.isEnabled
-            holder.itemView.alpha = 0.5F
+
             holder.nationTextView.text = "${DataManager.nations[position].nation} Purchased"
 
 
 
-        }
+        }*/
 
 
 
@@ -95,7 +90,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
 
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View, myOnItemClickListener: ShoppingActivity): RecyclerView.ViewHolder(itemView){
 
         val nationTextView = itemView.findViewById<TextView>(R.id.nationTextView)
         val nationPriceTextView = itemView.findViewById<TextView>(R.id.nationPriceTextView)
@@ -110,29 +105,40 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         init{
             itemView.setOnClickListener {
                 //Log.d("!!!", "first")
-                nationTextView.text = "${DataManager.nations[nationListPosition].nation} Purchased"
-                DataManager.nations[nationListPosition].shown = true
-                //itemView.alpha = 0.2F
-                DataManager.nations[nationListPosition].alphaInShoppingList = false
+                //nationTextView.text = "${DataManager.nations[nationListPosition].nation} Purchased"
+                //DataManager.nations[nationListPosition].shown = true
+                itemView.alpha = 0.2F
+                //DataManager.nations[nationListPosition].alphaInShoppingList = false
+                itemView.isClickable = false
 
-
-
+                myOnItemClickListener.onClick(adapterPosition)
                 notifyDataSetChanged()
+
+
+
+                //notifyDataSetChanged()
                 //itemView.isClickable = false
                 //itemView.isEnabled = false
                 //remove(nationListPosition)
                 // set false    DataManager.nations[nationListPosition]
 
 
+            }
 
-
+            itemView.setOnLongClickListener{
+                myOnItemClickListener.onLongClick(adapterPosition)
+                return@setOnLongClickListener true
             }
 
         }
 
+
     }
 
-
+    interface onItemClickListener {
+        fun onClick (position: Int)
+        fun onLongClick (position: Int)
+    }
 
 
 }

@@ -5,6 +5,6 @@ class NationClass (var nation: String,
                    var questionClass: QuestionClass,
                    //var questionClass2: QuestionClass,
                    var shown: Boolean = false,
-                   var alphaInShoppingList: Boolean = true)
+                   var purchased: Boolean = false)
 
 
