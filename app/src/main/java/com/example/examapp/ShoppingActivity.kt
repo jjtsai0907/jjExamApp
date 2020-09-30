@@ -35,7 +35,6 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.onItemCli
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = NationListRecycleAdapter(this, DataManager.nations, this)
-        //Log.d ("!!!", nationList.toString())
         recyclerView.adapter = adapter
 
 
@@ -83,18 +82,18 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.onItemCli
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onClick(position: Int) {
+    override fun onClick(ticketClickedPosition: Int) {
 
 
 
-        wallet -= DataManager.nations[position].ticketFare
+        wallet -= DataManager.nations[ticketClickedPosition].ticketFare
         //walletAfterPurchase = wallet
         shoppingWalletTextVIew.text = wallet.toString()
-        nationTextView.text = "${DataManager.nations[position].nation} Purchased"
-        DataManager.nations[position].markerShown = true
+        nationTextView.text = "${DataManager.nations[ticketClickedPosition].nation} Purchased"
+        DataManager.nations[ticketClickedPosition].markerShown = true
             //this.alpha = 0.2F
         //Toast.makeText(this, "Bajs!!!",Toast.LENGTH_SHORT).show()
-        DataManager.nations[position].purchased = true
+        DataManager.nations[ticketClickedPosition].purchased = true
         //DataManager.nations[position].ticketFare = 0
 
         recyclerView.adapter?.notifyDataSetChanged()

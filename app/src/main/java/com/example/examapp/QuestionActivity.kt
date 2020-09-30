@@ -115,7 +115,7 @@ class QuestionActivity : AppCompatActivity() {
         wallet= data!!.getIntExtra("WALLET_SHOPPING", 9);
         walletTextView.setText(wallet.toString())
         Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
-        
+
 
 
     }

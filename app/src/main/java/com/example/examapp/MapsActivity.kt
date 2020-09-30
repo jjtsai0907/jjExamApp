@@ -20,6 +20,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
 
     open var wallet=0
+    lateinit var activeMarker: Marker
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +41,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         wallet = data!!.getIntExtra("WALLET_QUESTION", 9);
         Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
 
-        if (DataManager.nations[1].markerShown){
-            addMarkers(1)
+
+        if (DataManager.nations[0].markerShown){
+            addMarkers(3)
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DataManager.nations[3].questionClassList[0].position, 4.0F))
+            activeMarker.isVisible = false
+
         }
 
 
@@ -60,9 +65,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        asd = asd + 100
-
 
 
 
@@ -91,13 +93,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         //lateinit var currentPosition: Marker
 
-        lateinit var activeMarker: Marker
+
 
 
         mMap.setOnMarkerClickListener { marker ->
 
             activeMarker = marker
-            Log.d("ooo", (marker.tag as QuestionClass).question.toString())
+
 
             if (marker.isInfoWindowShown) {
 
@@ -105,12 +107,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_LONG).show()
 
             } else {
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 4.0F))
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 8.0F))
                 Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_SHORT).show()
                 marker.showInfoWindow()
 
-                //walletFromQuestion = intent.getIntExtra("WALLET_QUESTION", 0)
-                //Toast.makeText(this, walletFromQuestion.toString(), Toast.LENGTH_LONG).show()
+
 
             }
             true
@@ -129,40 +130,45 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             intent.putExtra("TAG_A2", (activeMarker.tag as QuestionClass).answer2)
             intent.putExtra("TAG_A3", (activeMarker.tag as QuestionClass).answer3)
             intent.putExtra("TAG_A4", (activeMarker.tag as QuestionClass).answer4)
-            //intent.putExtra("TAG_Closed", (activeMarker.tag as QuestionClass).cleared)
-            //Log.d("ooo", (activeMarker.tag as QuestionClass).question.toString())
+
+
+            DataManager.nations[0].markerShown = false
             activeMarker.isVisible = false
-            DataManager.nations[1].markerShown = false
+            activeMarker.remove()
 
-
-            //startActivity(intent)
             startActivityForResult(intent,999)
 
         }
 
     }
 
-    /*override fun onResume(){
-        super.onResume()
-        addMarkers()
 
-    }*/
 
-    fun addMarkers (position: Int){
+    fun addMarkers (markerPosition: Int){
+        var newMarkerList = mutableListOf<Marker>()
 
-        var newMarker = mMap.addMarker(
-            MarkerOptions().position(DataManager.nations[position].questionClass.position)
-                .title("You are in ${DataManager.nations[position].nation}"))
 
-        var newMarkerQuestionClass = QuestionClass(DataManager.nations[position].questionClass.question,
-            DataManager.nations[position].questionClass.answer1,
-            DataManager.nations[position].questionClass.answer2,
-            DataManager.nations[position].questionClass.answer3,
-            DataManager.nations[position].questionClass.answer4,
-            DataManager.nations[position].questionClass.position)
+        for(i in 0 until (DataManager.nations[markerPosition].questionClassList.size)) {
 
-        newMarker.tag = newMarkerQuestionClass
+            newMarkerList.add(mMap.addMarker(MarkerOptions().position(DataManager.nations[markerPosition].questionClassList[i].position)
+                    .title("You are in ${DataManager.nations[markerPosition].nation}")))
+
+
+            var detail = QuestionClass(
+                DataManager.nations[markerPosition].questionClassList[i].question,
+                DataManager.nations[markerPosition].questionClassList[i].answer1,
+                DataManager.nations[markerPosition].questionClassList[i].answer2,
+                DataManager.nations[markerPosition].questionClassList[i].answer3,
+                DataManager.nations[markerPosition].questionClassList[i].answer4,
+                DataManager.nations[markerPosition].questionClassList[i].position)
+
+            newMarkerList[i].tag = detail
+        }
+
     }
+
+
+
 
 
 
