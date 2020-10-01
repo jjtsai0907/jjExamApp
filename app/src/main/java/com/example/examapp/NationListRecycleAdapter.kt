@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class NationListRecycleAdapter(val context: Context, val nationList: List<NationClass>, private val myOnItemClickListener: ShoppingActivity) :
     RecyclerView.Adapter<NationListRecycleAdapter.ViewHolder>() {
 
     val layoutInflater = LayoutInflater.from(context)
+
 
 
     override fun getItemCount () = nationList.size
@@ -41,19 +43,13 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
             holder.nationTextView.text = "${DataManager.nations[position].nation} Purchased"
             Log.d("!!!!!!", nationInfo.nation.toString())
 
+        } else {
+            holder.itemView.isEnabled = true
+            holder.itemView.alpha = 1F
+            holder.nationTextView.text = "${DataManager.nations[position].nation}"
         }
 
         DataManager.nations[position].purchased
-
-        //DataManager.ClickedItemPosition[0] = position
-
-        /*holder.itemView.setOnClickListener{
-            Log.d("!!!", "item is clicked")
-            //holder.itemView.isVisible = false
-
-        }*/
-
-
 
     }
 
@@ -91,43 +87,13 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
         val nationTextView = itemView.findViewById<TextView>(R.id.nationTextView)
         val nationPriceTextView = itemView.findViewById<TextView>(R.id.nationPriceTextView)
-        //val nationImageView = itemView.findViewById<ImageView>(R.id.nationImageView)
-        //var nationListPosition = 0
-
-
-
-
 
 
         init{
             itemView.setOnClickListener  {
-                //Log.d("!!!", "first")
-                //nationTextView.text = "${DataManager.nations[adapterPosition].nation} Purchased"
-                DataManager.nations[adapterPosition].purchased = true
-                //DataManager.nations[nationListPosition].shown = true
-                //itemView.alpha = 0.2F
-                Log.d("!!!!!!", adapterPosition.toString())
-                //DataManager.nations[nationListPosition].alphaInShoppingList = false
 
-
-                //itemView.isClickable = false
-                //itemView.isActivated = false
-                //itemView.isEnabled = false
                 myOnItemClickListener.onClick(adapterPosition)
-
-
-
                 notifyDataSetChanged()
-
-
-
-                //notifyDataSetChanged()
-                //itemView.isClickable = false
-                //itemView.isEnabled = false
-                //remove(nationListPosition)
-                // set false    DataManager.nations[nationListPosition]
-
-
             }
 
             itemView.setOnLongClickListener{

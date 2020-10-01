@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_shopping.*
 import java.util.*
 import kotlin.random.Random.Default.nextInt
 
-var asd = 2
 
 class QuestionActivity : AppCompatActivity() {
 
@@ -27,8 +26,6 @@ class QuestionActivity : AppCompatActivity() {
     lateinit var button2: Button
     lateinit var button3: Button
     var wallet: Int = 0
-    //var walletFromActivity: Int = 0
-    //var walletFromShopping: Int = 0
     var trys: Int = 0
     var locationArray = mutableListOf<Int>(0,0,0,0)
     var ticketClickedPosition = 0
@@ -60,7 +57,7 @@ class QuestionActivity : AppCompatActivity() {
             intent.getStringExtra("TAG_A4")!!
         )
 
-        Log.d("!!answerList", answerList.toString())
+
 
         // To create random numbers
         locationArray = mutableListOf<Int>(0,0,0,0)
@@ -77,7 +74,8 @@ class QuestionActivity : AppCompatActivity() {
         }
 
         locationArray[3] = Random().nextInt(4)
-        while (locationArray[3] == locationArray[0] || locationArray[3] == locationArray[1] || locationArray[3] == locationArray[2]) {
+        while (locationArray[3] == locationArray[0] || locationArray[3] == locationArray[1] ||
+            locationArray[3] == locationArray[2]) {
             locationArray[3] = Random().nextInt(4)
         }
 
@@ -86,12 +84,8 @@ class QuestionActivity : AppCompatActivity() {
         var buttonTextList = mutableListOf<String>("","","","")
         for (i in 0..3) {
             buttonTextList[locationArray[i]] = answerList[i]
-
         }
 
-        Log.d("!!answerList", buttonTextList.toString())
-
-        //var currentCountry = intent.getStringExtra("currentCountry")
 
         questionTextView.setText(intent.getStringExtra("TAG_QUESTION"))
         button0.setText(buttonTextList[0])
@@ -99,18 +93,12 @@ class QuestionActivity : AppCompatActivity() {
         button2.setText(buttonTextList[2])
         button3.setText(buttonTextList[3])
 
-
-
-
-
-
-
-
         wallet = intent.getIntExtra("WALLET_MAPS", 0)
-        Toast.makeText(this, wallet.toString(), Toast.LENGTH_LONG).show()
         walletTextView.setText(wallet.toString())
 
     }
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         wallet= data!!.getIntExtra("WALLET_SHOPPING", 9)
@@ -127,13 +115,11 @@ class QuestionActivity : AppCompatActivity() {
     fun goShopping (view: View){
         var intent2 = Intent(this, ShoppingActivity::class.java)
         intent2.putExtra("WALLET_QUESTION", wallet)
-        Toast.makeText(this, "Go Shopping!!", Toast.LENGTH_SHORT).show()
-
         startActivityForResult(intent2,111)
-        //Toast.makeText(this, "Go Shopping!!", Toast.LENGTH_SHORT).show()
+
     }
 
-        //Toast.makeText(this, currentCountry, Toast.LENGTH_LONG).show()
+
 
 
     fun goBackToMaps (view: View){
@@ -141,10 +127,6 @@ class QuestionActivity : AppCompatActivity() {
 
         intent.putExtra("WALLET_QUESTION", wallet)
         intent.putExtra("TICKET_CLICKED_FROM_QUESTION", ticketClickedPosition)
-        //Toast.makeText(this, wallet.toString(), Toast.LENGTH_LONG).show()
-        //startActivity(intent)
-
-
         setResult(999,intent)
         finish()
 
@@ -154,26 +136,24 @@ class QuestionActivity : AppCompatActivity() {
         if (locationArray[0].toString() == view.tag.toString()){
             Toast.makeText(this,"Correct!", Toast.LENGTH_SHORT).show()
             view.isEnabled = false
-            //wallet = walletFromActivity
-            wallet += (- (trys * 100)) + 3000
+
+
+            when {
+                trys == 0 -> wallet += 1000
+                trys == 1 -> wallet += 300
+                trys == 2 -> wallet += 0
+                trys == 3 -> wallet -= 300
+            }
             walletTextView.setText(wallet.toString())
             trys ++
 
 
         }else {
             Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show()
-            //wallet = walletFromActivity
-            wallet += -(trys * 100) - 1000
-            walletTextView.setText(wallet.toString())
             view.isEnabled = false
             trys++
         }
     }
-    /*override fun onResume(){
-        super.onResume()
-        recyclerView.adapter?.notifyDataSetChanged()
-    }*/
-
 
 
 

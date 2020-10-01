@@ -92,16 +92,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-
-        //lateinit var currentPosition: Marker
-
-
-
-
         mMap.setOnMarkerClickListener { marker ->
 
             activeMarker = marker
-
 
             if (marker.isInfoWindowShown) {
 
@@ -112,9 +105,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 8.0F))
                 Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_SHORT).show()
                 marker.showInfoWindow()
-
-
-
             }
             true
         }

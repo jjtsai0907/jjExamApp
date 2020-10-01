@@ -66,7 +66,7 @@ object DataManager {
         //done
         nations.add(NationClass("Iceland", 1100, mutableListOf(
             QuestionClass("Which of the following is the only mammal native to Iceland?", "Arctic Fox", "Polar Bear", "Icelandic Cat", "Vikings", LatLng(64.142314, -21.056091)),
-            QuestionClass("Beer was illegal in Iceland until year ___ ?", "1989", "1993", "1458", "1901", LatLng(60.116762, -18.677731)),
+            QuestionClass("Beer was illegal in Iceland until year ___ ?", "1989", "1993", "1458", "1901", LatLng(63.9829993,-19.0757547)),
             QuestionClass("How does Iceland smell like?", "Fart", "Rose", "Banana", "Deer", LatLng(65.220143, -16.671786)),
             QuestionClass("Iceland has only waged one war, and it can barely be called war. Which nation was it against?", "UK", "USA", "Green Land", "Denmark", LatLng(64.869977, -20.901669)),
             QuestionClass("How many railway lines are there in Iceland?", "0", "5", "3", "2", LatLng(65.644703, -23.082149)))))

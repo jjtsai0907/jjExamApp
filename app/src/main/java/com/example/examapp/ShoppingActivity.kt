@@ -8,9 +8,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.list_nation.*
 
 
 class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemClickListener {
@@ -19,7 +19,6 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
     lateinit var shoppingWalletTextVIew: TextView
     lateinit var recyclerView: RecyclerView
     var wallet: Int = 0
-    var walletAfterPurchase : Int = 0
     var ticketClickedPosition = 0
 
 
@@ -30,56 +29,26 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping)
 
-        var intentButtonToMaps = findViewById<Button>(R.id.intentButtonToMaps)
-        var buttonToQue = findViewById<Button>(R.id.buttonToQue)
-
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = NationListRecycleAdapter(this, DataManager.nations, this)
         recyclerView.adapter = adapter
 
-
-
-        //recyclerView.adapter.onBindViewHolder(viewHold,3)
-
-        //recyclerView.adapter?.notifyDataSetChanged()
-
-
         shoppingWalletTextVIew = findViewById(R.id.shoppingWalletTextView)
         wallet = intent.getIntExtra("WALLET_QUESTION",0)
         shoppingWalletTextVIew.text = wallet.toString()
 
-
-
-        /*if (DataManager.nations[1].purchased){
-            wallet -= DataManager.nations[1].ticketFare
-            shoppingWalletTextVIew.text = wallet.toString()
-        }*/
-
-        /*var ttt = NationListRecycleAdapter(this, DataManager.nations).calculate()
-        wallet -= ttt
-
-        shoppingWalletTextVIew.text = wallet.toString()*/
     }
 
-    /*override fun onResume(){
-        super.onResume()
-        recyclerView.adapter?.notifyDataSetChanged()
-    } */
 
     fun goBackToQuestion (view: View){
+
         var intent = Intent(this, QuestionActivity::class.java)
         intent.putExtra("WALLET_SHOPPING", wallet)
         intent.putExtra("TICKET_CLICKED_POSITION", ticketClickedPosition)
-        //Toast.makeText(this, wallet.toString(), Toast.LENGTH_LONG).show()
-        //startActivity(intent)
-
         setResult(111,intent)
         finish()
 
-        //recyclerView.adapter?.notifyDataSetChanged()
-        //var intent = Intent(this, MapsActivity::class.java)
-        //Toast.makeText(this, DataManager.nations[].nation,Toast.LENGTH_LONG).show()
 
     }
 
@@ -88,24 +57,40 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
         ticketClickedPosition = int
 
-        wallet -= DataManager.nations[ticketClickedPosition].ticketFare
-        //walletAfterPurchase = wallet
-        shoppingWalletTextVIew.text = wallet.toString()
-        //nationTextView.text = "${DataManager.nations[ticketClickedPosition].nation} Purchased"
-        //DataManager.nations[ticketClickedPosition].markerShown = true
+        if (wallet >= DataManager.nations[ticketClickedPosition].ticketFare) {
 
-        //Toast.makeText(this, "Bajs!!!",Toast.LENGTH_SHORT).show()
-        //DataManager.nations[ticketClickedPosition].purchased = true
-        //DataManager.nations[position].ticketFare = 0
+            doubleCheckPurchase(ticketClickedPosition)
 
-        recyclerView.adapter?.notifyDataSetChanged()
-
-
+        }else  {
+            Toast.makeText(this, "Need More Money!", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
     override fun onLongClick(int: Int) {
         Toast.makeText(this, "Heeeeeey",Toast.LENGTH_SHORT).show()
+    }
+
+
+    fun doubleCheckPurchase(ticketClickedPosition: Int){
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setTitle("Purchase?")
+            .setMessage("Do you want to buy this ticket to ${DataManager.nations[ticketClickedPosition].nation} " +
+                        "for ${DataManager.nations[ticketClickedPosition].ticketFare} kr?")
+            .setPositiveButton("Purchase") {dialog, which ->
+                wallet -= DataManager.nations[ticketClickedPosition].ticketFare
+                shoppingWalletTextVIew.text = wallet.toString()
+                DataManager.nations[ticketClickedPosition].purchased = true
+                recyclerView.adapter?.notifyDataSetChanged()
+            }
+            .setNegativeButton("Cancel") { dialog, which ->
+                dialog.cancel()
+            }
+
+        val alert = dialogBuilder.create()
+        alert.show()
+
     }
 
 

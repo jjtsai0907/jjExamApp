@@ -28,7 +28,7 @@
         tools:listitem="@layout/list_nation" />
 
     <Button
-        android:id="@+id/buttonToQue"
+        android:id="@+id/buttonToQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="goBackToQuestion"
@@ -36,11 +36,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/intentButtonToMaps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To Maps"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="14dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
