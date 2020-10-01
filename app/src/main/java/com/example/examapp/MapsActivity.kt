@@ -21,6 +21,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     open var wallet=0
     lateinit var activeMarker: Marker
+    var ticketClickedPosition = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,13 +39,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        wallet = data!!.getIntExtra("WALLET_QUESTION", 9);
+        wallet = data!!.getIntExtra("WALLET_QUESTION", 9)
+        ticketClickedPosition = data!!.getIntExtra("TICKET_CLICKED_FROM_QUESTION", 9)
         Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
 
 
-        if (DataManager.nations[0].markerShown){
-            addMarkers(3)
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DataManager.nations[3].questionClassList[0].position, 4.0F))
+        if (DataManager.nations[ticketClickedPosition].purchased){
+            addMarkers()
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DataManager.nations[ticketClickedPosition].questionClassList[0].position, 2.0F))
             activeMarker.isVisible = false
 
         }
@@ -132,7 +134,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             intent.putExtra("TAG_A4", (activeMarker.tag as QuestionClass).answer4)
 
 
-            DataManager.nations[0].markerShown = false
+            //DataManager.nations[0].markerShown = false
             activeMarker.isVisible = false
             activeMarker.remove()
 
@@ -144,23 +146,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-    fun addMarkers (markerPosition: Int){
+    fun addMarkers (){
         var newMarkerList = mutableListOf<Marker>()
 
 
-        for(i in 0 until (DataManager.nations[markerPosition].questionClassList.size)) {
+        for(i in 0 until (DataManager.nations[ticketClickedPosition].questionClassList.size)) {
 
-            newMarkerList.add(mMap.addMarker(MarkerOptions().position(DataManager.nations[markerPosition].questionClassList[i].position)
-                    .title("You are in ${DataManager.nations[markerPosition].nation}")))
+            newMarkerList.add(mMap.addMarker(MarkerOptions().position(DataManager.nations[ticketClickedPosition].questionClassList[i].position)
+                    .title("You are in ${DataManager.nations[ticketClickedPosition].nation}")))
 
 
             var detail = QuestionClass(
-                DataManager.nations[markerPosition].questionClassList[i].question,
-                DataManager.nations[markerPosition].questionClassList[i].answer1,
-                DataManager.nations[markerPosition].questionClassList[i].answer2,
-                DataManager.nations[markerPosition].questionClassList[i].answer3,
-                DataManager.nations[markerPosition].questionClassList[i].answer4,
-                DataManager.nations[markerPosition].questionClassList[i].position)
+                DataManager.nations[ticketClickedPosition].questionClassList[i].question,
+                DataManager.nations[ticketClickedPosition].questionClassList[i].answer1,
+                DataManager.nations[ticketClickedPosition].questionClassList[i].answer2,
+                DataManager.nations[ticketClickedPosition].questionClassList[i].answer3,
+                DataManager.nations[ticketClickedPosition].questionClassList[i].answer4,
+                DataManager.nations[ticketClickedPosition].questionClassList[i].position)
 
             newMarkerList[i].tag = detail
         }

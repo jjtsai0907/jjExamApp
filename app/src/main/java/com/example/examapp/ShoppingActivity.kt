@@ -13,13 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_nation.*
 
 
-class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.onItemClickListener {
+class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemClickListener {
 
 
     lateinit var shoppingWalletTextVIew: TextView
     lateinit var recyclerView: RecyclerView
     var wallet: Int = 0
     var walletAfterPurchase : Int = 0
+    var ticketClickedPosition = 0
 
 
 
@@ -69,6 +70,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.onItemCli
     fun goBackToQuestion (view: View){
         var intent = Intent(this, QuestionActivity::class.java)
         intent.putExtra("WALLET_SHOPPING", wallet)
+        intent.putExtra("TICKET_CLICKED_POSITION", ticketClickedPosition)
         //Toast.makeText(this, wallet.toString(), Toast.LENGTH_LONG).show()
         //startActivity(intent)
 
@@ -82,26 +84,27 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.onItemCli
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onClick(ticketClickedPosition: Int) {
+    override fun onClick(int: Int) {
 
-
+        ticketClickedPosition = int
 
         wallet -= DataManager.nations[ticketClickedPosition].ticketFare
         //walletAfterPurchase = wallet
         shoppingWalletTextVIew.text = wallet.toString()
-        nationTextView.text = "${DataManager.nations[ticketClickedPosition].nation} Purchased"
-        DataManager.nations[ticketClickedPosition].markerShown = true
-            //this.alpha = 0.2F
+        //nationTextView.text = "${DataManager.nations[ticketClickedPosition].nation} Purchased"
+        //DataManager.nations[ticketClickedPosition].markerShown = true
+
         //Toast.makeText(this, "Bajs!!!",Toast.LENGTH_SHORT).show()
-        DataManager.nations[ticketClickedPosition].purchased = true
+        //DataManager.nations[ticketClickedPosition].purchased = true
         //DataManager.nations[position].ticketFare = 0
 
         recyclerView.adapter?.notifyDataSetChanged()
 
 
+
     }
 
-    override fun onLongClick(position: Int) {
+    override fun onLongClick(int: Int) {
         Toast.makeText(this, "Heeeeeey",Toast.LENGTH_SHORT).show()
     }
 

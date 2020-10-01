@@ -1,6 +1,7 @@
 package com.example.examapp
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,19 +30,20 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         holder.nationTextView.text = nationInfo.nation
         holder.nationPriceTextView.text = nationInfo.ticketFare.toString()
         //holder.nationImageView =
-        holder.nationListPosition = position
+        //holder.nationListPosition = position
         //nationInfo.ticketFare
+        Log.d("!!!!!!", nationInfo.nation.toString())
+        Log.d("!!!!!!", DataManager.nations[position].purchased.toString())
 
         if (DataManager.nations[position].purchased){
             holder.itemView.isEnabled = false
             holder.itemView.alpha = 0.2F
             holder.nationTextView.text = "${DataManager.nations[position].nation} Purchased"
-
-
+            Log.d("!!!!!!", nationInfo.nation.toString())
 
         }
 
-
+        DataManager.nations[position].purchased
 
         //DataManager.ClickedItemPosition[0] = position
 
@@ -55,11 +57,6 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
     }
 
-
-    fun remove (position: Int){
-        DataManager.nations.removeAt(position)
-
-    }
 
     /*
     fun removeStudent(position: Int){
@@ -95,7 +92,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         val nationTextView = itemView.findViewById<TextView>(R.id.nationTextView)
         val nationPriceTextView = itemView.findViewById<TextView>(R.id.nationPriceTextView)
         //val nationImageView = itemView.findViewById<ImageView>(R.id.nationImageView)
-        var nationListPosition = 0
+        //var nationListPosition = 0
 
 
 
@@ -103,16 +100,21 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
 
         init{
-            itemView.setOnClickListener {
+            itemView.setOnClickListener  {
                 //Log.d("!!!", "first")
-                //nationTextView.text = "${DataManager.nations[nationListPosition].nation} Purchased"
+                //nationTextView.text = "${DataManager.nations[adapterPosition].nation} Purchased"
+                DataManager.nations[adapterPosition].purchased = true
                 //DataManager.nations[nationListPosition].shown = true
-                itemView.alpha = 0.2F
+                //itemView.alpha = 0.2F
+                Log.d("!!!!!!", adapterPosition.toString())
                 //DataManager.nations[nationListPosition].alphaInShoppingList = false
-                myOnItemClickListener.onClick(adapterPosition)
+
+
                 //itemView.isClickable = false
                 //itemView.isActivated = false
-                itemView.isEnabled = false
+                //itemView.isEnabled = false
+                myOnItemClickListener.onClick(adapterPosition)
+
 
 
                 notifyDataSetChanged()
@@ -138,9 +140,9 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
     }
 
-    interface onItemClickListener {
-        fun onClick (position: Int)
-        fun onLongClick (position: Int)
+    interface OnItemClickListener {
+        fun onClick (int: Int)
+        fun onLongClick (int: Int)
     }
 
 

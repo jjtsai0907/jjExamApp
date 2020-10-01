@@ -31,6 +31,7 @@ class QuestionActivity : AppCompatActivity() {
     //var walletFromShopping: Int = 0
     var trys: Int = 0
     var locationArray = mutableListOf<Int>(0,0,0,0)
+    var ticketClickedPosition = 0
 
 
 
@@ -112,7 +113,8 @@ class QuestionActivity : AppCompatActivity() {
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        wallet= data!!.getIntExtra("WALLET_SHOPPING", 9);
+        wallet= data!!.getIntExtra("WALLET_SHOPPING", 9)
+        ticketClickedPosition = data!!.getIntExtra("TICKET_CLICKED_POSITION", 9)
         walletTextView.setText(wallet.toString())
         Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
 
@@ -138,6 +140,7 @@ class QuestionActivity : AppCompatActivity() {
         var intent = Intent(this, MapsActivity::class.java)
 
         intent.putExtra("WALLET_QUESTION", wallet)
+        intent.putExtra("TICKET_CLICKED_FROM_QUESTION", ticketClickedPosition)
         //Toast.makeText(this, wallet.toString(), Toast.LENGTH_LONG).show()
         //startActivity(intent)
 
@@ -152,7 +155,7 @@ class QuestionActivity : AppCompatActivity() {
             Toast.makeText(this,"Correct!", Toast.LENGTH_SHORT).show()
             view.isEnabled = false
             //wallet = walletFromActivity
-            wallet += (- (trys * 3000)) + 10000
+            wallet += (- (trys * 100)) + 3000
             walletTextView.setText(wallet.toString())
             trys ++
 
@@ -160,7 +163,7 @@ class QuestionActivity : AppCompatActivity() {
         }else {
             Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show()
             //wallet = walletFromActivity
-            wallet += -(trys * 1000) - 3000
+            wallet += -(trys * 100) - 1000
             walletTextView.setText(wallet.toString())
             view.isEnabled = false
             trys++
