@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
@@ -94,7 +95,7 @@ class QuestionActivity : AppCompatActivity() {
         button3.setText(buttonTextList[3])
 
         wallet = intent.getIntExtra("WALLET_MAPS", 0)
-        walletTextView.setText(wallet.toString())
+        walletTextView.text = " ${wallet.toString()} kr"
 
     }
 
@@ -103,7 +104,7 @@ class QuestionActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         wallet= data!!.getIntExtra("WALLET_SHOPPING", 9)
         ticketClickedPosition = data!!.getIntExtra("TICKET_CLICKED_POSITION", 9)
-        walletTextView.setText(wallet.toString())
+        walletTextView.setText(" ${wallet.toString()} kr")
         Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
 
 
@@ -144,7 +145,7 @@ class QuestionActivity : AppCompatActivity() {
                 trys == 2 -> wallet += 0
                 trys == 3 -> wallet -= 300
             }
-            walletTextView.setText(wallet.toString())
+            walletTextView.setText(" ${wallet.toString()} kr")
             trys ++
 
 
@@ -155,6 +156,11 @@ class QuestionActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
 
 
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -36,7 +37,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
         shoppingWalletTextVIew = findViewById(R.id.shoppingWalletTextView)
         wallet = intent.getIntExtra("WALLET_QUESTION",0)
-        shoppingWalletTextVIew.text = wallet.toString()
+        shoppingWalletTextVIew.text = " ${wallet.toString()} kr"
 
     }
 
@@ -80,7 +81,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
                         "for ${DataManager.nations[ticketClickedPosition].ticketFare} kr?")
             .setPositiveButton("Purchase") {dialog, which ->
                 wallet -= DataManager.nations[ticketClickedPosition].ticketFare
-                shoppingWalletTextVIew.text = wallet.toString()
+                shoppingWalletTextVIew.text = " ${wallet.toString()} kr"
                 DataManager.nations[ticketClickedPosition].purchased = true
                 recyclerView.adapter?.notifyDataSetChanged()
             }
@@ -91,6 +92,11 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
         val alert = dialogBuilder.create()
         alert.show()
 
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.main, menu)
+        return true
     }
 
 

@@ -1,10 +1,14 @@
 package com.example.examapp
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -115,7 +119,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             val intent = Intent (this, QuestionActivity::class.java)
 
-            //intent.putExtra("currentCountry",currentPosition)
             intent.putExtra("WALLET_MAPS", wallet)
             intent.putExtra("TAG_QUESTION", (activeMarker.tag as QuestionClass).question)
             intent.putExtra("TAG_A1", (activeMarker.tag as QuestionClass).answer1)
@@ -124,9 +127,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             intent.putExtra("TAG_A4", (activeMarker.tag as QuestionClass).answer4)
 
 
-            //DataManager.nations[0].markerShown = false
             activeMarker.isVisible = false
-            activeMarker.remove()
+
 
             startActivityForResult(intent,999)
 
@@ -160,9 +162,69 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId){
+            R.id.finish -> {
+                doubleCheckMenu("finish")
+                return true
+            }
+            R.id.restart -> {
+
+                doubleCheckMenu("restart")
+                return true
+            }
+            R.id.about -> {
+
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://jjtsai0907.wordpress.com/"))
+                startActivity(intent)
+                return true
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+
+        }
+
+
+    }
+
+    fun doubleCheckMenu (clickedMenuItem: String){
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setTitle("Are you sure?")
+            .setMessage("Do you want to leave this page and $clickedMenuItem the game? All progress will be lost.")
+            .setPositiveButton("Sure") {dialog, which ->
+
+                if (clickedMenuItem == "restart"){
+                    for (i in 0 until DataManager.nations.size){
+                        DataManager.nations[i].purchased = false
+                    }
+
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else {
+                    Toast.makeText(this, "Aaah", Toast.LENGTH_SHORT).show()
+                }
 
 
 
+            }
+            .setNegativeButton("Cancel") { dialog, which ->
+                dialog.cancel()
+            }
+
+        val alert = dialogBuilder.create()
+        alert.show()
+
+    }
 
 
 }

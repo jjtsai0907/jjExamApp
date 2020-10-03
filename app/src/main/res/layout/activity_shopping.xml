@@ -11,7 +11,7 @@
         android:layout_width="176dp"
         android:layout_height="67dp"
         android:text="TextView"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

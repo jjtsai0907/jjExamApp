@@ -37,16 +37,23 @@ object DataManager {
             QuestionClass("Is Tokyo the only city in the World to issue passports to vampires?", "False, No Vampires", "False, Osaka also issues", "True, Only Tokyo", "False, Not the Only", LatLng(33.823099,134.1113743)),
             QuestionClass("Which of the following is the Capital of Japan?", "Tokyo", "Osaka", "Nagoya", "Sapporo", LatLng(39.738913,141.3488523)))))
 
-        //done
+
         nations.add(NationClass("USA", 5800, mutableListOf(
             QuestionClass("What do people call the metropolitan area of Chicago?", "Chicagoland", "Toyland", "Smokey Downtown", "Chicagoville", LatLng(41.8333925,-88.0121587)),
             QuestionClass("Besides the US, which of the following does not use the metric system?", "Myanmar", "North Korea", "Yemen", "Tibet", LatLng(38.8935128,-77.1546631)),
             QuestionClass("Besides Prospect Park in Brooklyn, which of the following was also considered as a possible location for the Statue of Liberty?", "Central Park", "Time Square", "City Hall Park", "Washington DC", LatLng(40.6892494,-74.0466891)),
             QuestionClass("Yosemite Falls is one of the tallest on earth. However, it is actually made up of ___ separate falls. How many is it?", "3", "2", "4", "5", LatLng(37.7565957,-119.5990961)),
             QuestionClass("FARGO?", "Myanmar", "North Korea", "Yemen", "Tibet", LatLng(46.8541125,-96.9685994)),
-            QuestionClass("EUGENE?", "Central Park", "Time Square", "City Hall Park", "Washington DC", LatLng(44.0605798,-123.2626367)),
+            QuestionClass("Which national park is in Oregon?", "Crater Lake", "Yosemite", "Alcatraz Island", "Eugene O'Neill", LatLng(44.0409399,-123.0877358)),
             QuestionClass("South Kaibab Trail is one of the popular trails to hike down to Colorado River from Rim, and it is 11.4 km long. How many water stops on the way?", "0", "Depends on Seasons", "3", "8", LatLng(36.073353,-112.0930617)))))
 
+
+
+        nations.add(NationClass("Mongolia", 3700, mutableListOf(
+            QuestionClass("The first McDonald's in Russian was opened on Jan 31, 1990. The amount of customers served during a single day still remains the world record. How many people on that day?", "30,000", "10,000", "5,000", "3,600", LatLng(55.7554841,37.5442743)),
+            QuestionClass("Dogs in Moscow are not allowed to bark at night. When?", "11pm - 7am", "10pm - 6am", "No Such a Rule", "12pm - 6am", LatLng(55.683907,37.7619633)),
+            QuestionClass("How many countries does Russia share a boarder with?", "14", "15", "12", "8", LatLng(52.183874,35.8217343)),
+            QuestionClass("Russia is home to the deepest lake in the world. How many % of the world's fresh water it contains?", "20 %", "70 %", "22 %", "12 %", LatLng(53.5962123,102.3422383)))))
 
         //done
         nations.add(NationClass("Russia", 1700, mutableListOf(
@@ -55,13 +62,15 @@ object DataManager {
             QuestionClass("How many countries does Russia share a boarder with?", "14", "15", "12", "8", LatLng(52.183874,35.8217343)),
             QuestionClass("Russia is home to the deepest lake in the world. How many % of the world's fresh water it contains?", "20 %", "70 %", "22 %", "12 %", LatLng(53.5962123,102.3422383)))))
 
+
         //done
         nations.add(NationClass("Norway", 200, mutableListOf(
             QuestionClass("Lærdal Tunnel, the world's longest road tunnel, is in Norway. How long is it?", "24.5 km", "25.5 km", "22.5 km", "30.5 km", LatLng(61.0200222,7.3733351)),
             QuestionClass("Which Nobel Prize is awarded in Oslo?", "Peace Prize", "Literature Prize", "Physics Prize", "Chemistry Prize", LatLng(59.8937806,10.6450336)))))
 
-
-
+        nations.add(NationClass("Hasak", 350, mutableListOf(
+            QuestionClass("Lærdal Tunnel, the world's longest road tunnel, is in Norway. How long is it?", "24.5 km", "25.5 km", "22.5 km", "30.5 km", LatLng(61.0200222,7.3733351)),
+            QuestionClass("Which Nobel Prize is awarded in Oslo?", "Peace Prize", "Literature Prize", "Physics Prize", "Chemistry Prize", LatLng(59.8937806,10.6450336)))))
 
         //done
         nations.add(NationClass("Iceland", 1100, mutableListOf(
