@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/finishFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:tag="finishFragment">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Congratulations!"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/finishImageView1"
+        android:layout_width="66dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/finishCountryTextView"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/ic_flight" />
+
+    <ImageView
+        android:id="@+id/finishImageView2"
+        android:layout_width="71dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/finishQuestionTextView"
+        app:layout_constraintStart_toStartOf="@+id/finishImageView1"
+        app:layout_constraintTop_toBottomOf="@+id/finishImageView1"
+        app:srcCompat="@drawable/ic_marker" />
+
+    <ImageView
+        android:id="@+id/finishImageView3"
+        android:layout_width="72dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/finishWalletTextView"
+        app:layout_constraintStart_toStartOf="@+id/finishImageView2"
+        app:layout_constraintTop_toBottomOf="@+id/finishImageView2"
+        app:srcCompat="@drawable/ic_money" />
+
+    <TextView
+        android:id="@+id/finishCountryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Countries"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/finishImageView1"
+        app:layout_constraintStart_toEndOf="@+id/finishImageView1"
+        app:layout_constraintTop_toTopOf="@+id/finishImageView1" />
+
+    <TextView
+        android:id="@+id/finishQuestionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Questions"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/finishImageView2"
+        app:layout_constraintStart_toEndOf="@+id/finishImageView2"
+        app:layout_constraintTop_toTopOf="@+id/finishImageView2" />
+
+    <TextView
+        android:id="@+id/finishWalletTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Wallet"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/finishImageView3"
+        app:layout_constraintStart_toEndOf="@+id/finishImageView3"
+        app:layout_constraintTop_toTopOf="@+id/finishImageView3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

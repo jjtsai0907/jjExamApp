@@ -211,7 +211,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     startActivity(intent)
                 }
                 else {
-                    Toast.makeText(this, "Aaah", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent (this, MainActivity::class.java)
+                    intent.putExtra("FINISH", "finish")
+                    startActivity(intent)
+
+
                 }
 
 
