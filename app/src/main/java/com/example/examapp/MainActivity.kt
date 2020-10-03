@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var finish1: TextView
     lateinit var buttonx: Button
+    var countCountries: Int = 1
 
 
 
@@ -105,20 +106,37 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
+    /*fun countCountries (): Int{
+        for (i in 0 until DataManager.nations.size){
+            if(DataManager.nations[i].purchased){
+                countCountries ++
+
+            }
+        }
+        return countCountries
+    }*/
+
+    //fun countQuestions (){}
+
+
+
     fun changeText(view: View){
 
         var buttont: Button = findViewById(R.id.buttonx)
         buttont.alpha = 0F
         //buttonx.alpha = 0F
+        //countCountries()
 
 
         val fragmentFinish = supportFragmentManager.findFragmentByTag("finishFragment") as FinishFragment?
         //fragmentFinish.finishCountryTextVIew
-        fragmentFinish?.setText("")
+        fragmentFinish?.setText()
 
 
     }
-    
+
 
 
 }

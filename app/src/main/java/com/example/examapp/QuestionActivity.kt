@@ -35,6 +35,7 @@ class QuestionActivity : AppCompatActivity() {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
@@ -147,6 +148,7 @@ class QuestionActivity : AppCompatActivity() {
             }
             walletTextView.setText(" ${wallet.toString()} kr")
             trys ++
+            DataManager.countQuestion ++
 
 
         }else {

@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_finish.*
+import java.util.zip.DataFormatException
 
 class FinishFragment: Fragment() {
 
@@ -19,6 +20,7 @@ class FinishFragment: Fragment() {
     lateinit var finishImageView1: ImageView
     lateinit var finishImageView2: ImageView
     lateinit var finishImageView3: ImageView
+    var countCountries = 1
 
 
     override fun onCreateView(
@@ -57,17 +59,29 @@ class FinishFragment: Fragment() {
 
     }
 
-    fun setText(text:String){
+    fun setText(){
         finishCountryTextVIew.alpha = 1F
-        finishCountryTextVIew.text = text
+        countCountries()
+        finishCountryTextVIew.text = countCountries.toString()
+        finishQuestionTextView.text = DataManager.countQuestion.toString()
         finishWalletTextView.alpha = 1F
         finishQuestionTextView.alpha = 1F
         finishImageView1.alpha = 1F
         finishImageView2.alpha = 1F
         finishImageView3.alpha = 1F
+
+
     }
 
 
+    fun countCountries () {
 
+        for (i in 0 until DataManager.nations.size) {
+            if (DataManager.nations[i].purchased) {
+                countCountries++
 
+            }
+        }
+
+    }
 }

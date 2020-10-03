@@ -8,6 +8,7 @@ object DataManager {
 
 
     val nations = mutableListOf<NationClass>()
+    var countQuestion: Int = 0
 
     init{
         createMockData()
