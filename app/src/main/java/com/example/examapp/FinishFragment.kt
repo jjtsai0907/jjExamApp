@@ -62,9 +62,10 @@ class FinishFragment: Fragment() {
     fun setText(){
         finishCountryTextVIew.alpha = 1F
         countCountries()
-        finishCountryTextVIew.text = countCountries.toString()
-        finishQuestionTextView.text = DataManager.countQuestion.toString()
+        finishCountryTextVIew.text = "Wow! You've been to ${countCountries.toString()} countries!"
+        finishQuestionTextView.text = "You've answered ${DataManager.countQuestion.toString()} questions correctly!"
         finishWalletTextView.alpha = 1F
+        finishWalletTextView.text = "At this moment, you still have ${DataManager.wallet.toString()} kr left."
         finishQuestionTextView.alpha = 1F
         finishImageView1.alpha = 1F
         finishImageView2.alpha = 1F
@@ -72,8 +73,6 @@ class FinishFragment: Fragment() {
 
 
     }
-
-
     fun countCountries () {
 
         for (i in 0 until DataManager.nations.size) {

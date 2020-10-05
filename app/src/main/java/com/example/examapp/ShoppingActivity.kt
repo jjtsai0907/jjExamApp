@@ -2,9 +2,11 @@ package com.example.examapp
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -19,7 +21,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
     lateinit var shoppingWalletTextVIew: TextView
     lateinit var recyclerView: RecyclerView
-    var wallet: Int = 0
+    //var wallet: Int = 0
     var ticketClickedPosition = 0
 
 
@@ -36,8 +38,8 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
         recyclerView.adapter = adapter
 
         shoppingWalletTextVIew = findViewById(R.id.shoppingWalletTextView)
-        wallet = intent.getIntExtra("WALLET_QUESTION",0)
-        shoppingWalletTextVIew.text = " ${wallet.toString()} kr"
+        //wallet = intent.getIntExtra("WALLET_QUESTION",0)
+        shoppingWalletTextVIew.text = " ${DataManager.wallet.toString()} kr"
 
     }
 
@@ -45,7 +47,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
     fun goBackToQuestion (view: View){
 
         var intent = Intent(this, QuestionActivity::class.java)
-        intent.putExtra("WALLET_SHOPPING", wallet)
+        //intent.putExtra("WALLET_SHOPPING", wallet)
         intent.putExtra("TICKET_CLICKED_POSITION", ticketClickedPosition)
         setResult(111,intent)
         finish()
@@ -58,7 +60,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
         ticketClickedPosition = int
 
-        if (wallet >= DataManager.nations[ticketClickedPosition].ticketFare) {
+        if (DataManager.wallet >= DataManager.nations[ticketClickedPosition].ticketFare) {
 
             doubleCheckPurchase(ticketClickedPosition)
 
@@ -69,7 +71,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
     }
 
     override fun onLongClick(int: Int) {
-        Toast.makeText(this, "Heeeeeey",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Are you gonna buy?",Toast.LENGTH_SHORT).show()
     }
 
 
@@ -80,8 +82,8 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
             .setMessage("Do you want to buy this ticket to ${DataManager.nations[ticketClickedPosition].nation} " +
                         "for ${DataManager.nations[ticketClickedPosition].ticketFare} kr?")
             .setPositiveButton("Purchase") {dialog, which ->
-                wallet -= DataManager.nations[ticketClickedPosition].ticketFare
-                shoppingWalletTextVIew.text = " ${wallet.toString()} kr"
+                DataManager.wallet -= DataManager.nations[ticketClickedPosition].ticketFare
+                shoppingWalletTextVIew.text = " ${DataManager.wallet.toString()} kr"
                 DataManager.nations[ticketClickedPosition].purchased = true
                 recyclerView.adapter?.notifyDataSetChanged()
             }
@@ -97,6 +99,66 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
         menuInflater.inflate(R.menu.main, menu)
         return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId){
+            R.id.finish -> {
+                doubleCheckMenu("finish")
+                return true
+            }
+            R.id.restart -> {
+
+                doubleCheckMenu("restart")
+                return true
+            }
+            R.id.about -> {
+
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://jjtsai0907.wordpress.com/"))
+                startActivity(intent)
+                return true
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+
+        }
+
+
+    }
+    fun doubleCheckMenu (clickedMenuItem: String){
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setTitle("Are you sure?")
+            .setMessage("Do you want to leave this page and $clickedMenuItem the game? All progress will be lost.")
+            .setPositiveButton("Sure") {dialog, which ->
+
+                if (clickedMenuItem == "restart"){
+
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else {
+
+                    val intent = Intent (this, MainActivity::class.java)
+                    intent.putExtra("FINISH", "finish")
+                    //DataManager.wallet = 0
+
+                    startActivity(intent)
+
+
+                }
+
+
+
+            }
+            .setNegativeButton("Cancel") { dialog, which ->
+                dialog.cancel()
+            }
+
+        val alert = dialogBuilder.create()
+        alert.show()
+
     }
 
 

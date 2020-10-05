@@ -5,11 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class NationListRecycleAdapter(val context: Context, val nationList: List<NationClass>, private val myOnItemClickListener: ShoppingActivity) :
+class NationListRecycleAdapter(val context: Context, val nationList: List<NationClass> ,private val myOnItemClickListener: ShoppingActivity) :
     RecyclerView.Adapter<NationListRecycleAdapter.ViewHolder>() {
 
     val layoutInflater = LayoutInflater.from(context)
@@ -31,17 +32,13 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
         holder.nationTextView.text = nationInfo.nation
         holder.nationPriceTextView.text = nationInfo.ticketFare.toString()
-        //holder.nationImageView =
-        //holder.nationListPosition = position
-        //nationInfo.ticketFare
-        Log.d("!!!!!!", nationInfo.nation.toString())
-        Log.d("!!!!!!", DataManager.nations[position].purchased.toString())
+        holder.nationImageView.setImageResource(nationInfo.imageResource)
+
 
         if (DataManager.nations[position].purchased){
             holder.itemView.isEnabled = false
             holder.itemView.alpha = 0.2F
-            holder.nationTextView.text = "${DataManager.nations[position].nation} Purchased"
-            Log.d("!!!!!!", nationInfo.nation.toString())
+
 
         } else {
             holder.itemView.isEnabled = true
@@ -87,7 +84,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
         val nationTextView = itemView.findViewById<TextView>(R.id.nationTextView)
         val nationPriceTextView = itemView.findViewById<TextView>(R.id.nationPriceTextView)
-
+        val nationImageView = itemView.findViewById<ImageView>(R.id.nationImageView)
 
         init{
             itemView.setOnClickListener  {

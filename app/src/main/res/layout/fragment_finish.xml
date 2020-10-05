@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/finishImageView1"
-        android:layout_width="66dp"
-        android:layout_height="62dp"
+        android:layout_width="42dp"
+        android:layout_height="41dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:background="#00FFFFFF"
@@ -34,9 +34,9 @@
 
     <ImageView
         android:id="@+id/finishImageView2"
-        android:layout_width="71dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="39dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toStartOf="@+id/finishQuestionTextView"
         app:layout_constraintStart_toStartOf="@+id/finishImageView1"
@@ -45,9 +45,9 @@
 
     <ImageView
         android:id="@+id/finishImageView3"
-        android:layout_width="72dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="40dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toStartOf="@+id/finishWalletTextView"
         app:layout_constraintStart_toStartOf="@+id/finishImageView2"
@@ -56,8 +56,8 @@
 
     <TextView
         android:id="@+id/finishCountryTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="228dp"
+        android:layout_height="63dp"
         android:layout_marginStart="16dp"
         android:text="Countries"
         android:textSize="24sp"
@@ -67,21 +67,25 @@
 
     <TextView
         android:id="@+id/finishQuestionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="227dp"
+        android:layout_height="62dp"
+        android:layout_marginEnd="32dp"
         android:text="Questions"
+        android:textColor="#030303"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/finishImageView2"
-        app:layout_constraintStart_toEndOf="@+id/finishImageView2"
-        app:layout_constraintTop_toTopOf="@+id/finishImageView2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/finishImageView2"
+        app:layout_constraintVertical_bias="0.444" />
 
     <TextView
         android:id="@+id/finishWalletTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="226dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:text="Wallet"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/finishImageView3"
         app:layout_constraintStart_toEndOf="@+id/finishImageView3"

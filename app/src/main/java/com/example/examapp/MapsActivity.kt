@@ -17,13 +17,18 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.activity_question.*
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
+    companion object {
+        val INTENT_PARCELABLE = "OBJECT_INTENT"
+    }
+
     private lateinit var mMap: GoogleMap
 
-    open var wallet=0
+
     lateinit var activeMarker: Marker
     var ticketClickedPosition = 0
 
@@ -39,13 +44,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
+
     
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        wallet = data!!.getIntExtra("WALLET_QUESTION", 9)
+
         ticketClickedPosition = data!!.getIntExtra("TICKET_CLICKED_FROM_QUESTION", 9)
-        Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
 
 
         if (DataManager.nations[ticketClickedPosition].purchased){
@@ -100,6 +105,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             activeMarker = marker
 
+
             if (marker.isInfoWindowShown) {
 
                 marker.hideInfoWindow()
@@ -119,15 +125,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             val intent = Intent (this, QuestionActivity::class.java)
 
-            intent.putExtra("WALLET_MAPS", wallet)
+
             intent.putExtra("TAG_QUESTION", (activeMarker.tag as QuestionClass).question)
             intent.putExtra("TAG_A1", (activeMarker.tag as QuestionClass).answer1)
             intent.putExtra("TAG_A2", (activeMarker.tag as QuestionClass).answer2)
             intent.putExtra("TAG_A3", (activeMarker.tag as QuestionClass).answer3)
             intent.putExtra("TAG_A4", (activeMarker.tag as QuestionClass).answer4)
-
+            //intent.putExtra("TAG_QUESTION_BACKGROUND", (activeMarker.tag as QuestionClass).questionImageResource)
 
             activeMarker.isVisible = false
+
 
 
             startActivityForResult(intent,999)
@@ -203,9 +210,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .setPositiveButton("Sure") {dialog, which ->
 
                 if (clickedMenuItem == "restart"){
-                    for (i in 0 until DataManager.nations.size){
-                        DataManager.nations[i].purchased = false
-                    }
 
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
@@ -214,6 +218,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     val intent = Intent (this, MainActivity::class.java)
                     intent.putExtra("FINISH", "finish")
+                    //DataManager.wallet = 0
+
                     startActivity(intent)
 
 

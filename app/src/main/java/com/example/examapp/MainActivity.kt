@@ -3,6 +3,7 @@ package com.example.examapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.Menu
 import android.view.View
@@ -76,15 +77,21 @@ class MainActivity : AppCompatActivity() {
 
     fun entryButtonClicked (view: View){
         val intent: Intent = Intent(this, MapsActivity::class.java)
+
+        for (i in 0 until DataManager.nations.size){
+            DataManager.nations[i].purchased = false
+
+        }
+        DataManager.wallet = 0
+        DataManager.countQuestion = 0
+
+
+
         startActivity(intent)
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
 
     fun howToPlay(view: View){
 

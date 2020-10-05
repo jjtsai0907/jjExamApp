@@ -1,15 +1,18 @@
 package com.example.examapp
 
 import android.content.Intent
+import android.media.Image
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_question.*
 import kotlinx.android.synthetic.main.activity_shopping.*
 import java.util.*
@@ -22,11 +25,11 @@ class QuestionActivity : AppCompatActivity() {
     lateinit var walletTextView: TextView
     lateinit var shoppingImageView: ImageButton
     lateinit var questionTextView: TextView
+    lateinit var questionImageView: ImageView
     lateinit var button0: Button
     lateinit var button1: Button
     lateinit var button2: Button
     lateinit var button3: Button
-    var wallet: Int = 0
     var trys: Int = 0
     var locationArray = mutableListOf<Int>(0,0,0,0)
     var ticketClickedPosition = 0
@@ -48,6 +51,11 @@ class QuestionActivity : AppCompatActivity() {
         button2 = findViewById(R.id.button2)
         button3 = findViewById(R.id.button3)
         questionTextView = findViewById(R.id.questionTextView)
+        questionImageView = findViewById(R.id.questionImageView)
+
+
+
+
 
 
 
@@ -95,18 +103,21 @@ class QuestionActivity : AppCompatActivity() {
         button2.setText(buttonTextList[2])
         button3.setText(buttonTextList[3])
 
-        wallet = intent.getIntExtra("WALLET_MAPS", 0)
-        walletTextView.text = " ${wallet.toString()} kr"
+        walletTextView.text = "${DataManager.wallet.toString()} kr"
+
+
+
 
     }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        wallet= data!!.getIntExtra("WALLET_SHOPPING", 9)
+        //wallet= data!!.getIntExtra("WALLET_SHOPPING", 9)
+        walletTextView.text = "${DataManager.wallet.toString()} kr"
         ticketClickedPosition = data!!.getIntExtra("TICKET_CLICKED_POSITION", 9)
-        walletTextView.setText(" ${wallet.toString()} kr")
-        Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
+        //walletTextView.setText("${DataManager.wallet.toString()} kr")
+        //Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
 
 
 
@@ -116,7 +127,7 @@ class QuestionActivity : AppCompatActivity() {
 
     fun goShopping (view: View){
         var intent2 = Intent(this, ShoppingActivity::class.java)
-        intent2.putExtra("WALLET_QUESTION", wallet)
+        //intent2.putExtra("WALLET_QUESTION", wallet)
         startActivityForResult(intent2,111)
 
     }
@@ -127,7 +138,7 @@ class QuestionActivity : AppCompatActivity() {
     fun goBackToMaps (view: View){
         var intent = Intent(this, MapsActivity::class.java)
 
-        intent.putExtra("WALLET_QUESTION", wallet)
+        //intent.putExtra("WALLET_QUESTION", wallet)
         intent.putExtra("TICKET_CLICKED_FROM_QUESTION", ticketClickedPosition)
         setResult(999,intent)
         finish()
@@ -141,12 +152,12 @@ class QuestionActivity : AppCompatActivity() {
 
 
             when {
-                trys == 0 -> wallet += 1000
-                trys == 1 -> wallet += 300
-                trys == 2 -> wallet += 0
-                trys == 3 -> wallet -= 300
+                trys == 0 -> DataManager.wallet += 1000
+                trys == 1 -> DataManager.wallet += 300
+                trys == 2 -> DataManager.wallet += 0
+                trys == 3 -> DataManager.wallet -= 300
             }
-            walletTextView.setText(" ${wallet.toString()} kr")
+            walletTextView.setText(" ${DataManager.wallet.toString()} kr")
             trys ++
             DataManager.countQuestion ++
 
@@ -163,6 +174,67 @@ class QuestionActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId){
+            R.id.finish -> {
+                doubleCheckMenu("finish")
+                return true
+            }
+            R.id.restart -> {
+
+                doubleCheckMenu("restart")
+                return true
+            }
+            R.id.about -> {
+
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://jjtsai0907.wordpress.com/"))
+                startActivity(intent)
+                return true
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+
+        }
+
+
+    }
+    fun doubleCheckMenu (clickedMenuItem: String){
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setTitle("Are you sure?")
+            .setMessage("Do you want to leave this page and $clickedMenuItem the game? All progress will be lost.")
+            .setPositiveButton("Sure") {dialog, which ->
+
+                if (clickedMenuItem == "restart"){
+
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else {
+
+                    val intent = Intent (this, MainActivity::class.java)
+                    intent.putExtra("FINISH", "finish")
+                    //DataManager.wallet = 0
+
+                    startActivity(intent)
+
+
+                }
+
+
+
+            }
+            .setNegativeButton("Cancel") { dialog, which ->
+                dialog.cancel()
+            }
+
+        val alert = dialogBuilder.create()
+        alert.show()
+
+    }
+
 
 
 }
