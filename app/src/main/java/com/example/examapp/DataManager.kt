@@ -69,8 +69,8 @@ object DataManager {
 
         //done
         nations.add(NationClass("Norway", 200, R.drawable.norway,mutableListOf(
-            QuestionClass("Lærdal Tunnel, the world's longest road tunnel, is in Norway. How long is it?", "24.5 km", "25.5 km", "22.5 km", "30.5 km", LatLng(61.0200222,7.3733351)),
-            QuestionClass("Which Nobel Prize is awarded in Oslo?", "Peace Prize", "Literature Prize", "Physics Prize", "Chemistry Prize", LatLng(59.8937806,10.6450336)))))
+            QuestionClass("Lærdal Tunnel, the world's longest road tunnel, is in Norway. How long is it?", "24.5 km", "25.5 km", "22.5 km", "30.5 km", LatLng(61.0200222,7.3733351), "Oslo", R.drawable.norway),
+            QuestionClass("Which Nobel Prize is awarded in Oslo?", "Peace Prize", "Literature Prize", "Physics Prize", "Chemistry Prize", LatLng(59.8937806,10.6450336), "Oslo", R.drawable.norway))))
 
         nations.add(NationClass("Home to JJ", 350, R.drawable.jj, mutableListOf(
             QuestionClass("Lærdal Tunnel, the world's longest road tunnel, is in Norway. How long is it?", "24.5 km", "25.5 km", "22.5 km", "30.5 km", LatLng(61.0200222,7.3733351)),

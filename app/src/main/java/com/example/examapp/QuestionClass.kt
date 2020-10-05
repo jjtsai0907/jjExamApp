@@ -12,7 +12,7 @@ class QuestionClass (val question: String,
                      val answer4: String,
                      val position: LatLng,
                      val city: String = "Taipei",
-                     val questionImageResource: Int = R.drawable.jj) {
+                     val questionImageResource: Int = (R.drawable.japan).toInt()) {
 
 
     

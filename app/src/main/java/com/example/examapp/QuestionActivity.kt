@@ -1,6 +1,9 @@
 package com.example.examapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.Drawable.createFromPath
 import android.media.Image
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +18,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_question.*
 import kotlinx.android.synthetic.main.activity_shopping.*
+import java.io.File
 import java.util.*
 import kotlin.random.Random.Default.nextInt
 
@@ -39,6 +43,7 @@ class QuestionActivity : AppCompatActivity() {
 
 
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
@@ -52,6 +57,12 @@ class QuestionActivity : AppCompatActivity() {
         button3 = findViewById(R.id.button3)
         questionTextView = findViewById(R.id.questionTextView)
         questionImageView = findViewById(R.id.questionImageView)
+
+
+        var photo = intent.getIntExtra("TAG_QUESTION_BACKGROUND", 2131099776)
+
+
+        questionImageView.setImageResource(photo)
 
 
 
