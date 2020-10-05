@@ -59,7 +59,7 @@ class QuestionActivity : AppCompatActivity() {
         questionImageView = findViewById(R.id.questionImageView)
 
 
-        var photo = intent.getIntExtra("TAG_QUESTION_BACKGROUND", 2131099776)
+        var photo = intent.getIntExtra("TAG_QUESTION_BACKGROUND", R.drawable.nicke)
 
 
         questionImageView.setImageResource(photo)
@@ -67,7 +67,7 @@ class QuestionActivity : AppCompatActivity() {
 
 
 
-
+        currentCountryTV.text = intent.getStringExtra("CURRENT_CITY")
 
 
 

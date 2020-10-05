@@ -24,9 +24,6 @@ import java.io.IOException
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    companion object {
-        val INTENT_PARCELABLE = "OBJECT_INTENT"
-    }
 
     private lateinit var mMap: GoogleMap
 
@@ -83,18 +80,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // create markers:
         val taiwan = QuestionClass("Which is the capital of Taiwan?", "Correct", "Taipei", "Taichung", "Hulian", LatLng(24.2616609, 120.5543753), "Nacka", R.drawable.russia)
-        //DataManager.nations.add(taiwan)
         val taiwanMarker = mMap.addMarker(MarkerOptions().position(taiwan.position).title("You are in Taiwan"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(taiwan.position, 1.0F))
         taiwanMarker.tag = taiwan
 
         val hongkong = QuestionClass("How many harbours does HK have?", "Correct", "6", "13", "21", LatLng(20.2616609, 115.5543753),"Nacka", R.drawable.stockholm)
-        //DataManager.nations.add(hongkong)
+
         val hkMarker = mMap.addMarker(MarkerOptions().position(hongkong.position).title("HK"))
         hkMarker.tag = hongkong
 
         val indo = QuestionClass("How many official languages are there in this nation?", "Correct", "2", "9", "20", LatLng(4.2616609, 120.5543753),"Nacka", R.drawable.chingshuei)
-        //DataManager.nations.add(indo)
         var indoMarker = mMap.addMarker(MarkerOptions().position(indo.position).title("BJ"))
         indoMarker.tag = indo
 
@@ -127,17 +122,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             val intent = Intent (this, QuestionActivity::class.java)
 
-            //var fileName = "taichung.jpg"
-
-            /*try{
-                var fileOutStream: FileOutputStream  = openFileOutput(fileName, MODE_PRIVATE)
-                fileOutStream.write(byteArrayOf())
-                fileOutStream.close()
-            } catch (ioe: IOException){
-                ioe.printStackTrace()
-            }*/
-            //intent.putExtra("picname", fileName)
-
 
 
             intent.putExtra("TAG_QUESTION", (activeMarker.tag as QuestionClass).question)
@@ -145,10 +129,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             intent.putExtra("TAG_A2", (activeMarker.tag as QuestionClass).answer2)
             intent.putExtra("TAG_A3", (activeMarker.tag as QuestionClass).answer3)
             intent.putExtra("TAG_A4", (activeMarker.tag as QuestionClass).answer4)
+            intent.putExtra("CURRENT_CITY", (activeMarker.tag as QuestionClass).city)
             intent.putExtra("TAG_QUESTION_BACKGROUND", (activeMarker.tag as QuestionClass).questionImageResource)
 
-            Log.d("uuu", (activeMarker.tag as QuestionClass).questionImageResource.toInt().toString())
-            // 2131099776
 
             activeMarker.isVisible = false
 
@@ -171,7 +154,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         for(i in 0 until (DataManager.nations[ticketClickedPosition].questionClassList.size)) {
 
             newMarkerList.add(mMap.addMarker(MarkerOptions().position(DataManager.nations[ticketClickedPosition].questionClassList[i].position)
-                    .title("You are in ${DataManager.nations[ticketClickedPosition].nation}")))
+                    .title("You are in ${DataManager.nations[ticketClickedPosition].questionClassList[i].city}")))
 
 
             var detail = QuestionClass(

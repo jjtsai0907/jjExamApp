@@ -25,7 +25,7 @@
         android:text="$"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/imageButton8"
         app:layout_constraintStart_toEndOf="@+id/currentCountryTextView"
         app:layout_constraintTop_toTopOf="@+id/questionImageView" />
@@ -39,7 +39,7 @@
         android:text="Country"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/questionImageView" />
 
