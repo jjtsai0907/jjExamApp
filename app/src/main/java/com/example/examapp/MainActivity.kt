@@ -21,71 +21,44 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var finish1: TextView
-    lateinit var buttonx: Button
-    var countCountries: Int = 1
-
+    //lateinit var finish1: TextView
+    //lateinit var buttonx: Button
+    //var countCountries: Int = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-
-        val goButton: Button = findViewById(R.id.goButton)
-        val howToPlayButton: Button = findViewById(R.id.howToPlayButton)
         val buttonx = findViewById<Button>(R.id.buttonx)
 
-
+        // is Used so that it shows the FinishFragment when one press "finish the game" in OptionsMenu.
         var finish = intent.getStringExtra("FINISH")
-
         if (finish == "finish"){
-
-
             finishGame()
             buttonx.alpha = 1F
+            /*Timer("Delay", false).schedule(1000){
+                changeText()
+                val fragmentFinish = supportFragmentManager.findFragmentByTag("finishFragment") as FinishFragment?
+                fragmentFinish.finishCountryTextVIew
+                fragmentFinish?.setText("2345")
 
-
-            //Timer("Delay", false).schedule(1000){
-                //changeText()
-
-                //val fragmentFinish = supportFragmentManager.findFragmentByTag("finishFragment") as FinishFragment?
-                //fragmentFinish.finishCountryTextVIew
-
-
-                //fragmentFinish?.setText("2345")
-                //Log.d("!!!!!","funkar")
-
-            //}
-
-
-
-
-
-
+            }*/
         }
-
-
-
-
-
-
-
     }
+
+
+
 
     fun entryButtonClicked (view: View){
         val intent: Intent = Intent(this, MapsActivity::class.java)
 
         for (i in 0 until DataManager.nations.size){
             DataManager.nations[i].purchased = false
-
         }
+
         DataManager.wallet = 0
         DataManager.countQuestion = 0
-
-
 
         startActivity(intent)
 
@@ -101,31 +74,15 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
+
     fun finishGame (){
+
         val finishFragment = FinishFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.frameLayout, finishFragment, "finishFragment")
-
         transaction.commit()
-        //changeText("Hey")
-        //finishFragment.setText("24")
-        //changeText()
-
     }
 
-
-
-    /*fun countCountries (): Int{
-        for (i in 0 until DataManager.nations.size){
-            if(DataManager.nations[i].purchased){
-                countCountries ++
-
-            }
-        }
-        return countCountries
-    }*/
-
-    //fun countQuestions (){}
 
 
 
@@ -133,17 +90,9 @@ class MainActivity : AppCompatActivity() {
 
         var buttont: Button = findViewById(R.id.buttonx)
         buttont.alpha = 0F
-        //buttonx.alpha = 0F
-        //countCountries()
-
 
         val fragmentFinish = supportFragmentManager.findFragmentByTag("finishFragment") as FinishFragment?
-        //fragmentFinish.finishCountryTextVIew
+
         fragmentFinish?.setText()
-
-
     }
-
-
-
 }

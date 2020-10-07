@@ -26,8 +26,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     private lateinit var mMap: GoogleMap
-
-
     lateinit var activeMarker: Marker
     var ticketClickedPosition = 0
 
@@ -39,13 +37,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
     }
 
 
 
-    
-
+    // This is for what's gonna happen when coming back from QuestionActivity through "finish()"
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -56,12 +52,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             addMarkers()
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DataManager.nations[ticketClickedPosition].questionClassList[0].position, 2.0F))
             activeMarker.isVisible = false
-
         }
-
-
-
-
     }
 
     /**
@@ -73,12 +64,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
 
-
-        // create markers:
+        // These are markers that show automatically once one enters:
         val taiwan = QuestionClass("Which is the capital of Taiwan?", "Correct", "Taipei", "Taichung", "Hulian", LatLng(24.2616609, 120.5543753), "Nacka", R.drawable.russia)
         val taiwanMarker = mMap.addMarker(MarkerOptions().position(taiwan.position).title("You are in Taiwan"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(taiwan.position, 1.0F))
@@ -96,18 +87,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-
-
         mMap.setOnMarkerClickListener { marker ->
 
             activeMarker = marker
-
 
             if (marker.isInfoWindowShown) {
 
                 marker.hideInfoWindow()
                 Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_LONG).show()
-
             } else {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 8.0F))
                 Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_SHORT).show()
@@ -119,10 +106,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mMap.setOnInfoWindowClickListener {
 
-
             val intent = Intent (this, QuestionActivity::class.java)
-
-
 
             intent.putExtra("TAG_QUESTION", (activeMarker.tag as QuestionClass).question)
             intent.putExtra("TAG_A1", (activeMarker.tag as QuestionClass).answer1)
@@ -132,30 +116,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             intent.putExtra("CURRENT_CITY", (activeMarker.tag as QuestionClass).city)
             intent.putExtra("TAG_QUESTION_BACKGROUND", (activeMarker.tag as QuestionClass).questionImageResource)
 
-
             activeMarker.isVisible = false
-
-
-
-
-
             startActivityForResult(intent,999)
-
         }
-
     }
 
 
-
+    // Is used after purchase tickets:
     fun addMarkers (){
-        var newMarkerList = mutableListOf<Marker>()
 
+        var newMarkerList = mutableListOf<Marker>()
 
         for(i in 0 until (DataManager.nations[ticketClickedPosition].questionClassList.size)) {
 
             newMarkerList.add(mMap.addMarker(MarkerOptions().position(DataManager.nations[ticketClickedPosition].questionClassList[i].position)
                     .title("You are in ${DataManager.nations[ticketClickedPosition].questionClassList[i].city}")))
-
 
             var detail = QuestionClass(
                 DataManager.nations[ticketClickedPosition].questionClassList[i].question,
@@ -169,7 +144,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             newMarkerList[i].tag = detail
         }
-
     }
 
 
@@ -187,12 +161,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 return true
             }
             R.id.restart -> {
-
                 doubleCheckMenu("restart")
                 return true
             }
             R.id.about -> {
-
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://jjtsai0907.wordpress.com/"))
                 startActivity(intent)
                 return true
@@ -200,10 +172,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             else -> {
                 return super.onOptionsItemSelected(item)
             }
-
         }
-
-
     }
 
     fun doubleCheckMenu (clickedMenuItem: String){
@@ -222,15 +191,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     val intent = Intent (this, MainActivity::class.java)
                     intent.putExtra("FINISH", "finish")
-                    //DataManager.wallet = 0
-
                     startActivity(intent)
-
-
                 }
-
-
-
             }
             .setNegativeButton("Cancel") { dialog, which ->
                 dialog.cancel()
@@ -238,8 +200,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val alert = dialogBuilder.create()
         alert.show()
-
     }
-
-
 }

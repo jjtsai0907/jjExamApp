@@ -40,9 +40,6 @@ class QuestionActivity : AppCompatActivity() {
 
 
 
-
-
-
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,16 +55,12 @@ class QuestionActivity : AppCompatActivity() {
         questionTextView = findViewById(R.id.questionTextView)
         questionImageView = findViewById(R.id.questionImageView)
 
-
+        currentCountryTV.text = intent.getStringExtra("CURRENT_CITY")
         var photo = intent.getIntExtra("TAG_QUESTION_BACKGROUND", R.drawable.nicke)
 
 
         questionImageView.setImageResource(photo)
-
-
-
-
-        currentCountryTV.text = intent.getStringExtra("CURRENT_CITY")
+        walletTextView.text = "${DataManager.wallet.toString()} kr"
 
 
 
@@ -79,7 +72,6 @@ class QuestionActivity : AppCompatActivity() {
         )
 
 
-
         // To create random numbers
         locationArray = mutableListOf<Int>(0,0,0,0)
         locationArray[0] = Random().nextInt(4)
@@ -88,18 +80,15 @@ class QuestionActivity : AppCompatActivity() {
         while (locationArray[1] == locationArray[0]) {
             locationArray[1] = Random().nextInt(4)
         }
-
         locationArray[2] = Random().nextInt(4)
         while (locationArray[2] == locationArray[0] || locationArray[2] == locationArray[1]) {
             locationArray[2] = Random().nextInt(4)
         }
-
         locationArray[3] = Random().nextInt(4)
         while (locationArray[3] == locationArray[0] || locationArray[3] == locationArray[1] ||
             locationArray[3] == locationArray[2]) {
             locationArray[3] = Random().nextInt(4)
         }
-
 
 
         var buttonTextList = mutableListOf<String>("","","","")
@@ -113,54 +102,41 @@ class QuestionActivity : AppCompatActivity() {
         button1.setText(buttonTextList[1])
         button2.setText(buttonTextList[2])
         button3.setText(buttonTextList[3])
-
-        walletTextView.text = "${DataManager.wallet.toString()} kr"
-
-
-
-
     }
 
 
+    // This is for what's gonna happen after coming back from ShoppingActivity through "finish()"
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        //wallet= data!!.getIntExtra("WALLET_SHOPPING", 9)
+
         walletTextView.text = "${DataManager.wallet.toString()} kr"
         ticketClickedPosition = data!!.getIntExtra("TICKET_CLICKED_POSITION", 9)
-        //walletTextView.setText("${DataManager.wallet.toString()} kr")
-        //Toast.makeText(this, wallet.toString(), Toast.LENGTH_SHORT).show()
-
-
-
     }
 
 
 
     fun goShopping (view: View){
         var intent2 = Intent(this, ShoppingActivity::class.java)
-        //intent2.putExtra("WALLET_QUESTION", wallet)
         startActivityForResult(intent2,111)
-
     }
 
 
 
 
     fun goBackToMaps (view: View){
-        var intent = Intent(this, MapsActivity::class.java)
 
-        //intent.putExtra("WALLET_QUESTION", wallet)
+        var intent = Intent(this, MapsActivity::class.java)
         intent.putExtra("TICKET_CLICKED_FROM_QUESTION", ticketClickedPosition)
         setResult(999,intent)
         finish()
-
     }
+
+
 
     fun checkAnswer (view: View){
         if (locationArray[0].toString() == view.tag.toString()){
             Toast.makeText(this,"Correct!", Toast.LENGTH_SHORT).show()
             view.isEnabled = false
-
 
             when {
                 trys == 0 -> DataManager.wallet += 1000
@@ -171,14 +147,14 @@ class QuestionActivity : AppCompatActivity() {
             walletTextView.setText(" ${DataManager.wallet.toString()} kr")
             trys ++
             DataManager.countQuestion ++
-
-
-        }else {
+        }
+        else {
             Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show()
             view.isEnabled = false
             trys++
         }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
@@ -193,12 +169,10 @@ class QuestionActivity : AppCompatActivity() {
                 return true
             }
             R.id.restart -> {
-
                 doubleCheckMenu("restart")
                 return true
             }
             R.id.about -> {
-
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://jjtsai0907.wordpress.com/"))
                 startActivity(intent)
                 return true
@@ -206,11 +180,10 @@ class QuestionActivity : AppCompatActivity() {
             else -> {
                 return super.onOptionsItemSelected(item)
             }
-
         }
-
-
     }
+
+
     fun doubleCheckMenu (clickedMenuItem: String){
         val dialogBuilder = AlertDialog.Builder(this)
 
@@ -219,23 +192,14 @@ class QuestionActivity : AppCompatActivity() {
             .setPositiveButton("Sure") {dialog, which ->
 
                 if (clickedMenuItem == "restart"){
-
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }
                 else {
-
                     val intent = Intent (this, MainActivity::class.java)
                     intent.putExtra("FINISH", "finish")
-                    //DataManager.wallet = 0
-
                     startActivity(intent)
-
-
                 }
-
-
-
             }
             .setNegativeButton("Cancel") { dialog, which ->
                 dialog.cancel()
@@ -243,9 +207,5 @@ class QuestionActivity : AppCompatActivity() {
 
         val alert = dialogBuilder.create()
         alert.show()
-
     }
-
-
-
 }

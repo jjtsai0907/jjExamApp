@@ -38,7 +38,6 @@ class FinishFragment: Fragment() {
         finishImageView3 = view.findViewById(R.id.finishImageView3)
 
 
-
         finishCountryTextVIew.alpha = 0F
         finishQuestionTextView.alpha = 0F
         finishWalletTextView.alpha = 0F
@@ -47,17 +46,10 @@ class FinishFragment: Fragment() {
         finishImageView2.alpha = 0F
         finishImageView3.alpha = 0F
 
-
-
-        //finishCountryTextVIew.text = "You have been to $ countries."
-        //finishQuestionTextView.text = "You have gotten $ correct answers."
-        //finishWalletTextView.text = "At this moment, you still have $ kr left."
-
-
         return view
-
-
     }
+
+
 
     fun setText(){
         finishCountryTextVIew.alpha = 1F
@@ -73,14 +65,14 @@ class FinishFragment: Fragment() {
 
 
     }
+
+    // To count how many countries have been to.
     fun countCountries () {
 
         for (i in 0 until DataManager.nations.size) {
             if (DataManager.nations[i].purchased) {
                 countCountries++
-
             }
         }
-
     }
 }

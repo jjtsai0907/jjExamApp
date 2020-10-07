@@ -21,11 +21,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
     lateinit var shoppingWalletTextVIew: TextView
     lateinit var recyclerView: RecyclerView
-    //var wallet: Int = 0
     var ticketClickedPosition = 0
-
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,46 +29,44 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
         setContentView(R.layout.activity_shopping)
 
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        shoppingWalletTextVIew = findViewById(R.id.shoppingWalletTextView)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = NationListRecycleAdapter(this, DataManager.nations, this)
         recyclerView.adapter = adapter
 
-        shoppingWalletTextVIew = findViewById(R.id.shoppingWalletTextView)
-        //wallet = intent.getIntExtra("WALLET_QUESTION",0)
         shoppingWalletTextVIew.text = " ${DataManager.wallet.toString()} kr"
-
     }
+
 
 
     fun goBackToQuestion (view: View){
 
         var intent = Intent(this, QuestionActivity::class.java)
-        //intent.putExtra("WALLET_SHOPPING", wallet)
         intent.putExtra("TICKET_CLICKED_POSITION", ticketClickedPosition)
         setResult(111,intent)
         finish()
-
-
     }
 
+
+    // These are Interface functions, to control over RecyclerView from ShoppingActivity
     @SuppressLint("SetTextI18n")
     override fun onClick(int: Int) {
 
         ticketClickedPosition = int
 
         if (DataManager.wallet >= DataManager.nations[ticketClickedPosition].ticketFare) {
-
             doubleCheckPurchase(ticketClickedPosition)
-
-        }else  {
+        }
+        else  {
             Toast.makeText(this, "Need More Money!", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     override fun onLongClick(int: Int) {
         Toast.makeText(this, "Are you gonna buy?",Toast.LENGTH_SHORT).show()
     }
+
 
 
     fun doubleCheckPurchase(ticketClickedPosition: Int){
@@ -93,8 +87,10 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
         val alert = dialogBuilder.create()
         alert.show()
-
     }
+
+
+    // For the OptionsMenu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         menuInflater.inflate(R.menu.main, menu)
@@ -108,12 +104,10 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
                 return true
             }
             R.id.restart -> {
-
                 doubleCheckMenu("restart")
                 return true
             }
             R.id.about -> {
-
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://jjtsai0907.wordpress.com/"))
                 startActivity(intent)
                 return true
@@ -121,11 +115,9 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
             else -> {
                 return super.onOptionsItemSelected(item)
             }
-
         }
-
-
     }
+
     fun doubleCheckMenu (clickedMenuItem: String){
         val dialogBuilder = AlertDialog.Builder(this)
 
@@ -134,23 +126,14 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
             .setPositiveButton("Sure") {dialog, which ->
 
                 if (clickedMenuItem == "restart"){
-
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }
                 else {
-
                     val intent = Intent (this, MainActivity::class.java)
                     intent.putExtra("FINISH", "finish")
-                    //DataManager.wallet = 0
-
                     startActivity(intent)
-
-
                 }
-
-
-
             }
             .setNegativeButton("Cancel") { dialog, which ->
                 dialog.cancel()
@@ -158,8 +141,5 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
         val alert = dialogBuilder.create()
         alert.show()
-
     }
-
-
 }

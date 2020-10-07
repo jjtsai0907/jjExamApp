@@ -1,12 +1,10 @@
 package com.example.examapp
 
-import android.media.Image
-import android.util.Log
+
 import com.google.android.gms.maps.model.LatLng
 
 //singleton
 object DataManager {
-
 
     val nations = mutableListOf<NationClass>()
     var countQuestion: Int = 0
@@ -14,26 +12,25 @@ object DataManager {
 
     init{
         createMockData()
-
     }
 
     fun createMockData(){
-        //done
+
         nations.add(NationClass("Hong Kong", 4300,R.drawable.hongkong, mutableListOf(
             QuestionClass("Which of the following has broken a deal/promise of 'One Country Two Systems',which violate human rights, after UK ruling power withdrew in 1841?", "China", "North Korea", "India", "USA", LatLng(22.520035,114.1735213)),
             QuestionClass("There have been enormous protests in HK since March 2019. HK seeks for human rights and democracy. Which country does HK fight against?", "China", "North Korea", "USA", "Turkey", LatLng(22.40599,114.0347053)),
             QuestionClass("After which war between China and UK, UK obtained the control over Hong Kong in 1842?", "Opium War", "Great War", "Asian War", "Hong K War", LatLng(22.24171,113.9309983)),
             QuestionClass("What does 'Hong Kong' mean?", "Fragrant Harbour", "Fragrant Dumplings", "Fragrant Skyscraper", "Fragrant Asia", LatLng(22.257787,114.2245383)))))
 
-        //done
-        nations.add(NationClass("Taiwan", 0,R.drawable.taiwan, mutableListOf(
-            QuestionClass("Taiwan has the land size of Belgium. Belgium has 11 million residents. How many people live in Taiwan?", "23 million", "10 million", "17 million", "19 million", LatLng(24.2616609,120.5543753), "Ching-Shuei", R.drawable.chingshuei),
-            QuestionClass("Which of the following is the first and currently only country that legalises gay marriage in Asia?", "Taiwan", "Japan", "South Korea", "China", LatLng(24.1572335,120.6638719), "Taichung", R.drawable.taichung),
-            QuestionClass("Which of the following has never 'colonised/ruled' Taiwan?","UK", "China", "Spain", "Netherlands", LatLng(21.9326293,120.7415405), "Taichung", R.drawable.taichung),
-            QuestionClass("Taiwan constructed one building that was once the tallest in the world. What's it called?", "Taipei 101", "Taiwan 101", "Taipei 100", "Taiwan 100", LatLng(24.4164556,121.5119348), "Taichung", R.drawable.taichung),
-            QuestionClass("Which of the following country 'strives' not only to discriminate Taiwan's democracy and autonomy, but also threatening to start wars?", "China", "USA", "Czech Republic", "UK", LatLng(25.033976,121.5623502), "Taichung", R.drawable.taichung))))
 
-        //done
+        nations.add(NationClass("Taiwan", 0,R.drawable.taiwan, mutableListOf(
+            QuestionClass("Taiwan has the land size of Belgium. Belgium has 11 million residents. How many people live in Taiwan?", "23 million", "10 million", "17 million", "19 million", LatLng(24.2616609,120.5543753), "JJ's hometown", R.drawable.chingshuei),
+            QuestionClass("Which of the following is the first and currently only country that legalises gay marriage in Asia?", "Taiwan", "Japan", "South Korea", "China", LatLng(24.1572335,120.6638719), "Taichung", R.drawable.nicke),
+            QuestionClass("Which of the following has never 'colonised/ruled' Taiwan?","UK", "China", "Spain", "Netherlands", LatLng(21.9326293,120.7415405), "Taichung", R.drawable.taichung),
+            QuestionClass("Taiwan constructed one building that was once the tallest in the world. What's it called?", "Taipei 101", "Taiwan 101", "Taipei 100", "Taiwan 100", LatLng(24.4164556,121.5119348), "Taichung", R.drawable.mongolia),
+            QuestionClass("Which of the following country 'strives' not only to discriminate Taiwan's democracy and autonomy, but also threatening to start wars?", "China", "USA", "Czech Republic", "UK", LatLng(25.033976,121.5623502), "Taichung", R.drawable.iceland))))
+
+
         nations.add(NationClass("Japan", 5500,R.drawable.japan ,mutableListOf(
             QuestionClass("How large is the population in Tokyo?", "36 Million", "20 Million", "26 Million", "13 Million", LatLng(35.701528,139.6741807)),
             QuestionClass("Japan in Japanese is “Nihon” or “Nippon”. Which of the following is its meaning?", "Sun Origin", "Sun Never Leaves", "Sun Lights Up Life", "Sun Is Red", LatLng(35.568751,138.0967948)),
@@ -59,15 +56,15 @@ object DataManager {
             QuestionClass("How many countries does Russia share a boarder with?", "14", "15", "12", "8", LatLng(52.183874,35.8217343)),
             QuestionClass("Russia is home to the deepest lake in the world. How many % of the world's fresh water it contains?", "20 %", "70 %", "22 %", "12 %", LatLng(53.5962123,102.3422383)))))
 
-        //done
+
         nations.add(NationClass("Russia", 1700, R.drawable.russia, mutableListOf(
-            QuestionClass("The first McDonald's in Russian was opened on Jan 31, 1990. The amount of customers served during a single day still remains the world record. How many people on that day?", "30,000", "10,000", "5,000", "3,600", LatLng(55.7554841,37.5442743)),
-            QuestionClass("Dogs in Moscow are not allowed to bark at night. When?", "11pm - 7am", "10pm - 6am", "No Such a Rule", "12pm - 6am", LatLng(55.683907,37.7619633)),
-            QuestionClass("How many countries does Russia share a boarder with?", "14", "15", "12", "8", LatLng(52.183874,35.8217343)),
-            QuestionClass("Russia is home to the deepest lake in the world. How many % of the world's fresh water it contains?", "20 %", "70 %", "22 %", "12 %", LatLng(53.5962123,102.3422383)))))
+            QuestionClass("The first McDonald's in Russian was opened on Jan 31, 1990. The amount of customers served during a single day still remains the world record. How many people on that day?", "30,000", "10,000", "5,000", "3,600", LatLng(55.7554841,37.5442743), "Putin's residence", R.drawable.mongolia),
+            QuestionClass("Dogs in Moscow are not allowed to bark at night. When?", "11pm - 7am", "10pm - 6am", "No Such a Rule", "12pm - 6am", LatLng(55.683907,37.7619633),"Moscow", R.drawable.iceland),
+            QuestionClass("How many countries does Russia share a boarder with?", "14", "15", "12", "8", LatLng(52.183874,35.8217343), "St. Peter", R.drawable.hongkong),
+            QuestionClass("Russia is home to the deepest lake in the world. How many % of the world's fresh water it contains?", "20 %", "70 %", "22 %", "12 %", LatLng(53.5962123,102.3422383), "Moskva", R.drawable.russia))))
 
 
-        //done
+
         nations.add(NationClass("Norway", 200, R.drawable.norway,mutableListOf(
             QuestionClass("Lærdal Tunnel, the world's longest road tunnel, is in Norway. How long is it?", "24.5 km", "25.5 km", "22.5 km", "30.5 km", LatLng(61.0200222,7.3733351), "Oslo", R.drawable.norway),
             QuestionClass("Which Nobel Prize is awarded in Oslo?", "Peace Prize", "Literature Prize", "Physics Prize", "Chemistry Prize", LatLng(59.8937806,10.6450336), "Oslo", R.drawable.norway))))
@@ -76,18 +73,12 @@ object DataManager {
             QuestionClass("Lærdal Tunnel, the world's longest road tunnel, is in Norway. How long is it?", "24.5 km", "25.5 km", "22.5 km", "30.5 km", LatLng(61.0200222,7.3733351)),
             QuestionClass("Which Nobel Prize is awarded in Oslo?", "Peace Prize", "Literature Prize", "Physics Prize", "Chemistry Prize", LatLng(59.8937806,10.6450336)))))
 
-        //done
+
         nations.add(NationClass("Iceland", 1100, R.drawable.iceland,mutableListOf(
-            QuestionClass("Which of the following is the only mammal native to Iceland?", "Arctic Fox", "Polar Bear", "Icelandic Cat", "Vikings", LatLng(64.142314, -21.056091)),
-            QuestionClass("Beer was illegal in Iceland until year ___ ?", "1989", "1993", "1458", "1901", LatLng(63.9829993,-19.0757547)),
+            QuestionClass("Which of the following is the only mammal native to Iceland?", "Arctic Fox", "Polar Bear", "Icelandic Cat", "Vikings", LatLng(64.142314, -21.056091), "Rekyavik"),
+            QuestionClass("Beer was illegal in Iceland until year ___ ?", "1989", "1993", "1458", "1901", LatLng(63.9829993,-19.0757547),"Vik"),
             QuestionClass("How does Iceland smell like?", "Fart", "Rose", "Banana", "Deer", LatLng(65.220143, -16.671786)),
-            QuestionClass("Iceland has only waged one war, and it can barely be called war. Which nation was it against?", "UK", "USA", "Green Land", "Denmark", LatLng(64.869977, -20.901669)),
-            QuestionClass("How many railway lines are there in Iceland?", "0", "5", "3", "2", LatLng(65.644703, -23.082149)))))
-
-
-
-
-
+            QuestionClass("Iceland has only waged one war, and it can barely be called war. Which nation was it against?", "UK", "USA", "Green Land", "Denmark", LatLng(64.869977, -20.901669), "Landarlavaogu"),
+            QuestionClass("How many railway lines are there in Iceland?", "0", "5", "3", "2", LatLng(65.644703, -23.082149), "WinterFall"))))
     }
-
 }

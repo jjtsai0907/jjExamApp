@@ -16,16 +16,15 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
     val layoutInflater = LayoutInflater.from(context)
 
 
-
     override fun getItemCount () = nationList.size
 
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = layoutInflater.inflate(R.layout.list_nation, parent, false)
-
         return ViewHolder(itemView, myOnItemClickListener)
     }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val nationInfo = nationList[position]
@@ -38,44 +37,15 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         if (DataManager.nations[position].purchased){
             holder.itemView.isEnabled = false
             holder.itemView.alpha = 0.2F
-
-
-        } else {
+        }
+        else {
             holder.itemView.isEnabled = true
             holder.itemView.alpha = 1F
             holder.nationTextView.text = "${DataManager.nations[position].nation}"
         }
 
         DataManager.nations[position].purchased
-
     }
-
-
-    /*
-    fun removeStudent(position: Int){
-        val dialogBuilder = AlertDialog.Builder(context)
-
-        dialogBuilder.setTitle("Remove Student?")
-            .setMessage("Do you wanna remove ${DataManager.students[position].name}?")
-            .setPositiveButton("Remove", { dialog, which ->
-                DataManager.students.removeAt(position)
-                notifyDataChanged()
-            })
-            .setNegativeButton("Cancel", {dialog, which ->
-                dialog.cancel()
-            })
-
-        val alert = dialogBuilder.create()
-        alert.show()
-
-
-
-    }
-
-
-     */
-
-
 
 
 
@@ -88,7 +58,6 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
         init{
             itemView.setOnClickListener  {
-
                 myOnItemClickListener.onClick(adapterPosition)
                 notifyDataSetChanged()
             }
@@ -97,16 +66,14 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
                 myOnItemClickListener.onLongClick(adapterPosition)
                 return@setOnLongClickListener true
             }
-
         }
-
-
     }
 
+
+    // Used to control RecyclerView from Shopping Activity.
+    // Why? So that the prices of tickets and wallet are calculable to each other.
     interface OnItemClickListener {
         fun onClick (int: Int)
         fun onLongClick (int: Int)
     }
-
-
 }
