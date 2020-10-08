@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/shoppingWalletTextView"
-        android:layout_width="176dp"
-        android:layout_height="67dp"
+        android:layout_width="102dp"
+        android:layout_height="46dp"
         android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

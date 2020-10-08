@@ -28,58 +28,69 @@
         app:srcCompat="@drawable/entryphoto" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="434dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="4dp"
+        android:id="@+id/gameName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/damion"
         android:shadowColor="#060404"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="0.5"
         android:text="Backpackers' Quiz"
         android:textAlignment="center"
-        android:textColor="#043E77"
-        android:textSize="40sp"
+        android:textColor="#FCFDFE"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/myLogo" />
 
     <Button
         android:id="@+id/howToPlayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:background="#00000000"
         android:onClick="howToPlay"
         android:text="How to Play"
+        android:shadowColor="#040404"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="0.01"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/goButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="32dp"
         android:background="#00000000"
         android:gravity="center"
         android:onClick="entryButtonClicked"
         android:text="Start"
+        android:shadowColor="#040404"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="0.01"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/howToPlayButton"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/howToPlayButton" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="419dp"
-        android:layout_height="363dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="403dp"
+        android:layout_height="396dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toTopOf="@+id/imageView3">
 
     </FrameLayout>
 
@@ -95,5 +106,15 @@
         app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+
+    <ImageView
+        android:id="@+id/myLogo"
+        android:layout_width="222dp"
+        android:layout_height="94dp"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        app:srcCompat="@drawable/mylogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

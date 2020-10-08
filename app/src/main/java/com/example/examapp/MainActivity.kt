@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -31,12 +32,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val buttonx = findViewById<Button>(R.id.buttonx)
+        val myLogo: ImageView = findViewById(R.id.myLogo)
+        val gameName: TextView = findViewById(R.id.gameName)
 
         // is Used so that it shows the FinishFragment when one press "finish the game" in OptionsMenu.
         var finish = intent.getStringExtra("FINISH")
         if (finish == "finish"){
-            finishGame()
+            myLogo.alpha = 0F
+            gameName.alpha = 0F
             buttonx.alpha = 1F
+            finishGame()
             /*Timer("Delay", false).schedule(1000){
                 changeText()
                 val fragmentFinish = supportFragmentManager.findFragmentByTag("finishFragment") as FinishFragment?
@@ -72,6 +77,9 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, howToPlayFragment, "howToPlayFragment")
         transaction.commit()
+        buttonx.alpha = 0F
+        myLogo.alpha = 0F
+        gameName.alpha = 0F
     }
 
 
