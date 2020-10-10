@@ -24,29 +24,29 @@ object DataManager {
 
 
         nations.add(NationClass("Taiwan", 0,R.drawable.taiwan, mutableListOf(
-            QuestionClass("Taiwan has the land size of Belgium. Belgium has 11 million residents. How many people live in Taiwan?", "23 million", "10 million", "17 million", "19 million", LatLng(24.2616609,120.5543753), "JJ's hometown", R.drawable.chingshuei),
+            QuestionClass("Taiwan has the land size of Belgium. Belgium has 11 million residents. How many people live in Taiwan?", "23 million", "10 million", "17 million", "19 million", LatLng(24.2616609,120.5543753), "ChingShuei", R.drawable.chingshuei),
             QuestionClass("Which of the following is the first and currently only country that legalises gay marriage in Asia?", "Taiwan", "Japan", "South Korea", "China", LatLng(24.1572335,120.6638719), "Taichung", R.drawable.nicke),
-            QuestionClass("Which of the following has never 'colonised/ruled' Taiwan?","UK", "China", "Spain", "Netherlands", LatLng(21.9326293,120.7415405), "Taichung", R.drawable.taichung),
-            QuestionClass("Taiwan constructed one building that was once the tallest in the world. What's it called?", "Taipei 101", "Taiwan 101", "Taipei 100", "Taiwan 100", LatLng(24.4164556,121.5119348), "Taichung", R.drawable.mongolia),
-            QuestionClass("Which of the following country 'strives' not only to discriminate Taiwan's democracy and autonomy, but also threatening to start wars?", "China", "USA", "Czech Republic", "UK", LatLng(25.033976,121.5623502), "Taichung", R.drawable.iceland))))
+            QuestionClass("Which of the following has never 'colonised/ruled' Taiwan?","UK", "China", "Spain", "Netherlands", LatLng(21.9326293,120.7415405), "Kenting", R.drawable.taichung),
+            QuestionClass("Taiwan constructed one building that was once the tallest in the world. What's it called?", "Taipei 101", "Taiwan 101", "Taipei 100", "Taiwan 100", LatLng(24.4164556,121.5119348), "YiLang", R.drawable.mongolia),
+            QuestionClass("Which of the following country 'strives' not only to discriminate Taiwan's democracy and autonomy, but also threatening to start wars?", "China", "USA", "Czech Republic", "UK", LatLng(25.033976,121.5623502), "Taipei", R.drawable.iceland))))
 
 
-        nations.add(NationClass("Japan", 5500,R.drawable.japan ,mutableListOf(
-            QuestionClass("How large is the population in Tokyo?", "36 Million", "20 Million", "26 Million", "13 Million", LatLng(35.701528,139.6741807)),
-            QuestionClass("Japan in Japanese is “Nihon” or “Nippon”. Which of the following is its meaning?", "Sun Origin", "Sun Never Leaves", "Sun Lights Up Life", "Sun Is Red", LatLng(35.568751,138.0967948)),
-            QuestionClass("How high is the highest mountain, Mt. Fuji?", "3,776 m", "3,698 m", "3,779 m", "3,771 m", LatLng(35.2382716,138.3112288)),
-            QuestionClass("Is Tokyo the only city in the World to issue passports to vampires?", "False, No Vampires", "False, Osaka also issues", "True, Only Tokyo", "False, Not the Only", LatLng(33.823099,134.1113743)),
-            QuestionClass("Which of the following is the Capital of Japan?", "Tokyo", "Osaka", "Nagoya", "Sapporo", LatLng(39.738913,141.3488523)))))
+        nations.add(NationClass("Japan", 0,R.drawable.japan ,mutableListOf(
+            QuestionClass("How large is the population in Tokyo?", "36 Million", "20 Million", "26 Million", "13 Million", LatLng(35.701528,139.6741807), "Tokyo"),
+            QuestionClass("Japan in Japanese is “Nihon” or “Nippon”. Which of the following is its meaning?", "Sun Origin", "Sun Never Leaves", "Sun Lights Up Life", "Sun Is Red", LatLng(35.4777818,138.5959693), "Yamanashi"),
+            QuestionClass("How high is the highest mountain, Mt. Fuji?", "3,776 m", "3,698 m", "3,779 m", "3,771 m", LatLng(35.2382716,138.3112288), "Shizuoka"),
+            QuestionClass("Is Tokyo the only city in the World to issue passports to vampires?", "False, No Vampires", "False, Osaka also issues", "True, Only Tokyo", "False, Not the Only", LatLng(33.823099,134.1113743), "Tokushima"),
+            QuestionClass("Which of the following is the Capital of Japan?", "Tokyo", "Osaka", "Nagoya", "Sapporo", LatLng(39.738913,141.3488523), "Iwate"))))
 
 
-        nations.add(NationClass("USA", 5800, R.drawable.usa, mutableListOf(
-            QuestionClass("What do people call the metropolitan area of Chicago?", "Chicagoland", "Toyland", "Smokey Downtown", "Chicagoville", LatLng(41.8333925,-88.0121587)),
-            QuestionClass("Besides the US, which of the following does not use the metric system?", "Myanmar", "North Korea", "Yemen", "Tibet", LatLng(38.8935128,-77.1546631)),
-            QuestionClass("Besides Prospect Park in Brooklyn, which of the following was also considered as a possible location for the Statue of Liberty?", "Central Park", "Time Square", "City Hall Park", "Washington DC", LatLng(40.6892494,-74.0466891)),
-            QuestionClass("Yosemite Falls is one of the tallest on earth. However, it is actually made up of ___ separate falls. How many is it?", "3", "2", "4", "5", LatLng(37.7565957,-119.5990961)),
-            QuestionClass("FARGO?", "Myanmar", "North Korea", "Yemen", "Tibet", LatLng(46.8541125,-96.9685994)),
-            QuestionClass("Which national park is in Oregon?", "Crater Lake", "Yosemite", "Alcatraz Island", "Eugene O'Neill", LatLng(44.0409399,-123.0877358)),
-            QuestionClass("South Kaibab Trail is one of the popular trails to hike down to Colorado River from Rim, and it is 11.4 km long. How many water stops on the way?", "0", "Depends on Seasons", "3", "8", LatLng(36.073353,-112.0930617)))))
+        nations.add(NationClass("USA", 0, R.drawable.usa, mutableListOf(
+            QuestionClass("What do people call the metropolitan area of Chicago?", "Chicagoland", "Toyland", "Smokey Downtown", "Chicagoville", LatLng(41.8339042,-88.0121653), "Chicago"),
+            QuestionClass("Besides the US, which of the following does not use the metric system?", "Myanmar", "North Korea", "Yemen", "Tibet", LatLng(38.8879991,-77.0938978), "Washington"),
+            QuestionClass("Besides Prospect Park in Brooklyn, which of the following was also considered as a possible location for the Statue of Liberty?", "Central Park", "Time Square", "City Hall Park", "Washington DC", LatLng(40.6892494,-74.0466891), "New Jersey"),
+            QuestionClass("Yosemite Falls is one of the tallest on earth. However, it is actually made up of ___ separate falls. How many is it?", "3", "2", "4", "5", LatLng(37.7565957,-119.5990961), "Yosemite"),
+            QuestionClass("FARGO?", "Myanmar", "North Korea", "Yemen", "Tibet", LatLng(46.8541125,-96.9685994), "Fargo"),
+            QuestionClass("Which national park is in Oregon?", "Crater Lake", "Yosemite", "Alcatraz Island", "Eugene O'Neill", LatLng(44.0409399,-123.0877358), "Eugene"),
+            QuestionClass("South Kaibab Trail is one of the popular trails to hike down to Colorado River from Rim, and it is 11.4 km long. How many water stops on the way?", "0", "Depends on Seasons", "3", "8", LatLng(36.073353,-112.0930617), "Grand Canyon"))))
 
 
 
@@ -75,7 +75,7 @@ object DataManager {
 
 
         nations.add(NationClass("Iceland", 1100, R.drawable.iceland,mutableListOf(
-            QuestionClass("Which of the following is the only mammal native to Iceland?", "Arctic Fox", "Polar Bear", "Icelandic Cat", "Vikings", LatLng(64.142314, -21.056091), "Rekyavik"),
+            QuestionClass("Which of the following is the only mammal native to Iceland?", "Arctic Fox", "Polar Bear", "Icelandic Cat", "Vikings", LatLng(64.6656969,-21.3046096), "Reykholt"),
             QuestionClass("Beer was illegal in Iceland until year ___ ?", "1989", "1993", "1458", "1901", LatLng(63.9829993,-19.0757547),"Vik"),
             QuestionClass("How does Iceland smell like?", "Fart", "Rose", "Banana", "Deer", LatLng(65.220143, -16.671786)),
             QuestionClass("Iceland has only waged one war, and it can barely be called war. Which nation was it against?", "UK", "USA", "Green Land", "Denmark", LatLng(64.869977, -20.901669), "Landarlavaogu"),

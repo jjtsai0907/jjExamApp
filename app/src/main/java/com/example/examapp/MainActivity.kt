@@ -7,6 +7,8 @@ import android.provider.ContactsContract
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -35,20 +37,20 @@ class MainActivity : AppCompatActivity() {
         val myLogo: ImageView = findViewById(R.id.myLogo)
         val gameName: TextView = findViewById(R.id.gameName)
 
-        // is Used so that it shows the FinishFragment when one press "finish the game" in OptionsMenu.
+
+        // Fade-in animation for Logo
+        val logoFadeIn: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
+        myLogo.startAnimation(logoFadeIn)
+
+
+
+        // This shows the FinishFragment when one press "finish the game" in OptionsMenu.
         var finish = intent.getStringExtra("FINISH")
         if (finish == "finish"){
             myLogo.alpha = 0F
             gameName.alpha = 0F
             buttonx.alpha = 1F
             finishGame()
-            /*Timer("Delay", false).schedule(1000){
-                changeText()
-                val fragmentFinish = supportFragmentManager.findFragmentByTag("finishFragment") as FinishFragment?
-                fragmentFinish.finishCountryTextVIew
-                fragmentFinish?.setText("2345")
-
-            }*/
         }
     }
 
