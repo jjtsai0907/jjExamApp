@@ -1,6 +1,9 @@
 package com.example.examapp
 
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.TransitionDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -14,6 +17,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.view.postOnAnimationDelayed
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_finish.*
@@ -29,9 +33,21 @@ class MainActivity : AppCompatActivity() {
     //var countCountries: Int = 1
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        /*val asd: ImageView = findViewById(R.id.asd)
+
+
+        asd.setOnClickListener {
+            asd.animate().apply {
+                duration = 3000
+                rotationYBy(360f)
+
+            }.start()
+        }*/
 
         val buttonx = findViewById<Button>(R.id.buttonx)
         val myLogo: ImageView = findViewById(R.id.myLogo)
@@ -56,6 +72,16 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+    fun change (view: View){
+
+
+        //ticketAnimation.start()
+        //asd.alpha = 1.0F
+
+        //asd.setImageResource(R.drawable.globewhite)
+
+    }
 
     fun entryButtonClicked (view: View){
         val intent: Intent = Intent(this, MapsActivity::class.java)
@@ -82,6 +108,7 @@ class MainActivity : AppCompatActivity() {
         buttonx.alpha = 0F
         myLogo.alpha = 0F
         gameName.alpha = 0F
+
     }
 
 

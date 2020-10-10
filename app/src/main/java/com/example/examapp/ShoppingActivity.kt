@@ -2,6 +2,8 @@ package com.example.examapp
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
+import android.media.MediaPlayer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,12 +24,16 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
     lateinit var shoppingWalletTextVIew: TextView
     lateinit var recyclerView: RecyclerView
     var ticketClickedPosition = 0
+    lateinit var coinSound: MediaPlayer
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping)
 
+        coinSound = MediaPlayer.create(this, R.raw.coin)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         shoppingWalletTextVIew = findViewById(R.id.shoppingWalletTextView)
 
@@ -57,6 +63,8 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
         if (DataManager.wallet >= DataManager.nations[ticketClickedPosition].ticketFare) {
             doubleCheckPurchase(ticketClickedPosition)
+
+
         }
         else  {
             Toast.makeText(this, "Need More Money!", Toast.LENGTH_SHORT).show()
@@ -80,6 +88,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
                 shoppingWalletTextVIew.text = " ${DataManager.wallet.toString()} kr"
                 DataManager.nations[ticketClickedPosition].purchased = true
                 recyclerView.adapter?.notifyDataSetChanged()
+                coinSound.start()
             }
             .setNegativeButton("Cancel") { dialog, which ->
                 dialog.cancel()
