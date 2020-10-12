@@ -1,6 +1,7 @@
 package com.example.examapp
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
 
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = layoutInflater.inflate(R.layout.list_nation, parent, false)
         return ViewHolder(itemView, myOnItemClickListener)
@@ -34,6 +36,14 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         holder.nationTicket.setImageResource(nationInfo.nationTicket)
         holder.nationPostcard.alpha = 0.0F
 
+        if(DataManager.currentCountry != -1){
+            holder.nationCode.text = DataManager.nations[DataManager.currentCountry].nationCode
+        }
+        else{
+            holder.nationCode.text = "HOME"
+        }
+
+
 
 
         if (DataManager.nations[position].purchased){
@@ -42,7 +52,9 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
             if (DataManager.nations[position].front_side){
                 val out: Animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.slide_out)
                 holder.nationTicket.startAnimation(out)
+                //run()
                 holder.itemView.isEnabled = false
+                holder.nationCode.alpha = 0F
 
                 DataManager.nations[position].front_side = false
                 //holder.nationImageView.alpha = 0.0F
@@ -52,12 +64,14 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
                 holder.nationPostcard.startAnimation(inside)
                 //holder.itemView.alpha = 0.2F
 
+
             }
             else{
                 holder.itemView.isEnabled = false
                 holder.itemView.alpha = 0.8F
                 holder.nationTicket.alpha = 0.0F
                 holder.nationPostcard.alpha = 1.0F
+                holder.nationCode.alpha = 0F
 
             }
 
@@ -68,6 +82,8 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
             holder.nationPostcard.alpha = 0.0F
             holder.nationTicket.alpha = 1.0F
             holder.nationTextView.text = "${DataManager.nations[position].nation}"
+
+            holder.nationCode.alpha = 1F
         }
 
         DataManager.nations[position].purchased
@@ -82,6 +98,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         val nationPriceTextView = itemView.findViewById<TextView>(R.id.nationPriceTextView)
         val nationTicket = itemView.findViewById<ImageView>(R.id.nationTicket)
         val nationPostcard = itemView.findViewById<ImageView>(R.id.nationPostcard)
+        var nationCode = itemView.findViewById<TextView>(R.id.countryCodeTextView)
 
         init{
             itemView.setOnClickListener  {

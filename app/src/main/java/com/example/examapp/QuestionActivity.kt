@@ -125,6 +125,11 @@ class QuestionActivity : AppCompatActivity() {
 
         walletTextView.text = "${DataManager.wallet.toString()} kr"
         ticketClickedPosition = data!!.getIntExtra("TICKET_CLICKED_POSITION", 9)
+
+        var intent = Intent(this, MapsActivity::class.java)
+        intent.putExtra("TICKET_CLICKED_FROM_QUESTION", ticketClickedPosition)
+        setResult(999,intent)
+        finish()
     }
 
 

@@ -3,12 +3,13 @@ package com.example.examapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -17,12 +18,19 @@ class MainActivity : AppCompatActivity() {
     //lateinit var finish1: TextView
     //lateinit var buttonx: Button
     //var countCountries: Int = 1
+    lateinit var loadingDialog: LoadingDialog
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        loadingDialog = LoadingDialog(this)
+
+
+
 
         /*val asd: ImageView = findViewById(R.id.asd)
 
@@ -62,8 +70,18 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
     fun change (view: View){
 
+
+        /*loadingDialog.startLoadingDialog()
+        var handler: Handler = Handler()
+        Handler(Looper.getMainLooper()).postDelayed({
+            Toast.makeText(this, "Haha", Toast.LENGTH_SHORT).show()
+            loadingDialog.dismiseDialog()
+
+        },3000)*/
 
         //ticketAnimation.start()
         //asd.alpha = 1.0F

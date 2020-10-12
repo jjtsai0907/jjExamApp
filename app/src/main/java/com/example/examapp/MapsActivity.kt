@@ -179,7 +179,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val dialogBuilder = AlertDialog.Builder(this)
 
         dialogBuilder.setTitle("Are you sure?")
-            .setMessage("Do you want to leave this page and $clickedMenuItem the game? All progress will be lost.")
+            // Do you want to leave this page and $clickedMenuItem the game? All progress will be lost.
+            .setMessage(" ")
             .setPositiveButton("Sure") {dialog, which ->
 
                 if (clickedMenuItem == "restart"){

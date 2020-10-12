@@ -7,18 +7,24 @@ import android.media.MediaPlayer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_nation.*
+import java.lang.Thread.sleep
+import kotlin.concurrent.timerTask
 
 
 class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemClickListener {
@@ -29,12 +35,22 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
     var ticketClickedPosition = 0
     lateinit var coinSound: MediaPlayer
 
+    lateinit var loadingDialog: LoadingDialog
 
+    //lateinit var bar: ProgressBar
+    //lateinit var cdt: CountDownTimer
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping)
+
+
+
+
+
+        loadingDialog = LoadingDialog(this)
+
 
         coinSound = MediaPlayer.create(this, R.raw.coin)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -80,6 +96,10 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
 
 
+
+
+
+
     fun doubleCheckPurchase(ticketClickedPosition: Int){
         val dialogBuilder = AlertDialog.Builder(this)
 
@@ -92,6 +112,27 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
                 DataManager.nations[ticketClickedPosition].purchased = true
                 recyclerView.adapter?.notifyDataSetChanged()
                 coinSound.start()
+                DataManager.currentCountry = ticketClickedPosition
+                //bar = findViewById(R.id.progressBar)
+                //bar.setProgress(10000)
+                //loadingDialog.countDown()
+
+                loadingDialog.startLoadingDialog()
+                //var handler: Handler = Handler()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    //Toast.makeText(this, "Haha", Toast.LENGTH_SHORT).show()
+                    loadingDialog.dismiseDialog()
+
+                    var intent = Intent(this, QuestionActivity::class.java)
+                    intent.putExtra("TICKET_CLICKED_POSITION", ticketClickedPosition)
+                    setResult(111,intent)
+                    finish()
+
+                },3500)
+
+
+
+
             }
             .setNegativeButton("Cancel") { dialog, which ->
                 dialog.cancel()
