@@ -14,6 +14,8 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_question.*
@@ -54,6 +56,18 @@ class QuestionActivity : AppCompatActivity() {
         button3 = findViewById(R.id.button3)
         questionTextView = findViewById(R.id.questionTextView)
         questionImageView = findViewById(R.id.questionImageView)
+
+
+
+
+        /*button0.setOnClickListener {
+            val bounce: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.bounce)
+            button0.startAnimation(bounce)
+
+        }*/
+
+
+
 
         currentCountryTV.text = intent.getStringExtra("CURRENT_CITY")
         var photo = intent.getIntExtra("TAG_QUESTION_BACKGROUND", R.drawable.nicke)
@@ -134,7 +148,13 @@ class QuestionActivity : AppCompatActivity() {
 
 
     fun checkAnswer (view: View){
+
+        val bounce: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.bounce)
+        view.startAnimation(bounce)
+
         if (locationArray[0].toString() == view.tag.toString()){
+
+
             Toast.makeText(this,"Correct!", Toast.LENGTH_SHORT).show()
             view.isEnabled = false
 

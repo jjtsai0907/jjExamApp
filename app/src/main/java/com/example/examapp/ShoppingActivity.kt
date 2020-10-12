@@ -10,12 +10,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.list_nation.*
 
 
 class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemClickListener {
@@ -59,12 +62,12 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
     @SuppressLint("SetTextI18n")
     override fun onClick(int: Int) {
 
+
+
         ticketClickedPosition = int
 
         if (DataManager.wallet >= DataManager.nations[ticketClickedPosition].ticketFare) {
             doubleCheckPurchase(ticketClickedPosition)
-
-
         }
         else  {
             Toast.makeText(this, "Need More Money!", Toast.LENGTH_SHORT).show()

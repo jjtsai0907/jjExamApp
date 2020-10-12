@@ -23,7 +23,7 @@ object DataManager {
             QuestionClass("What does 'Hong Kong' mean?", "Fragrant Harbour", "Fragrant Dumplings", "Fragrant Skyscraper", "Fragrant Asia", LatLng(22.257787,114.2245383)))))
 
 
-        nations.add(NationClass("Taiwan", 0,R.drawable.taiwan, mutableListOf(
+        nations.add(NationClass("Taiwan", 0,R.drawable.ticket3, mutableListOf(
             QuestionClass("Taiwan has the land size of Belgium. Belgium has 11 million residents. How many people live in Taiwan?", "23 million", "10 million", "17 million", "19 million", LatLng(24.2616609,120.5543753), "ChingShuei", R.drawable.chingshuei),
             QuestionClass("Which of the following is the first and currently only country that legalises gay marriage in Asia?", "Taiwan", "Japan", "South Korea", "China", LatLng(24.1572335,120.6638719), "Taichung", R.drawable.nicke),
             QuestionClass("Which of the following has never 'colonised/ruled' Taiwan?","UK", "China", "Spain", "Netherlands", LatLng(21.9326293,120.7415405), "Kenting", R.drawable.taichung),

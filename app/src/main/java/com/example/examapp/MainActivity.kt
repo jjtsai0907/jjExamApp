@@ -1,29 +1,15 @@
 package com.example.examapp
 
 import android.content.Intent
-import android.graphics.drawable.AnimationDrawable
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.TransitionDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.util.Log
-import android.view.Menu
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.isVisible
-import androidx.core.view.postOnAnimationDelayed
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_finish.*
-import kotlin.concurrent.thread
-import kotlin.concurrent.schedule
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,8 +41,11 @@ class MainActivity : AppCompatActivity() {
 
 
         // Fade-in animation for Logo
-        val logoFadeIn: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
-        myLogo.startAnimation(logoFadeIn)
+        val logoIn: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
+        myLogo.startAnimation(logoIn)
+        //val logoFadeIn: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.slide_out)
+        //myLogo.startAnimation(logoFadeIn)
+
 
 
 
