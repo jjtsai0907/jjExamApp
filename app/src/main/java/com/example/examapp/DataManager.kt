@@ -1,6 +1,5 @@
 package com.example.examapp
 
-
 import com.google.android.gms.maps.model.LatLng
 
 //singleton
@@ -10,6 +9,7 @@ object DataManager {
     var countQuestion: Int = 0
     var wallet: Int = 0
     var currentCountry: Int = -1
+    var clearMaps: Boolean = false
 
     init{
         createMockData()

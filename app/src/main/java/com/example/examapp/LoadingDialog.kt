@@ -54,7 +54,6 @@ class LoadingDialog (var activity: Activity) {
             override fun onTick(millisUntilFinished: Long) {
                 timepassed += 125
                 bar.setProgress(timepassed)
-                Log.d("jjj", timepassed.toString())
 
             }
 

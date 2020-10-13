@@ -1,6 +1,7 @@
 package com.example.examapp
 
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_question.*
@@ -48,10 +50,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         ticketClickedPosition = data!!.getIntExtra("TICKET_CLICKED_FROM_QUESTION", 9)
 
 
-        if (DataManager.nations[ticketClickedPosition].purchased){
-            addMarkers()
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DataManager.nations[ticketClickedPosition].questionClassList[0].position, 2.0F))
-            activeMarker.isVisible = false
+        if (DataManager.nations[ticketClickedPosition].purchased && DataManager.clearMaps){
+                mMap.clear()
+                addMarkers()
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DataManager.nations[ticketClickedPosition].questionClassList[0].position, 2.0F))
+                activeMarker.isVisible = false
+                DataManager.clearMaps = false
         }
     }
 
@@ -67,6 +71,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+
+
+        try{
+            var success: Boolean = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_json))
+            if(!success){
+                Log.e("try", "Style parsing failed.")
+            }
+        }
+        catch (e: Resources.NotFoundException ){
+            Log.e("try", "Can't find style. Error: ", e)
+        }
+
+
+
+
+
+
 
 
         // These are markers that show automatically once one enters:

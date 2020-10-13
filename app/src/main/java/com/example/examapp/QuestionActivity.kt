@@ -2,15 +2,9 @@ package com.example.examapp
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.Drawable.createFromPath
-import android.media.Image
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
-import android.provider.ContactsContract
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -18,11 +12,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import kotlinx.android.synthetic.main.activity_question.*
-import kotlinx.android.synthetic.main.activity_shopping.*
-import java.io.File
 import java.util.*
-import kotlin.random.Random.Default.nextInt
 
 
 class QuestionActivity : AppCompatActivity() {
@@ -61,8 +51,8 @@ class QuestionActivity : AppCompatActivity() {
 
 
         /*button0.setOnClickListener {
-            val bounce: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.bounce)
-            button0.startAnimation(bounce)
+            val blink: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.blink)
+            button0.startAnimation(blink)
 
         }*/
 
@@ -154,7 +144,7 @@ class QuestionActivity : AppCompatActivity() {
 
     fun checkAnswer (view: View){
 
-        val bounce: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.bounce)
+        val bounce: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.blink)
         view.startAnimation(bounce)
 
         if (locationArray[0].toString() == view.tag.toString()){

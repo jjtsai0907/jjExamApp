@@ -113,6 +113,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
                 recyclerView.adapter?.notifyDataSetChanged()
                 coinSound.start()
                 DataManager.currentCountry = ticketClickedPosition
+                DataManager.clearMaps = true
                 //bar = findViewById(R.id.progressBar)
                 //bar.setProgress(10000)
                 //loadingDialog.countDown()
