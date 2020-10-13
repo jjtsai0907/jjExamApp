@@ -4,14 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0E1626"
     tools:context=".ShoppingActivity">
 
     <TextView
         android:id="@+id/shoppingWalletTextView"
         android:layout_width="102dp"
         android:layout_height="46dp"
+        android:gravity="center"
         android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="#27C8A9"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

@@ -29,6 +29,7 @@ class QuestionActivity : AppCompatActivity() {
     var trys: Int = 0
     var locationArray = mutableListOf<Int>(0,0,0,0)
     var ticketClickedPosition = 0
+    lateinit var progressDialog: ProgressDialog
 
 
 
@@ -37,7 +38,7 @@ class QuestionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
 
-        currentCountryTV = findViewById(R.id.currentCountryTextView)
+        //currentCountryTV = findViewById(R.id.currentCountryTextView)
         walletTextView = findViewById(R.id.walletTextView)
         shoppingImageView = findViewById(R.id.shoppingImageButton)
         button0 = findViewById(R.id.button0)
@@ -46,6 +47,7 @@ class QuestionActivity : AppCompatActivity() {
         button3 = findViewById(R.id.button3)
         questionTextView = findViewById(R.id.questionTextView)
         questionImageView = findViewById(R.id.questionImageView)
+        progressDialog = ProgressDialog(this)
 
 
 
@@ -59,7 +61,7 @@ class QuestionActivity : AppCompatActivity() {
 
 
 
-        currentCountryTV.text = intent.getStringExtra("CURRENT_CITY")
+        //currentCountryTV.text = intent.getStringExtra("CURRENT_CITY")
         var photo = intent.getIntExtra("TAG_QUESTION_BACKGROUND", R.drawable.nicke)
 
 
@@ -179,6 +181,10 @@ class QuestionActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId){
+            R.id.progress -> {
+                progressDialog.startProgressDialog()
+                return true
+            }
             R.id.finish -> {
                 doubleCheckMenu("finish")
                 return true

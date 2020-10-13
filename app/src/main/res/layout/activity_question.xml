@@ -4,7 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0E1626"
     tools:context=".QuestionActivity">
+
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="58dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="goBackToMaps"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toEndOf="@+id/imageButton8"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_tomaps" />
 
     <ImageView
         android:id="@+id/questionImageView"
@@ -14,68 +27,49 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/walletTextView"
         app:srcCompat="@drawable/taipei" />
+
 
     <TextView
         android:id="@+id/walletTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="$"
+        android:layout_width="102dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="140dp"
+        android:gravity="center"
         android:shadowColor="#040404"
         android:shadowDx="2"
         android:shadowDy="2"
         android:shadowRadius="0.01"
+        android:text="NEW"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#27C8A9"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton8"
-        app:layout_constraintStart_toEndOf="@+id/currentCountryTextView"
-        app:layout_constraintTop_toTopOf="@+id/questionImageView" />
-
-    <TextView
-        android:id="@+id/currentCountryTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="30dp"
-        android:shadowColor="#060505"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="0.01"
-        android:text="Country"
-        android:textAlignment="textStart"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/questionImageView" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/shoppingImageButton"
         android:layout_width="52dp"
         android:layout_height="40dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
         android:backgroundTint="#00FFFFFF"
         android:onClick="goShopping"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/questionImageView"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/shopping" />
 
     <ImageButton
         android:id="@+id/imageButton8"
         android:layout_width="58dp"
         android:layout_height="40dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
         android:backgroundTint="#00FFFFFF"
         android:onClick="goBackToMaps"
         android:scaleType="centerCrop"
-        app:layout_constraintEnd_toStartOf="@+id/shoppingImageButton"
-        app:layout_constraintTop_toTopOf="@+id/questionImageView"
-        app:srcCompat="@drawable/globewhite" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back" />
 
     <TextView
         android:id="@+id/questionTextView"
@@ -99,6 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/walletTextView" />
 
     <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="397dp"
         android:layout_height="202dp"
         android:layout_marginStart="8dp"
@@ -135,12 +130,12 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#00FBF9FA"
             android:onClick="checkAnswer"
-            android:tag="1"
-            android:text="Taichung"
             android:shadowColor="#040404"
             android:shadowDx="10"
             android:shadowDy="10"
             android:shadowRadius="0.1"
+            android:tag="1"
+            android:text="Taichung"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -156,12 +151,12 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#00FBF9FA"
             android:onClick="checkAnswer"
-            android:tag="2"
-            android:text="Chingshui"
             android:shadowColor="#040404"
             android:shadowDx="10"
             android:shadowDy="10"
             android:shadowRadius="0.1"
+            android:tag="2"
+            android:text="Chingshui"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -177,12 +172,12 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#00FBF9FA"
             android:onClick="checkAnswer"
-            android:tag="3"
-            android:text="Taichung"
             android:shadowColor="#040404"
             android:shadowDx="10"
             android:shadowDy="10"
             android:shadowRadius="0.1"
+            android:tag="3"
+            android:text="Taichung"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold"

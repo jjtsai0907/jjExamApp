@@ -36,6 +36,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
     lateinit var coinSound: MediaPlayer
 
     lateinit var loadingDialog: LoadingDialog
+    lateinit var progressDialog: ProgressDialog
 
     //lateinit var bar: ProgressBar
     //lateinit var cdt: CountDownTimer
@@ -50,6 +51,8 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
 
         loadingDialog = LoadingDialog(this)
+
+        progressDialog = ProgressDialog(this)
 
 
         coinSound = MediaPlayer.create(this, R.raw.coin)
@@ -153,6 +156,11 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId){
+
+            R.id.progress -> {
+                progressDialog.startProgressDialog()
+                return true
+            }
             R.id.finish -> {
                 doubleCheckMenu("finish")
                 return true

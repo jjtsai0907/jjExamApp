@@ -2,9 +2,14 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">#1d2c4d</item>
+        <item name="colorPrimaryDark">#0e1626</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:itemBackground">#6C8EA2</item>// OptionsMenu Background Colour
+        <item name="android:actionMenuTextColor">#10DD32</item> // Do nothing
+        <item name="android:actionMenuTextAppearance">@color/colorAccent</item> // Nothing
+        <item name="actionMenuTextColor">@android:color/holo_green_light</item> // Nothing
     </style>
 
 </resources>
+

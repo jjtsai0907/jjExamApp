@@ -2,9 +2,12 @@ package com.example.examapp
 
 import android.content.Intent
 import android.content.res.Resources
+import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -30,6 +33,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     lateinit var activeMarker: Marker
     var ticketClickedPosition = 0
+    lateinit var progressDialog: ProgressDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +43,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        progressDialog = ProgressDialog(this)
     }
 
 
@@ -171,12 +176,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         menuInflater.inflate(R.menu.main, menu)
+
+
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId){
+            R.id.progress -> {
+                progressDialog.startProgressDialog()
+                return true
+            }
             R.id.finish -> {
                 doubleCheckMenu("finish")
                 return true
@@ -200,8 +211,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val dialogBuilder = AlertDialog.Builder(this)
 
         dialogBuilder.setTitle("Are you sure?")
-            // Do you want to leave this page and $clickedMenuItem the game? All progress will be lost.
-            .setMessage(" ")
+            .setMessage("Do you want to leave this page and $clickedMenuItem the game? All progress will be lost.")
             .setPositiveButton("Sure") {dialog, which ->
 
                 if (clickedMenuItem == "restart"){

@@ -3,12 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/progress"
+        android:title="Current Progress"
+        />
 
     <item android:id="@+id/finish"
-        android:title="Finish" />
+        android:title="Finish the Game"
+        />
 
     <item android:id="@+id/restart"
-        android:title="Restart" />
+        android:title="Restart " />
 
     <item
         android:id="@+id/about"
