@@ -3,14 +3,10 @@ package com.example.examapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +15,8 @@ class MainActivity : AppCompatActivity() {
     //lateinit var buttonx: Button
     //var countCountries: Int = 1
     lateinit var loadingDialog: LoadingDialog
-
+    lateinit var howToDialog: HowToDialog
+    lateinit var finishDialog: FinishDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +25,8 @@ class MainActivity : AppCompatActivity() {
 
 
         loadingDialog = LoadingDialog(this)
-
-
+        howToDialog = HowToDialog(this)
+        finishDialog = FinishDialog(this)
 
 
         /*val asd: ImageView = findViewById(R.id.asd)
@@ -57,38 +54,14 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        // This shows the FinishFragment when one press "finish the game" in OptionsMenu.
+        // This shows the FinishDialog when one press "finish the game" in OptionsMenu.
         var finish = intent.getStringExtra("FINISH")
         if (finish == "finish"){
-            myLogo.alpha = 0F
-            gameName.alpha = 0F
-            buttonx.alpha = 1F
-            finishGame()
+            finishDialog.startFinishDialog()
         }
     }
 
 
-
-
-
-
-    fun change (view: View){
-
-
-        /*loadingDialog.startLoadingDialog()
-        var handler: Handler = Handler()
-        Handler(Looper.getMainLooper()).postDelayed({
-            Toast.makeText(this, "Haha", Toast.LENGTH_SHORT).show()
-            loadingDialog.dismiseDialog()
-
-        },3000)*/
-
-        //ticketAnimation.start()
-        //asd.alpha = 1.0F
-
-        //asd.setImageResource(R.drawable.globewhite)
-
-    }
 
     fun entryButtonClicked (view: View){
         val intent: Intent = Intent(this, MapsActivity::class.java)
@@ -108,24 +81,26 @@ class MainActivity : AppCompatActivity() {
 
     fun howToPlay(view: View){
 
-        val howToPlayFragment = HowToPlayFragment()
+        howToDialog.startHowToDialog()
+
+        /*val howToPlayFragment = HowToPlayFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, howToPlayFragment, "howToPlayFragment")
         transaction.commit()
         buttonx.alpha = 0F
         myLogo.alpha = 0F
-        gameName.alpha = 0F
+        gameName.alpha = 0F*/
 
     }
 
 
-    fun finishGame (){
+    /*fun finishGame (){
 
         val finishFragment = FinishFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.frameLayout, finishFragment, "finishFragment")
         transaction.commit()
-    }
+    }*/
 
 
 

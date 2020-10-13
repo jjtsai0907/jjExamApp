@@ -12,6 +12,16 @@ class ProgressDialog (var activity: Activity) {
 
     lateinit var progressDialog: AlertDialog
     lateinit var myActivity: Activity
+    var countCountries = 1
+
+    fun countCountries () {
+
+        for (i in 0 until DataManager.nations.size) {
+            if (DataManager.nations[i].purchased) {
+                countCountries++
+            }
+        }
+    }
 
 
 
@@ -31,6 +41,33 @@ class ProgressDialog (var activity: Activity) {
         //countDown()
         var co2: TextView = progressDialog.asd
         co2.text = "fffffff"
+
+        var nrnations: TextView = progressDialog.asd2
+        countCountries()
+
+        nrnations.text = "Wow! You've been to ${countCountries.toString()} countries!"
+
+        var q: TextView = progressDialog.asd3
+        q.text = "You've answered ${DataManager.countQuestion.toString()} questions correctly!"
+
+        var f: TextView = progressDialog.asd4
+        f.text = "At this moment, you still have ${DataManager.wallet.toString()} kr left."
+
+        /* var beenTo = mutableListOf<String>()
+        if(DataManager.nations[1].purchased){
+            for(){
+
+            }
+
+        }
+
+
+        if(){
+            for (i in 0..){
+                nrnations.text = "${DataManager.nations[1].nation}"
+            }
+        }
+        */
 
     }
 
