@@ -39,7 +39,7 @@ class ProgressDialog (var activity: Activity) {
         progressDialog = builder.create()
         progressDialog.show()
         //countDown()
-        var co2: TextView = progressDialog.asd
+        /*var co2: TextView = progressDialog.asd
         co2.text = "fffffff"
 
         var nrnations: TextView = progressDialog.asd2
@@ -51,7 +51,7 @@ class ProgressDialog (var activity: Activity) {
         q.text = "You've answered ${DataManager.countQuestion.toString()} questions correctly!"
 
         var f: TextView = progressDialog.asd4
-        f.text = "At this moment, you still have ${DataManager.wallet.toString()} kr left."
+        f.text = "At this moment, you still have ${DataManager.wallet.toString()} kr left." */
 
         /* var beenTo = mutableListOf<String>()
         if(DataManager.nations[1].purchased){

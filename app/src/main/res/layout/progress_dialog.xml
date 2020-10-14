@@ -1,89 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/progresshbg">
+
 
     <TextView
         android:id="@+id/asd2"
-        android:layout_width="193dp"
-        android:layout_height="106dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="44dp"
-        android:text="TextView"
+        android:layout_width="197dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Well, you've answered 13 questions correctly!"
+        android:textColor="#27C8A9"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/asd" />
+        app:layout_constraintTop_toBottomOf="@+id/finishCountriesTV" />
 
     <TextView
         android:id="@+id/asd3"
-        android:layout_width="193dp"
-        android:layout_height="106dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="TextView"
+        android:layout_width="217dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="At this moment, you have 1000 in your pocket..."
+        android:textColor="#203E58"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/asd2" />
-
-    <TextView
-        android:id="@+id/asd4"
-        android:layout_width="193dp"
-        android:layout_height="106dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/asd3" />
+        app:layout_constraintTop_toBottomOf="@+id/asd2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="52dp"
-        android:layout_height="56dp"
+        android:layout_width="45dp"
+        android:layout_height="42dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:srcCompat="@drawable/ic_gas" />
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="52dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="39dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         app:srcCompat="@drawable/ic_gas" />
 
     <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="52dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:srcCompat="@drawable/ic_gas" />
-
-    <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="52dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="108dp"
+        android:layout_width="41dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="192dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_gas" />
+        app:srcCompat="@drawable/ic_flight" />
 
     <TextView
-        android:id="@+id/asd"
-        android:layout_width="212dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="116dp"
-        android:text="TextView"
+        android:id="@+id/finishCountriesTV"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="So far, you've been to 3 countries!"
+        android:textAlignment="viewStart"
+        android:textColor="#203E58"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/ringGrey" />
+
+    <ProgressBar
+        android:id="@+id/ringGrey"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="156dp"
+        android:layout_height="149dp"
+        android:layout_marginTop="20dp"
+        android:progress="100"
+        android:progressDrawable="@drawable/ring_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/ringBar"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="156dp"
+        android:layout_height="149dp"
+        android:layout_marginTop="20dp"
+        android:progress="60"
+        android:progressDrawable="@drawable/ring_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:textColor="#27C8A9"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ringGrey"
+        app:layout_constraintEnd_toEndOf="@+id/ringGrey"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/ringGrey"
+        app:layout_constraintTop_toTopOf="@+id/ringGrey"
+        app:layout_constraintVertical_bias="0.533" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="40dp"
+        android:text="%"
+        android:textColor="#27C8A9"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/ringGrey"
+        app:layout_constraintTop_toTopOf="@+id/ringGrey" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
