@@ -2,12 +2,15 @@ package com.example.examapp
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
+import androidx.core.content.ContextCompat.startActivity
 import kotlinx.android.synthetic.main.finish_dialog.*
 
 class FinishDialog (var activity: Activity) {
@@ -19,6 +22,8 @@ class FinishDialog (var activity: Activity) {
     lateinit var rightButton: ImageView
     lateinit var fadeIn: Animation
     var rightClicked: Boolean = false
+    lateinit var exit: ImageView
+    lateinit var again: ImageView
 
     fun startFinishDialog() {
         var builder = AlertDialog.Builder(activity)
@@ -36,8 +41,16 @@ class FinishDialog (var activity: Activity) {
         finishTextView = finishDialog.finishTextView
         leftButton = finishDialog.leftButton
         rightButton = finishDialog.rightButton
+        exit = finishDialog.exit
+        again = finishDialog.again
 
-        fadeIn = AnimationUtils.loadAnimation(finishDialog.context, R.anim.fadein)
+
+
+        exit.setOnClickListener(){
+            finishDialog.cancel()
+        }
+
+
 
 
         centerButton.setOnClickListener(){
@@ -45,30 +58,37 @@ class FinishDialog (var activity: Activity) {
             centerClicked()
         }
 
-        leftButton.setOnClickListener(){
-            //leftClicked()
-            rightClicked = false
-            //val goRight: Animation = AnimationUtils.loadAnimation(finishDialog.context, R.anim.slide_out)
-            //leftButton.startAnimation(goRight)
-            switchInfo()
 
+        leftButton.setOnClickListener(){
+
+            val rightUp: Animation = AnimationUtils.loadAnimation(finishDialog.context, R.anim.go_right_up)
+            leftButton.startAnimation(rightUp)
+
+            val leftDown: Animation = AnimationUtils.loadAnimation(finishDialog.context, R.anim.go_left_down)
+            centerButton.startAnimation(leftDown)
+            rightClicked = false
+            switchInfo()
         }
+
+
         rightButton.setOnClickListener(){
             rightClicked = true
-            //val logoIn: Animation = AnimationUtils.loadAnimation(finishDialog.context, R.anim.slide_out)
-            //centerButton.startAnimation(logoIn)
+            val leftUp: Animation = AnimationUtils.loadAnimation(finishDialog.context, R.anim.go_left_up)
+            rightButton.startAnimation(leftUp)
+
+            val rightDown: Animation = AnimationUtils.loadAnimation(finishDialog.context, R.anim.go_right_down)
+            centerButton.startAnimation(rightDown)
+
             switchInfo()
-            //rightClicked()
+
 
         }
-
-
-
-
     }
-    // center : question
-    fun centerClicked(){
 
+
+
+    fun centerClicked(){
+        fadeIn = AnimationUtils.loadAnimation(finishDialog.context, R.anim.fadein)
         centerButton.startAnimation(fadeIn)
         finishTextView.startAnimation(fadeIn)
     }
@@ -79,7 +99,7 @@ class FinishDialog (var activity: Activity) {
     var rightRIght: Boolean = true
     var leftLeft: Boolean = true
 
-    //right : Country
+
     fun switchInfo(){
 
         Handler(Looper.getMainLooper()).postDelayed({
@@ -96,7 +116,7 @@ class FinishDialog (var activity: Activity) {
                 else{
                    centerButton.setImageResource(R.drawable.left)
                    leftButton.setImageResource(R.drawable.finiex)
-                   finishTextView.text = "Wow! You've been to  countries!"
+                   finishTextView.text = "Let's see...you have ${DataManager.wallet} in the pocket!"
                    leftCentered = true
                    leftLeft = false
                }
@@ -106,13 +126,14 @@ class FinishDialog (var activity: Activity) {
                 if(rightClicked){
                     centerButton.setImageResource(R.drawable.finiex)
                     rightButton.setImageResource(R.drawable.right)
-                    finishTextView.text = "You've answered ${DataManager.countQuestion.toString()} questions correctly!"
+                    finishTextView.text = "You've answered ${DataManager.countQuestion} questions correctly!"
                     rightCentered = false
                     rightRIght = true
                 }
                 else{
                     centerButton.setImageResource(R.drawable.left)
                     leftButton.setImageResource(R.drawable.right)
+                    finishTextView.text = "Let's see...you have ${DataManager.wallet} in the pocket!"
                     leftCentered = true
                     leftLeft = false
                     rightCentered = false
@@ -133,6 +154,7 @@ class FinishDialog (var activity: Activity) {
                 else{
                     centerButton.setImageResource(R.drawable.finiex)
                     leftButton.setImageResource(R.drawable.left)
+                    finishTextView.text = "You've answered ${DataManager.countQuestion} questions correctly!"
                     leftLeft = true
                     leftCentered = false
                 }
@@ -142,13 +164,14 @@ class FinishDialog (var activity: Activity) {
                 if(rightClicked){
                     centerButton.setImageResource(R.drawable.finiex)
                     rightButton.setImageResource(R.drawable.left)
-                    finishTextView.text = "You've answered ${DataManager.countQuestion.toString()} questions correctly!"
+                    finishTextView.text = "You've answered ${DataManager.countQuestion} questions correctly!"
                     leftLeft = false
                     leftCentered = false
                 }
                 else{
                     centerButton.setImageResource(R.drawable.right)
                     leftButton.setImageResource(R.drawable.left)
+                    finishTextView.text = "countries"
                     rightCentered = true
                     leftLeft = true
                 }
@@ -158,7 +181,7 @@ class FinishDialog (var activity: Activity) {
                 if(rightClicked){
                     centerButton.setImageResource(R.drawable.left)
                     rightButton.setImageResource(R.drawable.right)
-                    finishTextView.text = "€€€"
+                    finishTextView.text = "Let's see...you have ${DataManager.wallet} in the pocket!"
                     rightCentered = false
                     rightRIght = true
                     leftCentered = true
@@ -166,6 +189,7 @@ class FinishDialog (var activity: Activity) {
                 else{
                     centerButton.setImageResource(R.drawable.finiex)
                     leftButton.setImageResource(R.drawable.right)
+                    finishTextView.text = "You've answered ${DataManager.countQuestion} questions correctly!"
                     rightCentered = false
                     rightRIght = false
                 }
@@ -176,7 +200,7 @@ class FinishDialog (var activity: Activity) {
                 if(rightClicked){
                     centerButton.setImageResource(R.drawable.left)
                     rightButton.setImageResource(R.drawable.finiex)
-                    finishTextView.text = "€€€"
+                    finishTextView.text = "Let's see...you have ${DataManager.wallet} in the pocket!"
                     rightCentered = false
                     leftCentered = true
                     leftLeft = false
@@ -184,6 +208,7 @@ class FinishDialog (var activity: Activity) {
                 else{
                     centerButton.setImageResource(R.drawable.right)
                     leftButton.setImageResource(R.drawable.finiex)
+                    finishTextView.text = "countries"
                     rightCentered = true
                     leftLeft = false
                     leftCentered = false
@@ -191,11 +216,27 @@ class FinishDialog (var activity: Activity) {
                 }
             }
 
-            finishTextView.startAnimation(fadeIn)
-        },600)
+            //finishTextView.startAnimation(fadeIn)
+        },1000)
 
 
     }
+
+
+    /*fun playAgain (view: View){
+        var intent: Intent = Intent(finishDialog.context, MapsActivity::class.java)
+
+        for (i in 0 until DataManager.nations.size){
+            DataManager.nations[i].purchased = false
+        }
+
+        DataManager.wallet = 0
+        DataManager.countQuestion = 0
+
+        startActivity(finishDialog.context, intent)
+
+    }*/
+
 
 
 

@@ -20,11 +20,13 @@
 
     <TextView
         android:id="@+id/finishTextView"
-        android:layout_width="297dp"
-        android:layout_height="219dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="313dp"
+        android:layout_height="111dp"
+        android:layout_marginTop="40dp"
         android:text="TextView"
-        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textColor="#023E58"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,18 +37,40 @@
         android:layout_width="95dp"
         android:layout_height="98dp"
         android:layout_marginTop="92dp"
-        android:layout_marginEnd="72dp"
+        android:layout_marginEnd="60dp"
         app:layout_constraintEnd_toStartOf="@+id/centerButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/left" />
 
     <ImageView
         android:id="@+id/rightButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="91dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="92dp"
+        app:layout_constraintStart_toEndOf="@+id/centerButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/right" />
+
+    <ImageButton
+        android:id="@+id/again"
+        android:layout_width="78dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="entryButtonClicked"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/finishTextView"
+        app:srcCompat="@drawable/again" />
+
+    <ImageButton
+        android:id="@+id/exit"
+        android:layout_width="99dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/finishTextView"
+        app:srcCompat="@drawable/exit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
