@@ -10,6 +10,7 @@ object DataManager {
     var wallet: Int = 0
     var currentCountry: Int = -1
     var clearMaps: Boolean = false
+    lateinit var userName: String
 
     init{
         createMockData()

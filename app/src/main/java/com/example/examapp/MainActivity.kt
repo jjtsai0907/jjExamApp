@@ -1,12 +1,18 @@
 package com.example.examapp
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
+import kotlinx.android.synthetic.main.enter_name_dialog.*
+import java.util.zip.DataFormatException
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var loadingDialog: LoadingDialog
     lateinit var howToDialog: HowToDialog
     lateinit var finishDialog: FinishDialog
+    lateinit var enterNameDialog: EnterNameDialog
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         loadingDialog = LoadingDialog(this)
         howToDialog = HowToDialog(this)
         finishDialog = FinishDialog(this)
+        enterNameDialog = EnterNameDialog(this)
 
 
         /*val asd: ImageView = findViewById(R.id.asd)
@@ -65,6 +74,10 @@ class MainActivity : AppCompatActivity() {
 
     fun entryButtonClicked (view: View){
         val intent: Intent = Intent(this, MapsActivity::class.java)
+
+        var tt = enterNameDialog.name()
+        intent.putExtra("name", tt)
+        Log.d("uuuu", tt)
 
         for (i in 0 until DataManager.nations.size){
             DataManager.nations[i].purchased = false
@@ -114,4 +127,22 @@ class MainActivity : AppCompatActivity() {
 
         fragmentFinish?.setText()
     }
+
+
+
+    fun getName (view: View){
+        enterNameDialog.startEnterNameDialog()
+
+
+
+    }
+    fun getName2 (view: View){
+
+        loadingDialog.startLoadingDialog()
+        Handler(Looper.getMainLooper()).postDelayed({
+            entryButtonClicked(view)
+
+        },3500)
+    }
+
 }
