@@ -12,10 +12,11 @@ object DataManager {
     var currentCountry: Int = -1
     var clearMaps: Boolean = false
     lateinit var userName: String
-    var countryBeenTo = mutableListOf<String>("Sweden")
+    var countryBeenTo: MutableList<String> = mutableListOf("Sweden")
 
     init{
         createMockData()
+
     }
 
     fun createMockData(){

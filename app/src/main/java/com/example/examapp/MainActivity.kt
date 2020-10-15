@@ -54,11 +54,10 @@ class MainActivity : AppCompatActivity() {
         val gameName: TextView = findViewById(R.id.gameName)
 
 
-        // Fade-in animation for Logo
-        val logoIn: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
-        myLogo.startAnimation(logoIn)
-        //val logoFadeIn: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.slide_out)
-        //myLogo.startAnimation(logoFadeIn)
+        // Fade-in animation for Logo and gameName
+        val fadeIn: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.fadein)
+        myLogo.startAnimation(fadeIn)
+        gameName.startAnimation(fadeIn)
 
 
 
@@ -80,6 +79,7 @@ class MainActivity : AppCompatActivity() {
 
         howToDialog.startHowToDialog()
 
+        // Used Fragment, but changed to Dialog now :P
         /*val howToPlayFragment = HowToPlayFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, howToPlayFragment, "howToPlayFragment")
@@ -89,16 +89,6 @@ class MainActivity : AppCompatActivity() {
         gameName.alpha = 0F*/
 
     }
-
-
-    /*fun finishGame (){
-
-        val finishFragment = FinishFragment()
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.frameLayout, finishFragment, "finishFragment")
-        transaction.commit()
-    }*/
-
 
 
 
@@ -137,11 +127,14 @@ class MainActivity : AppCompatActivity() {
             DataManager.countQuestion = 0
             DataManager.countCountries = 1
 
+
             startActivity(intent)
         },3500)
     }
 
     fun playAgain (view: View){
+        DataManager.countryBeenTo.clear()
+        DataManager.countryBeenTo.add("Sweden")
         finishDialog.dismiss()
         enterNameDialog.startEnterNameDialog()
 
