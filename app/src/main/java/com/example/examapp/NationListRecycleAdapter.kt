@@ -30,11 +30,12 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val nationInfo = nationList[position]
-
+        holder.userName.text = DataManager.userName
         holder.nationTextView.text = nationInfo.nation
         holder.nationPriceTextView.text = nationInfo.ticketFare.toString()
         holder.nationTicket.setImageResource(nationInfo.nationTicket)
         holder.nationPostcard.alpha = 0.0F
+
 
         if(DataManager.currentCountry != -1){
             holder.nationCode.text = DataManager.nations[DataManager.currentCountry].nationCode
@@ -44,25 +45,17 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         }
 
 
-
-
         if (DataManager.nations[position].purchased){
 
 
             if (DataManager.nations[position].front_side){
                 val out: Animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.slide_out)
                 holder.nationTicket.startAnimation(out)
-                //run()
                 holder.itemView.isEnabled = false
                 holder.nationCode.alpha = 0F
-
+                holder.userName.alpha = 0F
                 DataManager.nations[position].front_side = false
-                //holder.nationImageView.alpha = 0.0F
 
-                holder.nationPostcard.alpha = 1.0F
-                val inside: Animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.slide_in)
-                holder.nationPostcard.startAnimation(inside)
-                //holder.itemView.alpha = 0.2F
 
 
             }
@@ -72,6 +65,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
                 holder.nationTicket.alpha = 0.0F
                 holder.nationPostcard.alpha = 1.0F
                 holder.nationCode.alpha = 0F
+                holder.userName.alpha = 0.0F
 
             }
 
@@ -99,6 +93,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         val nationTicket = itemView.findViewById<ImageView>(R.id.nationTicket)
         val nationPostcard = itemView.findViewById<ImageView>(R.id.nationPostcard)
         var nationCode = itemView.findViewById<TextView>(R.id.countryCodeTextView)
+        val userName = itemView.findViewById<TextView>(R.id.userName)
 
         init{
             itemView.setOnClickListener  {

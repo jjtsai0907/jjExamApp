@@ -72,23 +72,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun entryButtonClicked (view: View){
-        val intent: Intent = Intent(this, MapsActivity::class.java)
 
-        var tt = enterNameDialog.name()
-        intent.putExtra("name", tt)
-        Log.d("uuuu", tt)
-
-        for (i in 0 until DataManager.nations.size){
-            DataManager.nations[i].purchased = false
-        }
-
-        DataManager.wallet = 0
-        DataManager.countQuestion = 0
-
-        startActivity(intent)
-
-    }
 
 
 
@@ -133,16 +117,34 @@ class MainActivity : AppCompatActivity() {
     fun getName (view: View){
         enterNameDialog.startEnterNameDialog()
 
-
-
     }
-    fun getName2 (view: View){
 
+    // after entered name and start the game
+    fun startGame (view: View){
         loadingDialog.startLoadingDialog()
         Handler(Looper.getMainLooper()).postDelayed({
-            entryButtonClicked(view)
+            val intent: Intent = Intent(this, MapsActivity::class.java)
 
+            var userInput = enterNameDialog.userInput()
+            intent.putExtra("USER_INPUT", userInput)
+
+
+            for (i in 0 until DataManager.nations.size){
+                DataManager.nations[i].purchased = false
+            }
+
+            DataManager.wallet = 0
+            DataManager.countQuestion = 0
+            DataManager.countCountries = 1
+
+            startActivity(intent)
         },3500)
+    }
+
+    fun playAgain (view: View){
+        finishDialog.dismiss()
+        enterNameDialog.startEnterNameDialog()
+
     }
 
 }

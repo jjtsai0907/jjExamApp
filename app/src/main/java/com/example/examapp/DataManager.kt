@@ -7,10 +7,12 @@ object DataManager {
 
     val nations = mutableListOf<NationClass>()
     var countQuestion: Int = 0
+    var countCountries: Int = 1
     var wallet: Int = 0
     var currentCountry: Int = -1
     var clearMaps: Boolean = false
     lateinit var userName: String
+    var countryBeenTo = mutableListOf<String>("Sweden")
 
     init{
         createMockData()

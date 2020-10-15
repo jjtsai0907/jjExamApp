@@ -47,9 +47,6 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
         setContentView(R.layout.activity_shopping)
 
 
-
-
-
         loadingDialog = LoadingDialog(this)
 
         progressDialog = ProgressDialog(this)
@@ -117,14 +114,13 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
                 coinSound.start()
                 DataManager.currentCountry = ticketClickedPosition
                 DataManager.clearMaps = true
-                //bar = findViewById(R.id.progressBar)
-                //bar.setProgress(10000)
-                //loadingDialog.countDown()
+                DataManager.countCountries += 1
+                DataManager.countryBeenTo.add(DataManager.nations[ticketClickedPosition].nation)
 
                 loadingDialog.startLoadingDialog()
-                //var handler: Handler = Handler()
+
                 Handler(Looper.getMainLooper()).postDelayed({
-                    //Toast.makeText(this, "Haha", Toast.LENGTH_SHORT).show()
+
                     loadingDialog.dismiseDialog()
 
                     var intent = Intent(this, QuestionActivity::class.java)

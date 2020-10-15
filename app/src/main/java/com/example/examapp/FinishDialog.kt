@@ -109,7 +109,7 @@ class FinishDialog (var activity: Activity) {
                if (rightClicked){
                    centerButton.setImageResource(R.drawable.right)
                    rightButton.setImageResource(R.drawable.finiex)
-                   finishTextView.text = "Wow! You've been to  countries!"
+                   finishTextView.text = "Wow! You've been to ${DataManager.countCountries} countries: ${DataManager.countryBeenTo}. Did you enjoy it?"
                    rightCentered = true
                    rightRIght = false
                }
@@ -145,7 +145,7 @@ class FinishDialog (var activity: Activity) {
                 if(rightClicked){
                     centerButton.setImageResource(R.drawable.right)
                     rightButton.setImageResource(R.drawable.left)
-                    finishTextView.text = "Wow! You've been to  countries!"
+                    finishTextView.text = "Wow! You've been to ${DataManager.countCountries} countries: ${DataManager.countryBeenTo}. Did you enjoy it?"
                     rightCentered = true
                     rightRIght = false
                     leftCentered = false
@@ -171,7 +171,7 @@ class FinishDialog (var activity: Activity) {
                 else{
                     centerButton.setImageResource(R.drawable.right)
                     leftButton.setImageResource(R.drawable.left)
-                    finishTextView.text = "countries"
+                    finishTextView.text = "Wow! You've been to ${DataManager.countCountries} countries: ${DataManager.countryBeenTo}. Did you enjoy it?"
                     rightCentered = true
                     leftLeft = true
                 }
@@ -208,7 +208,7 @@ class FinishDialog (var activity: Activity) {
                 else{
                     centerButton.setImageResource(R.drawable.right)
                     leftButton.setImageResource(R.drawable.finiex)
-                    finishTextView.text = "countries"
+                    finishTextView.text = "Wow! You've been to ${DataManager.countCountries} countries: ${DataManager.countryBeenTo}. Did you enjoy it?"
                     rightCentered = true
                     leftLeft = false
                     leftCentered = false
@@ -223,19 +223,9 @@ class FinishDialog (var activity: Activity) {
     }
 
 
-    /*fun playAgain (view: View){
-        var intent: Intent = Intent(finishDialog.context, MapsActivity::class.java)
-
-        for (i in 0 until DataManager.nations.size){
-            DataManager.nations[i].purchased = false
-        }
-
-        DataManager.wallet = 0
-        DataManager.countQuestion = 0
-
-        startActivity(finishDialog.context, intent)
-
-    }*/
+    fun dismiss (){
+        finishDialog.cancel()
+    }
 
 
 

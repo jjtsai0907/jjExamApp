@@ -111,6 +111,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         indoMarker.tag = indo
 
 
+        DataManager.userName = intent.getStringExtra("USER_INPUT")!!
+
+
 
 
         mMap.setOnMarkerClickListener { marker ->

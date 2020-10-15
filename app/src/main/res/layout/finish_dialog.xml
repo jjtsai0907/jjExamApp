@@ -20,13 +20,13 @@
 
     <TextView
         android:id="@+id/finishTextView"
-        android:layout_width="313dp"
-        android:layout_height="111dp"
+        android:layout_width="326dp"
+        android:layout_height="260dp"
         android:layout_marginTop="40dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="#023E58"
-        android:textSize="36sp"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         android:layout_height="56dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="#00FFFFFF"
-        android:onClick="entryButtonClicked"
+        android:onClick="playAgain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/finishTextView"
         app:srcCompat="@drawable/again" />
