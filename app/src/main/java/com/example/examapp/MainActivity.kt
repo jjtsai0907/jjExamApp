@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
 
 
             startActivity(intent)
-        },3500)
+        },2050)
     }
 
     fun playAgain (view: View){

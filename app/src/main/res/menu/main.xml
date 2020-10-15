@@ -8,11 +8,11 @@
         />
 
     <item android:id="@+id/finish"
-        android:title="Finish the Game"
+        android:title="Finish"
         />
 
     <item android:id="@+id/restart"
-        android:title="Restart " />
+        android:title="Restart" />
 
     <item
         android:id="@+id/about"

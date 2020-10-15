@@ -30,6 +30,7 @@ class QuestionActivity : AppCompatActivity() {
     var locationArray = mutableListOf<Int>(0,0,0,0)
     var ticketClickedPosition = 0
     lateinit var progressDialog: ProgressDialog
+    lateinit var finishDialog: FinishDialog
 
 
 
@@ -48,17 +49,6 @@ class QuestionActivity : AppCompatActivity() {
         questionTextView = findViewById(R.id.questionTextView)
         questionImageView = findViewById(R.id.questionImageView)
         progressDialog = ProgressDialog(this)
-
-
-
-
-        /*button0.setOnClickListener {
-            val blink: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.blink)
-            button0.startAnimation(blink)
-
-        }*/
-
-
 
 
         //currentCountryTV.text = intent.getStringExtra("CURRENT_CITY")
@@ -115,13 +105,19 @@ class QuestionActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        walletTextView.text = "${DataManager.wallet.toString()} kr"
         ticketClickedPosition = data!!.getIntExtra("TICKET_CLICKED_POSITION", 9)
 
-        var intent = Intent(this, MapsActivity::class.java)
-        intent.putExtra("TICKET_CLICKED_FROM_QUESTION", ticketClickedPosition)
-        setResult(999,intent)
-        finish()
+        if(DataManager.nations[ticketClickedPosition].purchased && DataManager.clearMaps){
+
+            var intent = Intent(this, MapsActivity::class.java)
+            intent.putExtra("TICKET_CLICKED_FROM_QUESTION", ticketClickedPosition)
+            setResult(999,intent)
+            finish()
+        }
+        else{
+            walletTextView.text = "${DataManager.wallet.toString()} kr"
+
+        }
     }
 
 
@@ -164,12 +160,15 @@ class QuestionActivity : AppCompatActivity() {
             walletTextView.setText(" ${DataManager.wallet.toString()} kr")
             trys ++
             DataManager.countQuestion ++
+
+
         }
         else {
             Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show()
             view.isEnabled = false
             trys++
         }
+
     }
 
 

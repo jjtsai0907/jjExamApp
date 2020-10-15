@@ -107,15 +107,15 @@ class FinishDialog (var activity: Activity) {
             if(rightRIght && leftLeft){
 
                if (rightClicked){
-                   centerButton.setImageResource(R.drawable.right)
-                   rightButton.setImageResource(R.drawable.finiex)
+                   centerButton.setImageResource(R.drawable.ic_landing2)
+                   rightButton.setImageResource(R.drawable.ic_check)
                    finishTextView.text = "Wow! You've been to ${DataManager.countCountries} countries: ${DataManager.countryBeenTo}. Did you enjoy it?"
                    rightCentered = true
                    rightRIght = false
                }
                 else{
-                   centerButton.setImageResource(R.drawable.left)
-                   leftButton.setImageResource(R.drawable.finiex)
+                   centerButton.setImageResource(R.drawable.ic_money_dark)
+                   leftButton.setImageResource(R.drawable.ic_check)
                    finishTextView.text = "Let's see...you have ${DataManager.wallet} in the pocket!"
                    leftCentered = true
                    leftLeft = false
@@ -124,15 +124,15 @@ class FinishDialog (var activity: Activity) {
             else if (rightCentered && leftLeft){
 
                 if(rightClicked){
-                    centerButton.setImageResource(R.drawable.finiex)
-                    rightButton.setImageResource(R.drawable.right)
+                    centerButton.setImageResource(R.drawable.ic_check)
+                    rightButton.setImageResource(R.drawable.ic_landing2)
                     finishTextView.text = "You've answered ${DataManager.countQuestion} questions correctly!"
                     rightCentered = false
                     rightRIght = true
                 }
                 else{
-                    centerButton.setImageResource(R.drawable.left)
-                    leftButton.setImageResource(R.drawable.right)
+                    centerButton.setImageResource(R.drawable.ic_money_dark)
+                    leftButton.setImageResource(R.drawable.ic_landing2)
                     finishTextView.text = "Let's see...you have ${DataManager.wallet} in the pocket!"
                     leftCentered = true
                     leftLeft = false
@@ -143,8 +143,8 @@ class FinishDialog (var activity: Activity) {
             else if (rightRIght && leftCentered){
 
                 if(rightClicked){
-                    centerButton.setImageResource(R.drawable.right)
-                    rightButton.setImageResource(R.drawable.left)
+                    centerButton.setImageResource(R.drawable.ic_landing2)
+                    rightButton.setImageResource(R.drawable.ic_money_dark)
                     finishTextView.text = "Wow! You've been to ${DataManager.countCountries} countries: ${DataManager.countryBeenTo}. Did you enjoy it?"
                     rightCentered = true
                     rightRIght = false
@@ -152,8 +152,8 @@ class FinishDialog (var activity: Activity) {
                     //${countCountries.toString()}
                 }
                 else{
-                    centerButton.setImageResource(R.drawable.finiex)
-                    leftButton.setImageResource(R.drawable.left)
+                    centerButton.setImageResource(R.drawable.ic_check)
+                    leftButton.setImageResource(R.drawable.ic_money_dark)
                     finishTextView.text = "You've answered ${DataManager.countQuestion} questions correctly!"
                     leftLeft = true
                     leftCentered = false
@@ -162,15 +162,15 @@ class FinishDialog (var activity: Activity) {
             else if (!rightRIght && leftCentered){
 
                 if(rightClicked){
-                    centerButton.setImageResource(R.drawable.finiex)
-                    rightButton.setImageResource(R.drawable.left)
+                    centerButton.setImageResource(R.drawable.ic_check)
+                    rightButton.setImageResource(R.drawable.ic_money_dark)
                     finishTextView.text = "You've answered ${DataManager.countQuestion} questions correctly!"
                     leftLeft = false
                     leftCentered = false
                 }
                 else{
-                    centerButton.setImageResource(R.drawable.right)
-                    leftButton.setImageResource(R.drawable.left)
+                    centerButton.setImageResource(R.drawable.ic_landing2)
+                    leftButton.setImageResource(R.drawable.ic_money_dark)
                     finishTextView.text = "Wow! You've been to ${DataManager.countCountries} countries: ${DataManager.countryBeenTo}. Did you enjoy it?"
                     rightCentered = true
                     leftLeft = true
@@ -179,16 +179,16 @@ class FinishDialog (var activity: Activity) {
             else if(rightCentered && !leftLeft){
 
                 if(rightClicked){
-                    centerButton.setImageResource(R.drawable.left)
-                    rightButton.setImageResource(R.drawable.right)
+                    centerButton.setImageResource(R.drawable.ic_money_dark)
+                    rightButton.setImageResource(R.drawable.ic_landing2)
                     finishTextView.text = "Let's see...you have ${DataManager.wallet} in the pocket!"
                     rightCentered = false
                     rightRIght = true
                     leftCentered = true
                 }
                 else{
-                    centerButton.setImageResource(R.drawable.finiex)
-                    leftButton.setImageResource(R.drawable.right)
+                    centerButton.setImageResource(R.drawable.ic_check)
+                    leftButton.setImageResource(R.drawable.ic_landing2)
                     finishTextView.text = "You've answered ${DataManager.countQuestion} questions correctly!"
                     rightCentered = false
                     rightRIght = false
@@ -198,16 +198,16 @@ class FinishDialog (var activity: Activity) {
             else{
 
                 if(rightClicked){
-                    centerButton.setImageResource(R.drawable.left)
-                    rightButton.setImageResource(R.drawable.finiex)
+                    centerButton.setImageResource(R.drawable.ic_money_dark)
+                    rightButton.setImageResource(R.drawable.ic_check)
                     finishTextView.text = "Let's see...you have ${DataManager.wallet} in the pocket!"
                     rightCentered = false
                     leftCentered = true
                     leftLeft = false
                 }
                 else{
-                    centerButton.setImageResource(R.drawable.right)
-                    leftButton.setImageResource(R.drawable.finiex)
+                    centerButton.setImageResource(R.drawable.ic_landing2)
+                    leftButton.setImageResource(R.drawable.ic_check)
                     finishTextView.text = "Wow! You've been to ${DataManager.countCountries} countries: ${DataManager.countryBeenTo}. Did you enjoy it?"
                     rightCentered = true
                     leftLeft = false

@@ -5,10 +5,9 @@
         <item name="colorPrimary">#1d2c4d</item>
         <item name="colorPrimaryDark">#0e1626</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:itemBackground">#6C8EA2</item>// OptionsMenu Background Colour
-        <item name="android:actionMenuTextColor">#10DD32</item> // Do nothing
-        <item name="android:actionMenuTextAppearance">@color/colorAccent</item> // Nothing
-        <item name="actionMenuTextColor">@android:color/holo_green_light</item> // Nothing
+        <item name="android:itemBackground">#084163</item>// OptionsMenu Background Colour
+        <item name="android:itemTextAppearance"> @style/TextAppearance.AppCompat.Medium.Inverse </item>
+
     </style>
 
 </resources>

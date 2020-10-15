@@ -34,14 +34,17 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         holder.nationTextView.text = nationInfo.nation
         holder.nationPriceTextView.text = nationInfo.ticketFare.toString()
         holder.nationTicket.setImageResource(nationInfo.nationTicket)
+        holder.nationPostcard.setImageResource(nationInfo.nationPostcard)
         holder.nationPostcard.alpha = 0.0F
 
 
         if(DataManager.currentCountry != -1){
             holder.nationCode.text = DataManager.nations[DataManager.currentCountry].nationCode
+            holder.userName.text = DataManager.userName
         }
         else{
-            holder.nationCode.text = "HOME"
+            holder.nationCode.text = "SWE"
+            holder.userName.text = DataManager.userName
         }
 
 
@@ -54,8 +57,8 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
                 holder.itemView.isEnabled = false
                 holder.nationCode.alpha = 0F
                 holder.userName.alpha = 0F
+                holder.nationPriceTextView.alpha = 0F
                 DataManager.nations[position].front_side = false
-
 
 
             }
@@ -63,6 +66,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
                 holder.itemView.isEnabled = false
                 holder.itemView.alpha = 0.8F
                 holder.nationTicket.alpha = 0.0F
+                holder.nationPriceTextView.alpha = 0F
                 holder.nationPostcard.alpha = 1.0F
                 holder.nationCode.alpha = 0F
                 holder.userName.alpha = 0.0F
@@ -76,8 +80,9 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
             holder.nationPostcard.alpha = 0.0F
             holder.nationTicket.alpha = 1.0F
             holder.nationTextView.text = "${DataManager.nations[position].nation}"
-
+            holder.userName.text = DataManager.userName
             holder.nationCode.alpha = 1F
+            holder.nationPriceTextView.alpha = 1F
         }
 
         DataManager.nations[position].purchased

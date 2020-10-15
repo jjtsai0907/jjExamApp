@@ -7,78 +7,37 @@
     android:background="@drawable/progresshbg">
 
 
-    <TextView
-        android:id="@+id/asd2"
-        android:layout_width="197dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="Well, you've answered 13 questions correctly!"
-        android:textColor="#27C8A9"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/finishCountriesTV" />
-
-    <TextView
-        android:id="@+id/asd3"
-        android:layout_width="217dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="At this moment, you have 1000 in your pocket..."
-        android:textColor="#203E58"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/asd2"
-        app:layout_constraintVertical_bias="1.0" />
-
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="45dp"
         android:layout_height="42dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:srcCompat="@drawable/ic_gas" />
+        app:srcCompat="@drawable/ic_landing2" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="39dp"
         android:layout_height="40dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:srcCompat="@drawable/ic_gas" />
+        app:srcCompat="@drawable/ic_money_dark" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="41dp"
         android:layout_height="50dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="192dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="204dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_flight" />
-
-    <TextView
-        android:id="@+id/finishCountriesTV"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="So far, you've been to 3 countries!"
-        android:textAlignment="viewStart"
-        android:textColor="#203E58"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/ringGrey" />
+        app:srcCompat="@drawable/ic_check" />
 
     <ProgressBar
         android:id="@+id/ringGrey"
@@ -107,7 +66,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/percentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="100"
@@ -133,5 +92,41 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/ringGrey"
         app:layout_constraintTop_toTopOf="@+id/ringGrey" />
+
+    <TextView
+        android:id="@+id/pCountQuestion"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="You've answered 2348 questions correctly!"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/pCountCountry"
+        android:layout_width="257dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Hey, Totoro! You have been to 100 countries!"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+    <TextView
+        android:id="@+id/pWallet"
+        android:layout_width="257dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Well, you have 28947328 in your pocket...!"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

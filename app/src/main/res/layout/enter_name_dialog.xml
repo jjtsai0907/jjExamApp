@@ -3,31 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/finishbg">
 
     <EditText
         android:id="@+id/nameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
         android:hint="Enter Your Nickame..."
         android:inputType="textPersonName"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <Button
         android:id="@+id/nameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="40dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
         android:onClick="startGame"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Let's Go!"
+        android:textColor="#27C8A9"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/nameEditText"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toStartOf="@+id/nameEditText"
         app:layout_constraintTop_toBottomOf="@+id/nameEditText"
-        app:srcCompat="@drawable/exit" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/letsgo2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

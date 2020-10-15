@@ -70,6 +70,7 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
         var intent = Intent(this, QuestionActivity::class.java)
         intent.putExtra("TICKET_CLICKED_POSITION", ticketClickedPosition)
         setResult(111,intent)
+
         finish()
     }
 
@@ -77,9 +78,6 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
     // These are Interface functions, to control over RecyclerView from ShoppingActivity
     @SuppressLint("SetTextI18n")
     override fun onClick(int: Int) {
-
-
-
         ticketClickedPosition = int
 
         if (DataManager.wallet >= DataManager.nations[ticketClickedPosition].ticketFare) {
