@@ -2,18 +2,11 @@ package com.example.examapp
 
 import android.content.Intent
 import android.content.res.Resources
-import android.graphics.Color
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -22,18 +15,15 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.android.synthetic.main.activity_question.*
-import java.io.FileOutputStream
-import java.io.IOException
 
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : MenuClass(), OnMapReadyCallback {
 
 
     private lateinit var mMap: GoogleMap
     lateinit var activeMarker: Marker
     var ticketClickedPosition = 0
-    lateinit var progressDialog: ProgressDialog
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +33,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        progressDialog = ProgressDialog(this)
+
     }
 
 
@@ -78,20 +68,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
 
+        // Style the Maps
         try{
             var success: Boolean = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_json))
             if(!success){
                 Log.e("try", "Style parsing failed.")
             }
         }
-        catch (e: Resources.NotFoundException ){
+        catch (e: Resources.NotFoundException){
             Log.e("try", "Can't find style. Error: ", e)
         }
-
-
-
-
-
 
 
 
@@ -175,65 +161,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-
+    // For the OptionsMenu: from MenuClass
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-        menuInflater.inflate(R.menu.main, menu)
-
-
+        super.onCreateOptionsMenu(menu)
         return true
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId){
-            R.id.progress -> {
-                progressDialog.startProgressDialog()
-                return true
-            }
-            R.id.finish -> {
-                doubleCheckMenu("finish")
-                return true
-            }
-            R.id.restart -> {
-                doubleCheckMenu("restart")
-                return true
-            }
-            R.id.about -> {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://jjtsai0907.wordpress.com/"))
-                startActivity(intent)
-                return true
-            }
-            else -> {
-                return super.onOptionsItemSelected(item)
-            }
-        }
-    }
-
-    fun doubleCheckMenu (clickedMenuItem: String){
-        val dialogBuilder = AlertDialog.Builder(this)
-
-        dialogBuilder.setTitle("Are you sure?")
-            .setMessage("Do you want to leave this page and $clickedMenuItem the game? All progress will be lost.")
-            .setPositiveButton("Sure") {dialog, which ->
-
-                if (clickedMenuItem == "restart"){
-
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
-                else {
-
-                    val intent = Intent (this, MainActivity::class.java)
-                    intent.putExtra("FINISH", "finish")
-                    startActivity(intent)
-                }
-            }
-            .setNegativeButton("Cancel") { dialog, which ->
-                dialog.cancel()
-            }
-
-        val alert = dialogBuilder.create()
-        alert.show()
+        super.onOptionsItemSelected(item)
+        return true //super.onOptionsItemSelected(item)
     }
 }

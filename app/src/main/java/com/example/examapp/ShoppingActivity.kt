@@ -27,7 +27,7 @@ import java.lang.Thread.sleep
 import kotlin.concurrent.timerTask
 
 
-class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemClickListener {
+class ShoppingActivity : MenuClass(), NationListRecycleAdapter.OnItemClickListener {
 
 
     lateinit var shoppingWalletTextVIew: TextView
@@ -36,10 +36,6 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
     lateinit var coinSound: MediaPlayer
 
     lateinit var loadingDialog: LoadingDialog
-    lateinit var progressDialog: ProgressDialog
-
-    //lateinit var bar: ProgressBar
-    //lateinit var cdt: CountDownTimer
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,10 +44,6 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
 
         loadingDialog = LoadingDialog(this)
-
-        progressDialog = ProgressDialog(this)
-
-
         coinSound = MediaPlayer.create(this, R.raw.coin)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         shoppingWalletTextVIew = findViewById(R.id.shoppingWalletTextView)
@@ -95,9 +87,6 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
 
 
 
-
-
-
     fun doubleCheckPurchase(ticketClickedPosition: Int){
         val dialogBuilder = AlertDialog.Builder(this)
 
@@ -124,13 +113,11 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
                     var intent = Intent(this, QuestionActivity::class.java)
                     intent.putExtra("TICKET_CLICKED_POSITION", ticketClickedPosition)
                     setResult(111,intent)
+
                     finish()
 
                 },3500)
 
-
-
-
             }
             .setNegativeButton("Cancel") { dialog, which ->
                 dialog.cancel()
@@ -141,61 +128,13 @@ class ShoppingActivity : AppCompatActivity(), NationListRecycleAdapter.OnItemCli
     }
 
 
-    // For the OptionsMenu
+    // For the OptionsMenu: from MenuClass
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-        menuInflater.inflate(R.menu.main, menu)
+        super.onCreateOptionsMenu(menu)
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId){
-
-            R.id.progress -> {
-                progressDialog.startProgressDialog()
-                return true
-            }
-            R.id.finish -> {
-                doubleCheckMenu("finish")
-                return true
-            }
-            R.id.restart -> {
-                doubleCheckMenu("restart")
-                return true
-            }
-            R.id.about -> {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://jjtsai0907.wordpress.com/"))
-                startActivity(intent)
-                return true
-            }
-            else -> {
-                return super.onOptionsItemSelected(item)
-            }
-        }
-    }
-
-    fun doubleCheckMenu (clickedMenuItem: String){
-        val dialogBuilder = AlertDialog.Builder(this)
-
-        dialogBuilder.setTitle("Are you sure?")
-            .setMessage("Do you want to leave this page and $clickedMenuItem the game? All progress will be lost.")
-            .setPositiveButton("Sure") {dialog, which ->
-
-                if (clickedMenuItem == "restart"){
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
-                else {
-                    val intent = Intent (this, MainActivity::class.java)
-                    intent.putExtra("FINISH", "finish")
-                    startActivity(intent)
-                }
-            }
-            .setNegativeButton("Cancel") { dialog, which ->
-                dialog.cancel()
-            }
-
-        val alert = dialogBuilder.create()
-        alert.show()
+        super.onOptionsItemSelected(item)
+        return true
     }
 }

@@ -15,7 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import java.util.*
 
 
-class QuestionActivity : AppCompatActivity() {
+class QuestionActivity : MenuClass() {
 
     lateinit var currentCountryTV: TextView
     lateinit var walletTextView: TextView
@@ -29,8 +29,7 @@ class QuestionActivity : AppCompatActivity() {
     var trys: Int = 0
     var locationArray = mutableListOf<Int>(0,0,0,0)
     var ticketClickedPosition = 0
-    lateinit var progressDialog: ProgressDialog
-    lateinit var finishDialog: FinishDialog
+
 
 
 
@@ -48,7 +47,7 @@ class QuestionActivity : AppCompatActivity() {
         button3 = findViewById(R.id.button3)
         questionTextView = findViewById(R.id.questionTextView)
         questionImageView = findViewById(R.id.questionImageView)
-        progressDialog = ProgressDialog(this)
+
 
 
         //currentCountryTV.text = intent.getStringExtra("CURRENT_CITY")
@@ -108,15 +107,15 @@ class QuestionActivity : AppCompatActivity() {
         ticketClickedPosition = data!!.getIntExtra("TICKET_CLICKED_POSITION", 9)
 
         if(DataManager.nations[ticketClickedPosition].purchased && DataManager.clearMaps){
-
+            // if one buys a ticket, then goes directly to Maps.
             var intent = Intent(this, MapsActivity::class.java)
             intent.putExtra("TICKET_CLICKED_FROM_QUESTION", ticketClickedPosition)
             setResult(999,intent)
             finish()
         }
         else{
+            // if one does not buy any ticket, then stays on this Activity.
             walletTextView.text = "${DataManager.wallet.toString()} kr"
-
         }
     }
 
@@ -160,8 +159,6 @@ class QuestionActivity : AppCompatActivity() {
             walletTextView.setText(" ${DataManager.wallet.toString()} kr")
             trys ++
             DataManager.countQuestion ++
-
-
         }
         else {
             Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show()
@@ -172,60 +169,14 @@ class QuestionActivity : AppCompatActivity() {
     }
 
 
+    // For the OptionsMenu: from MenuClass
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-        menuInflater.inflate(R.menu.main, menu)
+        super.onCreateOptionsMenu(menu)
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId){
-            R.id.progress -> {
-                progressDialog.startProgressDialog()
-                return true
-            }
-            R.id.finish -> {
-                doubleCheckMenu("finish")
-                return true
-            }
-            R.id.restart -> {
-                doubleCheckMenu("restart")
-                return true
-            }
-            R.id.about -> {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://jjtsai0907.wordpress.com/"))
-                startActivity(intent)
-                return true
-            }
-            else -> {
-                return super.onOptionsItemSelected(item)
-            }
-        }
+        super.onOptionsItemSelected(item)
+        return true
     }
 
-
-    fun doubleCheckMenu (clickedMenuItem: String){
-        val dialogBuilder = AlertDialog.Builder(this)
-
-        dialogBuilder.setTitle("Are you sure?")
-            .setMessage("Do you want to leave this page and $clickedMenuItem the game? All progress will be lost.")
-            .setPositiveButton("Sure") {dialog, which ->
-
-                if (clickedMenuItem == "restart"){
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
-                else {
-                    val intent = Intent (this, MainActivity::class.java)
-                    intent.putExtra("FINISH", "finish")
-                    startActivity(intent)
-                }
-            }
-            .setNegativeButton("Cancel") { dialog, which ->
-                dialog.cancel()
-            }
-
-        val alert = dialogBuilder.create()
-        alert.show()
-    }
 }
