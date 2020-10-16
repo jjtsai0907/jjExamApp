@@ -11,7 +11,7 @@
         android:id="@+id/imageView6"
         android:layout_width="45dp"
         android:layout_height="42dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
@@ -21,7 +21,7 @@
         android:id="@+id/imageView7"
         android:layout_width="39dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +33,7 @@
         android:id="@+id/imageView2"
         android:layout_width="41dp"
         android:layout_height="50dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="204dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -95,38 +95,50 @@
 
     <TextView
         android:id="@+id/pCountQuestion"
-        android:layout_width="259dp"
+        android:layout_width="223dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="You've answered 2348 questions correctly!"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/pCountCountry"
-        android:layout_width="257dp"
-        android:layout_height="wrap_content"
+        android:layout_width="242dp"
+        android:layout_height="44dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Hey, Totoro! You have been to 100 countries!"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6" />
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/pWallet"
-        android:layout_width="257dp"
+        android:layout_width="236dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Well, you have 28947328 in your pocket...!"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.407" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,7 +53,8 @@ class ProgressDialog (var activity: Activity) {
 
 
         pCountCountry = progressDialog.pCountQuestion
-        pCountCountry.text = "Hey, ${DataManager.userName}! At this moment, you've been to ${DataManager.countCountries} countries!"
+        pCountCountry.text = """Hey, ${DataManager.userName}!
+|At this moment, you've been to ${DataManager.countCountries} countries!""".trimMargin()
 
         pCountQuestion = progressDialog.pCountCountry
         pCountQuestion.text = "So far, you've answered ${DataManager.countQuestion} questions correctly :)"
