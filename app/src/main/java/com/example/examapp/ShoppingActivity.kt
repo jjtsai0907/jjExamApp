@@ -52,7 +52,7 @@ class ShoppingActivity : MenuClass(), NationListRecycleAdapter.OnItemClickListen
         val adapter = NationListRecycleAdapter(this, DataManager.nations, this)
         recyclerView.adapter = adapter
 
-        shoppingWalletTextVIew.text = " ${DataManager.wallet.toString()} kr"
+        shoppingWalletTextVIew.text = " ${DataManager.wallet}"
     }
 
 
@@ -95,7 +95,7 @@ class ShoppingActivity : MenuClass(), NationListRecycleAdapter.OnItemClickListen
                         "for ${DataManager.nations[ticketClickedPosition].ticketFare} kr?")
             .setPositiveButton("Purchase") {dialog, which ->
                 DataManager.wallet -= DataManager.nations[ticketClickedPosition].ticketFare
-                shoppingWalletTextVIew.text = " ${DataManager.wallet.toString()} kr"
+                shoppingWalletTextVIew.text = " ${DataManager.wallet}"
                 DataManager.nations[ticketClickedPosition].purchased = true
                 recyclerView.adapter?.notifyDataSetChanged()
                 coinSound.start()

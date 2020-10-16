@@ -50,14 +50,12 @@ class ProgressDialog (var activity: Activity) {
             }
         }
 
+        pCountQuestion = progressDialog.pCountQuestion
+        pCountQuestion.text = "So far, you've answered ${DataManager.countQuestion} questions correctly :)"
 
-
-        pCountCountry = progressDialog.pCountQuestion
+        pCountCountry = progressDialog.pCountCountry
         pCountCountry.text = """Hey, ${DataManager.userName}!
 |At this moment, you've been to ${DataManager.countCountries} countries!""".trimMargin()
-
-        pCountQuestion = progressDialog.pCountCountry
-        pCountQuestion.text = "So far, you've answered ${DataManager.countQuestion} questions correctly :)"
 
         pWallet = progressDialog.pWallet
         pWallet.text = "At this moment, you have ${DataManager.wallet} in your pocket..."

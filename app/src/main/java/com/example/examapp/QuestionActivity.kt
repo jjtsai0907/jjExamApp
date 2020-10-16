@@ -17,9 +17,7 @@ import java.util.*
 
 class QuestionActivity : MenuClass() {
 
-    lateinit var currentCountryTV: TextView
     lateinit var walletTextView: TextView
-    lateinit var shoppingImageView: ImageButton
     lateinit var questionTextView: TextView
     lateinit var questionImageView: ImageView
     lateinit var button0: Button
@@ -40,7 +38,7 @@ class QuestionActivity : MenuClass() {
 
         //currentCountryTV = findViewById(R.id.currentCountryTextView)
         walletTextView = findViewById(R.id.walletTextView)
-        shoppingImageView = findViewById(R.id.shoppingImageButton)
+        //shoppingImageView = findViewById(R.id.shoppingImageButton)
         button0 = findViewById(R.id.button0)
         button1 = findViewById(R.id.button1)
         button2 = findViewById(R.id.button2)
@@ -55,7 +53,7 @@ class QuestionActivity : MenuClass() {
 
 
         questionImageView.setImageResource(photo)
-        walletTextView.text = "${DataManager.wallet.toString()} kr"
+        walletTextView.text = "${DataManager.wallet}"
 
 
 
@@ -115,7 +113,7 @@ class QuestionActivity : MenuClass() {
         }
         else{
             // if one does not buy any ticket, then stays on this Activity.
-            walletTextView.text = "${DataManager.wallet.toString()} kr"
+            walletTextView.text = "${DataManager.wallet}"
         }
     }
 
@@ -156,7 +154,7 @@ class QuestionActivity : MenuClass() {
                 trys == 2 -> DataManager.wallet += 0
                 trys == 3 -> DataManager.wallet -= 300
             }
-            walletTextView.setText(" ${DataManager.wallet.toString()} kr")
+            walletTextView.setText(" ${DataManager.wallet}")
             trys ++
             DataManager.countQuestion ++
         }
