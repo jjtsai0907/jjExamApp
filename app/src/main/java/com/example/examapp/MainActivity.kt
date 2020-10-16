@@ -17,9 +17,6 @@ import java.util.zip.DataFormatException
 
 class MainActivity : AppCompatActivity() {
 
-    //lateinit var finish1: TextView
-    //lateinit var buttonx: Button
-    //var countCountries: Int = 1
     lateinit var loadingDialog: LoadingDialog
     lateinit var howToDialog: HowToDialog
     lateinit var finishDialog: FinishDialog
@@ -38,18 +35,6 @@ class MainActivity : AppCompatActivity() {
         enterNameDialog = EnterNameDialog(this)
 
 
-        /*val asd: ImageView = findViewById(R.id.asd)
-
-
-        asd.setOnClickListener {
-            asd.animate().apply {
-                duration = 3000
-                rotationYBy(360f)
-
-            }.start()
-        }*/
-
-        val buttonx = findViewById<Button>(R.id.buttonx)
         val myLogo: ImageView = findViewById(R.id.myLogo)
         val gameName: TextView = findViewById(R.id.gameName)
 
@@ -73,8 +58,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
     fun howToPlay(view: View){
 
         howToDialog.startHowToDialog()
@@ -88,18 +71,6 @@ class MainActivity : AppCompatActivity() {
         myLogo.alpha = 0F
         gameName.alpha = 0F*/
 
-    }
-
-
-
-    fun changeText(view: View){
-
-        var buttont: Button = findViewById(R.id.buttonx)
-        buttont.alpha = 0F
-
-        val fragmentFinish = supportFragmentManager.findFragmentByTag("finishFragment") as FinishFragment?
-
-        fragmentFinish?.setText()
     }
 
 
@@ -126,6 +97,8 @@ class MainActivity : AppCompatActivity() {
             DataManager.wallet = 0
             DataManager.countQuestion = 0
             DataManager.countCountries = 1
+            DataManager.countryBeenTo.clear()
+            DataManager.countryBeenTo.add("Sweden")
 
 
             startActivity(intent)

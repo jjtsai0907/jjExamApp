@@ -168,6 +168,6 @@ class MapsActivity : MenuClass(), OnMapReadyCallback {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
-        return true //super.onOptionsItemSelected(item)
+        return true
     }
 }

@@ -20,7 +20,7 @@ class EnterNameDialog(var activity: Activity) {
 
         val enterNameInflator: LayoutInflater = activity.layoutInflater
         builder.setView(enterNameInflator.inflate(R.layout.enter_name_dialog, null))
-        builder.setCancelable(false)
+        builder.setCancelable(true)
 
         enterNameDialog = builder.create()
         enterNameDialog.show()

@@ -55,9 +55,9 @@ object DataManager {
 
 
 
-        nations.add(NationClass("Mongolia", 3700, R.drawable.ticket, mutableListOf(
-            QuestionClass("The first McDonald's in Russian was opened on Jan 31, 1990. The amount of customers served during a single day still remains the world record. How many people on that day?", "30,000", "10,000", "5,000", "3,600", LatLng(55.7554841,37.5442743)),
-            QuestionClass("Dogs in Moscow are not allowed to bark at night. When?", "11pm - 7am", "10pm - 6am", "No Such a Rule", "12pm - 6am", LatLng(55.683907,37.7619633)),
+        nations.add(NationClass("Mongolia", 0, R.drawable.ticket, mutableListOf(
+            QuestionClass("The first McDonald's in Russian was opened on Jan 31, 1990. The amount of customers served during a single day still remains the world record. How many people on that day?", "30,000", "10,000", "5,000", "3,600", LatLng(55.7554841,37.5442743), "Mon", R.drawable.mongolia),
+            QuestionClass("Dogs in Moscow are not allowed to bark at night. When?", "11pm - 7am", "10pm - 6am", "No Such a Rule", "12pm - 6am", LatLng(55.683907,37.7619633), "Ulal", R.drawable.mongolia2),
             QuestionClass("How many countries does Russia share a boarder with?", "14", "15", "12", "8", LatLng(52.183874,35.8217343)),
             QuestionClass("Russia is home to the deepest lake in the world. How many % of the world's fresh water it contains?", "20 %", "70 %", "22 %", "12 %", LatLng(53.5962123,102.3422383)))))
 
