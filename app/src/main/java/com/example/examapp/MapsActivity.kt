@@ -82,19 +82,18 @@ class MapsActivity : MenuClass(), OnMapReadyCallback {
 
 
         // These are markers that show automatically once one enters:
-        val taiwan = QuestionClass("Which is the capital of Taiwan?", "Correct", "Taipei", "Taichung", "Hulian", LatLng(24.2616609, 120.5543753), "Nacka", R.drawable.russia)
-        val taiwanMarker = mMap.addMarker(MarkerOptions().position(taiwan.position).title("You are in Taiwan"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(taiwan.position, 1.0F))
-        taiwanMarker.tag = taiwan
+        val kiruna = QuestionClass("Year 2010 it was decided that the whole city center of Kiruna were to be relocated, what was the reason?", "Mining-related subsidence", "Large Chemical leakage", "Atomic accident", "Wildlife preservation", LatLng(67.8558432,20.2251198), "Kiruna", R.drawable.kiruna)
+        val kirunaMarker = mMap.addMarker(MarkerOptions().position(kiruna.position).title("You are in Kiruna"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kiruna.position, 1.0F))
+        kirunaMarker.tag = kiruna
 
-        val hongkong = QuestionClass("How many harbours does HK have?", "Correct", "6", "13", "21", LatLng(20.2616609, 115.5543753),"Nacka", R.drawable.stockholm)
+        val stockholm = QuestionClass("Who is the architect that created Stockholm City Hall?", "Ragnar Östberg", "Carl Von Linné'", "Gustav Vasa", "Nils Eriksson", LatLng(59.3275031,18.0548047),"Stockholm", R.drawable.stockholm)
+        val stockholmMarker = mMap.addMarker(MarkerOptions().position(stockholm.position).title("You are in Stockholm"))
+        stockholmMarker.tag = stockholm
 
-        val hkMarker = mMap.addMarker(MarkerOptions().position(hongkong.position).title("HK"))
-        hkMarker.tag = hongkong
-
-        val indo = QuestionClass("How many official languages are there in this nation?", "Correct", "2", "9", "20", LatLng(4.2616609, 120.5543753),"Nacka", R.drawable.chingshuei)
-        var indoMarker = mMap.addMarker(MarkerOptions().position(indo.position).title("BJ"))
-        indoMarker.tag = indo
+        val gothenburg = QuestionClass("'Feskekörka' is a famous tourist site in Gothenburg, what is it?", "Seafood market", "Church for fishermen", "Library", "Fishing museum", LatLng(57.7010889,11.9576791),"Gothenburg", R.drawable.gothenburg)
+        var gothenburgMarker = mMap.addMarker(MarkerOptions().position(gothenburg.position).title("You are in Gothenburg"))
+        gothenburgMarker.tag = gothenburg
 
 
         DataManager.userName = intent.getStringExtra("USER_INPUT")!!

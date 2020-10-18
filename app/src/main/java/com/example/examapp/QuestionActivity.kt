@@ -49,7 +49,7 @@ class QuestionActivity : MenuClass() {
 
 
         //currentCountryTV.text = intent.getStringExtra("CURRENT_CITY")
-        var photo = intent.getIntExtra("TAG_QUESTION_BACKGROUND", R.drawable.nicke)
+        var photo = intent.getIntExtra("TAG_QUESTION_BACKGROUND", R.drawable.norway)
 
 
         questionImageView.setImageResource(photo)
