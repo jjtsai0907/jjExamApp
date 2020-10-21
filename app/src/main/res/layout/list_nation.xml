@@ -68,7 +68,7 @@
                 android:layout_height="64dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="48dp"
-                android:text="TWP"
+                android:text="SWE"
                 android:textAlignment="textStart"
                 android:textSize="43sp"
                 android:textStyle="bold|italic"

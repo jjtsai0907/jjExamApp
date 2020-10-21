@@ -25,6 +25,7 @@ class FinishDialog (var activity: Activity) {
     lateinit var exit: ImageView
     lateinit var again: ImageView
 
+
     fun startFinishDialog() {
         var builder = AlertDialog.Builder(activity)
 
@@ -43,6 +44,7 @@ class FinishDialog (var activity: Activity) {
         rightButton = finishDialog.rightButton
         exit = finishDialog.exit
         again = finishDialog.again
+
 
 
 

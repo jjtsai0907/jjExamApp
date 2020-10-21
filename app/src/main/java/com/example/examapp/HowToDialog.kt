@@ -22,7 +22,7 @@ class HowToDialog (var activity: Activity){
         howToDialog.show()
 
         howToDialog.howTextView.text = "When tapping START you will travel to Sweden, your first country, and few markers will appear. " +
-                "Tapping a marker a message box will appear, tap again to get to the connected question. To answer tap on of the 4 alternatives. " +
+                "Tapping a marker will show a message box, tap again to get to the connected question. To answer tap on of the 4 alternatives. " +
                 "If you get it right the 1st time you will be awarded 1000kr, 2nd try will give you 300kr, 3rd 0kr and 4th -300kr. " +
                 "You will need money to buy tickets for traveling to new countries with more exciting questions. " +
                 "Tapping the marker symbol in the upper left corner will bring you back to the map, but be aware " +

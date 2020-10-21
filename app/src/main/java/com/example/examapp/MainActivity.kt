@@ -99,6 +99,8 @@ class MainActivity : AppCompatActivity() {
             DataManager.countCountries = 1
             DataManager.countryBeenTo.clear()
             DataManager.countryBeenTo.add("Sweden")
+            DataManager.currentCountry = -1
+
 
 
             startActivity(intent)

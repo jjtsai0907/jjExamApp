@@ -38,14 +38,30 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         holder.nationPostcard.alpha = 0.0F
 
 
-        if(DataManager.currentCountry != -1){
-            holder.nationCode.text = DataManager.nations[DataManager.currentCountry].nationCode
-            holder.userName.text = DataManager.userName
+        // To see if the game is restarted & a ticket is purchased
+        if(!DataManager.reStart){
+            if(DataManager.currentCountry != -1){
+
+                holder.nationCode.text = DataManager.nations[DataManager.currentCountry].nationCode
+                holder.userName.text = DataManager.userName
+            }
+            else{
+                holder.nationCode.text = "SWE"
+                holder.userName.text = DataManager.userName
+            }
         }
         else{
-            holder.nationCode.text = "SWE"
-            holder.userName.text = DataManager.userName
+            if(DataManager.currentCountry == -1){
+                holder.nationCode.text = "SWE"
+                holder.userName.text = DataManager.userName
+            }
+            else{
+                holder.nationCode.text = DataManager.nations[DataManager.currentCountry].nationCode
+                holder.userName.text = DataManager.userName
+            }
         }
+
+
 
 
         if (DataManager.nations[position].purchased){
@@ -99,6 +115,9 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
         val nationPostcard = itemView.findViewById<ImageView>(R.id.nationPostcard)
         var nationCode = itemView.findViewById<TextView>(R.id.countryCodeTextView)
         val userName = itemView.findViewById<TextView>(R.id.userName)
+
+
+
 
         init{
             itemView.setOnClickListener  {

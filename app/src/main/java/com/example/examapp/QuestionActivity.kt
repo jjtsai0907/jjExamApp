@@ -27,6 +27,7 @@ class QuestionActivity : MenuClass() {
     var trys: Int = 0
     var locationArray = mutableListOf<Int>(0,0,0,0)
     var ticketClickedPosition = 0
+    lateinit var rightAnswerDialog: RightAnswerDialog
 
 
 
@@ -45,7 +46,7 @@ class QuestionActivity : MenuClass() {
         button3 = findViewById(R.id.button3)
         questionTextView = findViewById(R.id.questionTextView)
         questionImageView = findViewById(R.id.questionImageView)
-
+        rightAnswerDialog = RightAnswerDialog(this)
 
 
         //currentCountryTV.text = intent.getStringExtra("CURRENT_CITY")
@@ -144,8 +145,7 @@ class QuestionActivity : MenuClass() {
 
         if (locationArray[0].toString() == view.tag.toString()){
 
-
-            Toast.makeText(this,"Correct!", Toast.LENGTH_SHORT).show()
+            view.alpha = 0.2F
             view.isEnabled = false
 
             when {
@@ -157,11 +157,14 @@ class QuestionActivity : MenuClass() {
             walletTextView.setText(" ${DataManager.wallet}")
             trys ++
             DataManager.countQuestion ++
+            rightAnswerDialog.startRightAnswerDialog()
+
         }
         else {
             Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show()
             view.isEnabled = false
             trys++
+            view.alpha = 0.2F
         }
 
     }

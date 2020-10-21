@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
@@ -52,11 +53,13 @@ open abstract class MenuClass : AppCompatActivity()  {
 
                 if (clickedMenuItem == "restart"){
                     val intent = Intent(this, MainActivity::class.java)
+                    DataManager.reStart = true
                     startActivity(intent)
                 }
                 else {
                     val intent = Intent (this, MainActivity::class.java)
                     intent.putExtra("FINISH", "finish")
+                    DataManager.reStart = true
                     startActivity(intent)
                 }
             }

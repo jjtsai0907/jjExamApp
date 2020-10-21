@@ -34,7 +34,6 @@ class ShoppingActivity : MenuClass(), NationListRecycleAdapter.OnItemClickListen
     lateinit var recyclerView: RecyclerView
     var ticketClickedPosition = 0
     lateinit var coinSound: MediaPlayer
-
     lateinit var loadingDialog: LoadingDialog
 
 
@@ -47,7 +46,6 @@ class ShoppingActivity : MenuClass(), NationListRecycleAdapter.OnItemClickListen
         coinSound = MediaPlayer.create(this, R.raw.coin)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         shoppingWalletTextVIew = findViewById(R.id.shoppingWalletTextView)
-
         recyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = NationListRecycleAdapter(this, DataManager.nations, this)
         recyclerView.adapter = adapter
@@ -103,6 +101,7 @@ class ShoppingActivity : MenuClass(), NationListRecycleAdapter.OnItemClickListen
                 DataManager.clearMaps = true
                 DataManager.countCountries += 1
                 DataManager.countryBeenTo.add(DataManager.nations[ticketClickedPosition].nation)
+
 
                 loadingDialog.startLoadingDialog()
 
