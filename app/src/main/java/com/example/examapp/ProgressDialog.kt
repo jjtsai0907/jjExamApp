@@ -41,6 +41,11 @@ class ProgressDialog (var activity: Activity) {
         progressDialog = builder.create()
         progressDialog.show()
 
+
+        progressDialog.progressExit.setOnClickListener(){
+            progressDialog.cancel()
+        }
+
         percentTextView = progressDialog.percentTextView
         var TotalQuestionCount = 0
 
@@ -51,11 +56,11 @@ class ProgressDialog (var activity: Activity) {
         }
 
         pCountQuestion = progressDialog.pCountQuestion
-        pCountQuestion.text = "So far, you've answered ${DataManager.countQuestion} questions correctly :)"
+        pCountQuestion.text = """Hey, ${DataManager.userName}!
+|So far, you've answered ${DataManager.countQuestion} questions correctly :)""".trimMargin()
 
         pCountCountry = progressDialog.pCountCountry
-        pCountCountry.text = """Hey, ${DataManager.userName}!
-|At this moment, you've been to ${DataManager.countCountries} countries!""".trimMargin()
+        pCountCountry.text = "At this moment, you've been to ${DataManager.countCountries} countries!"
 
         pWallet = progressDialog.pWallet
         pWallet.text = "At this moment, you have ${DataManager.wallet} in your pocket..."
@@ -67,6 +72,8 @@ class ProgressDialog (var activity: Activity) {
 
 
     }
+
+
 
 
 }

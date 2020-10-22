@@ -26,6 +26,7 @@ class MapsActivity : MenuClass(), OnMapReadyCallback {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
@@ -51,6 +52,7 @@ class MapsActivity : MenuClass(), OnMapReadyCallback {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DataManager.nations[ticketClickedPosition].questionClassList[0].position, 2.0F))
                 activeMarker.isVisible = false
                 DataManager.clearMaps = false
+
         }
     }
 
@@ -108,10 +110,10 @@ class MapsActivity : MenuClass(), OnMapReadyCallback {
             if (marker.isInfoWindowShown) {
 
                 marker.hideInfoWindow()
-                Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Press the white window! ",Toast.LENGTH_LONG).show()
             } else {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 8.0F))
-                Toast.makeText(applicationContext,"Press the info to rock n roll! ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,"Press the white window! ",Toast.LENGTH_SHORT).show()
                 marker.showInfoWindow()
             }
             true
@@ -119,6 +121,8 @@ class MapsActivity : MenuClass(), OnMapReadyCallback {
 
 
         mMap.setOnInfoWindowClickListener {
+
+            DataManager.totalQleft -= 1
 
             val intent = Intent (this, QuestionActivity::class.java)
 
@@ -129,6 +133,8 @@ class MapsActivity : MenuClass(), OnMapReadyCallback {
             intent.putExtra("TAG_A4", (activeMarker.tag as QuestionClass).answer4)
             intent.putExtra("CURRENT_CITY", (activeMarker.tag as QuestionClass).city)
             intent.putExtra("TAG_QUESTION_BACKGROUND", (activeMarker.tag as QuestionClass).questionImageResource)
+
+
 
             activeMarker.isVisible = false
             startActivityForResult(intent,999)

@@ -5,6 +5,7 @@ class NationClass (val nation: String,
                    val nationTicket: Int = R.drawable.norway,
                    var questionClassList: MutableList<QuestionClass>,
                    val nationCode: String = "SWE",
+                   var qAmount: Int,
                    val nationPostcard: Int = R.drawable.usapost,
                    var purchased: Boolean = false,
                    var front_side: Boolean = true)

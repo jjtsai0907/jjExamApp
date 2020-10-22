@@ -12,6 +12,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import kotlinx.android.synthetic.main.activity_question.*
 import java.util.*
 
 
@@ -28,6 +29,7 @@ class QuestionActivity : MenuClass() {
     var locationArray = mutableListOf<Int>(0,0,0,0)
     var ticketClickedPosition = 0
     lateinit var rightAnswerDialog: RightAnswerDialog
+    
 
 
 
@@ -37,7 +39,7 @@ class QuestionActivity : MenuClass() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
 
-        //currentCountryTV = findViewById(R.id.currentCountryTextView)
+
         walletTextView = findViewById(R.id.walletTextView)
         //shoppingImageView = findViewById(R.id.shoppingImageButton)
         button0 = findViewById(R.id.button0)
@@ -49,8 +51,16 @@ class QuestionActivity : MenuClass() {
         rightAnswerDialog = RightAnswerDialog(this)
 
 
-        //currentCountryTV.text = intent.getStringExtra("CURRENT_CITY")
+
         var photo = intent.getIntExtra("TAG_QUESTION_BACKGROUND", R.drawable.norway)
+
+
+
+
+        if(DataManager.totalQleft == 0){
+            toMapsButton.alpha = 0.2F
+            toMapsButton2.alpha = 0.2F
+        }
 
 
         questionImageView.setImageResource(photo)
@@ -130,18 +140,26 @@ class QuestionActivity : MenuClass() {
 
     fun goBackToMaps (view: View){
 
-        var intent = Intent(this, MapsActivity::class.java)
-        intent.putExtra("TICKET_CLICKED_FROM_QUESTION", ticketClickedPosition)
-        setResult(999,intent)
-        finish()
+        if(DataManager.totalQleft == 0){
+            Toast.makeText(this, "No markers left. Buy tickets!", Toast.LENGTH_LONG).show()
+
+        }
+        else{
+            var intent = Intent(this, MapsActivity::class.java)
+            intent.putExtra("TICKET_CLICKED_FROM_QUESTION", ticketClickedPosition)
+            setResult(999,intent)
+            finish()
+        }
+
+
     }
 
 
 
     fun checkAnswer (view: View){
 
-        val bounce: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.blink)
-        view.startAnimation(bounce)
+        val blink: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.blink)
+        view.startAnimation(blink)
 
         if (locationArray[0].toString() == view.tag.toString()){
 
@@ -150,9 +168,9 @@ class QuestionActivity : MenuClass() {
 
             when {
                 trys == 0 -> DataManager.wallet += 1000
-                trys == 1 -> DataManager.wallet += 300
-                trys == 2 -> DataManager.wallet += 0
-                trys == 3 -> DataManager.wallet -= 300
+                trys == 1 -> DataManager.wallet += 700
+                trys == 2 -> DataManager.wallet += 500
+                trys == 3 -> DataManager.wallet += 300
             }
             walletTextView.setText(" ${DataManager.wallet}")
             trys ++
@@ -163,6 +181,8 @@ class QuestionActivity : MenuClass() {
         else {
             Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show()
             view.isEnabled = false
+            DataManager.wallet -= 200
+            walletTextView.setText(" ${DataManager.wallet}")
             trys++
             view.alpha = 0.2F
         }

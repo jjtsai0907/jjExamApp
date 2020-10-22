@@ -70,7 +70,7 @@
                 android:layout_marginTop="48dp"
                 android:text="SWE"
                 android:textAlignment="textStart"
-                android:textSize="43sp"
+                android:textSize="41sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/nationTicket" />

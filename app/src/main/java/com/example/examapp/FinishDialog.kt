@@ -44,7 +44,7 @@ class FinishDialog (var activity: Activity) {
         rightButton = finishDialog.rightButton
         exit = finishDialog.exit
         again = finishDialog.again
-
+        finishTextView.text = "You've answered ${DataManager.countQuestion} questions correctly!"
 
 
 

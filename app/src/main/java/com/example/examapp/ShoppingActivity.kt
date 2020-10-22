@@ -101,7 +101,7 @@ class ShoppingActivity : MenuClass(), NationListRecycleAdapter.OnItemClickListen
                 DataManager.clearMaps = true
                 DataManager.countCountries += 1
                 DataManager.countryBeenTo.add(DataManager.nations[ticketClickedPosition].nation)
-
+                DataManager.totalQleft = DataManager.nations[ticketClickedPosition].qAmount
 
                 loadingDialog.startLoadingDialog()
 

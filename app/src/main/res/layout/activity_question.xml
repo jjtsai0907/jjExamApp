@@ -9,14 +9,14 @@
 
 
     <ImageView
-        android:id="@+id/imageButton2"
+        android:id="@+id/toMapsButton"
         android:layout_width="36dp"
         android:layout_height="0dp"
         android:backgroundTint="#00FFFFFF"
         android:onClick="goBackToMaps"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/questionImageView"
-        app:layout_constraintStart_toEndOf="@+id/imageButton8"
+        app:layout_constraintStart_toEndOf="@+id/toMapsButton2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_marker_light" />
 
@@ -65,7 +65,7 @@
         app:srcCompat="@drawable/flight" />
 
     <ImageView
-        android:id="@+id/imageButton8"
+        android:id="@+id/toMapsButton2"
         android:layout_width="36dp"
         android:layout_height="0dp"
         android:backgroundTint="#00FFFFFF"

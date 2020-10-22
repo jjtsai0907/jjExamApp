@@ -3,6 +3,8 @@ package com.example.examapp
 import android.app.Activity
 import android.app.AlertDialog
 import android.view.LayoutInflater
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.how_to_dialog.*
 
 class HowToDialog (var activity: Activity){
@@ -20,17 +22,48 @@ class HowToDialog (var activity: Activity){
 
         howToDialog = builder.create()
         howToDialog.show()
+        val blink: Animation = AnimationUtils.loadAnimation(howToDialog.context, R.anim.blink)
+        howToDialog.howTextView.alpha = 0F
 
-        howToDialog.howTextView.text = "When tapping START you will travel to Sweden, your first country, and few markers will appear. " +
-                "Tapping a marker will show a message box, tap again to get to the connected question. To answer tap on of the 4 alternatives. " +
-                "If you get it right the 1st time you will be awarded 1000kr, 2nd try will give you 300kr, 3rd 0kr and 4th -300kr. " +
-                "You will need money to buy tickets for traveling to new countries with more exciting questions. " +
-                "Tapping the marker symbol in the upper left corner will bring you back to the map, but be aware " +
-                "that the marker connected to the question you just answered will no longer be visible" +
-                "Tapping the flight symbol in the uppre right corner will bring you to the Travel agency where you can buy flight tickets." +
-                "Tap a ticket which you have enough money for to buy it and travel to the desired destination. " +
-                "Be aware that all un answered questions in your current country will be left behind if you decide to journey onwards."
+
+
+        howToDialog.concept.setOnClickListener(){
+
+            howToDialog.concept.startAnimation(blink)
+
+            howToDialog.concept.alpha = 1F
+            howToDialog.rules.alpha = 0.2F
+            howToDialog.howTextView.alpha = 1F
+            howToDialog.howTextView.text = """By answering Qs (questions) correctly, you'll earn coins to purchase tickets to new countries for more Qs.
+                
+In current version, you only compete with yourself. You end/finish the game by clicking setting button on upper right at anytime you want. 
+            """.trimMargin()
+
+
+        }
+
+        howToDialog.rules.setOnClickListener(){
+
+            howToDialog.rules.startAnimation(blink)
+
+            howToDialog.rules.alpha = 1F
+            howToDialog.concept.alpha = 0.2F
+            howToDialog.howTextView.alpha = 1F
+            howToDialog.howTextView.text = """1 Each Q can only be revealed once
+ 
+2 You have to finish the game once you've revealed the last Q in your current nation without buying a new ticket""".trimIndent()
+
+        }
+
+        howToDialog.howExit.setOnClickListener(){
+            howToDialog.cancel()
+        }
+
+
 
 
     }
+
+
+
 }

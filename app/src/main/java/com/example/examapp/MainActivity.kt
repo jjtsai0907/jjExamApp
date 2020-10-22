@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
+
         loadingDialog = LoadingDialog(this)
         howToDialog = HowToDialog(this)
         finishDialog = FinishDialog(this)
@@ -59,6 +60,8 @@ class MainActivity : AppCompatActivity() {
 
 
     fun howToPlay(view: View){
+        val blink: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.blink)
+        view.startAnimation(blink)
 
         howToDialog.startHowToDialog()
 

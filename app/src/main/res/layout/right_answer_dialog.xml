@@ -34,9 +34,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/rightToMaps"
         android:layout_width="62dp"
         android:layout_height="62dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:onClick="goBackToMaps"
         app:layout_constraintStart_toStartOf="@+id/textView7"
@@ -48,13 +49,14 @@
         android:layout_width="66dp"
         android:layout_height="52dp"
         android:layout_marginTop="42dp"
+        android:layout_marginEnd="8dp"
         android:onClick="goShopping"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
         app:srcCompat="@drawable/flight" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/rightToMaps2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -62,9 +64,9 @@
         android:text="Back to Map"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView11"
-        app:layout_constraintStart_toStartOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+        app:layout_constraintEnd_toEndOf="@+id/rightToMaps"
+        app:layout_constraintStart_toStartOf="@+id/rightToMaps"
+        app:layout_constraintTop_toBottomOf="@+id/rightToMaps" />
 
     <TextView
         android:id="@+id/textView9"
