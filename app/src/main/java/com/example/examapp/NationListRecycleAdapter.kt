@@ -80,7 +80,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
             }
             else{
                 holder.itemView.isEnabled = false
-                holder.itemView.alpha = 0.8F
+                holder.itemView.alpha = 1F
                 holder.nationTicket.alpha = 0.0F
                 holder.nationPriceTextView.alpha = 0F
                 holder.nationPostcard.alpha = 1.0F
@@ -97,6 +97,7 @@ class NationListRecycleAdapter(val context: Context, val nationList: List<Nation
             holder.nationTicket.alpha = 1.0F
             holder.nationTextView.text = "${DataManager.nations[position].nation}"
             holder.userName.text = DataManager.userName
+            holder.userName.alpha = 1F
             holder.nationCode.alpha = 1F
             holder.nationPriceTextView.alpha = 1F
         }

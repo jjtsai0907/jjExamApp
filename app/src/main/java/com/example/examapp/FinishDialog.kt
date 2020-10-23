@@ -46,6 +46,12 @@ class FinishDialog (var activity: Activity) {
         again = finishDialog.again
         finishTextView.text = "You've answered ${DataManager.countQuestion} questions correctly!"
 
+        if(DataManager.totalQleft == 0 && DataManager.countCountries == 10){
+            finishDialog.lastTextView.alpha = 1F
+        }
+        else{
+            finishDialog.lastTextView.alpha = 0F
+        }
 
 
         exit.setOnClickListener(){

@@ -31,8 +31,8 @@ class HowToDialog (var activity: Activity){
 
             howToDialog.concept.startAnimation(blink)
 
-            howToDialog.concept.alpha = 1F
-            howToDialog.rules.alpha = 0.2F
+            howToDialog.concept.alpha = 0.4F
+            howToDialog.rules.alpha = 1F
             howToDialog.howTextView.alpha = 1F
             howToDialog.howTextView.text = """By answering Qs (questions) correctly, you'll earn coins to purchase tickets to new countries for more Qs.
                 
@@ -46,12 +46,12 @@ In current version, you only compete with yourself. You end/finish the game by c
 
             howToDialog.rules.startAnimation(blink)
 
-            howToDialog.rules.alpha = 1F
-            howToDialog.concept.alpha = 0.2F
+            howToDialog.rules.alpha = 0.4F
+            howToDialog.concept.alpha = 1F
             howToDialog.howTextView.alpha = 1F
             howToDialog.howTextView.text = """1 Each Q can only be revealed once
  
-2 You have to finish the game once you've revealed the last Q in your current nation without buying a new ticket""".trimIndent()
+2 If you run out of coins & Qs, the game ends. Please then press 'Finish' Button to see your results.""".trimIndent()
 
         }
 

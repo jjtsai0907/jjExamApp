@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_question.*
+import kotlinx.android.synthetic.main.finish_dialog.*
 import java.util.*
 
 
@@ -29,7 +30,8 @@ class QuestionActivity : MenuClass() {
     var locationArray = mutableListOf<Int>(0,0,0,0)
     var ticketClickedPosition = 0
     lateinit var rightAnswerDialog: RightAnswerDialog
-    
+    lateinit var finishDialog: FinishDialog
+
 
 
 
@@ -49,6 +51,7 @@ class QuestionActivity : MenuClass() {
         questionTextView = findViewById(R.id.questionTextView)
         questionImageView = findViewById(R.id.questionImageView)
         rightAnswerDialog = RightAnswerDialog(this)
+        finishDialog = FinishDialog(this)
 
 
 
@@ -163,6 +166,7 @@ class QuestionActivity : MenuClass() {
 
         if (locationArray[0].toString() == view.tag.toString()){
 
+
             view.alpha = 0.2F
             view.isEnabled = false
 
@@ -173,9 +177,16 @@ class QuestionActivity : MenuClass() {
                 trys == 3 -> DataManager.wallet += 300
             }
             walletTextView.setText(" ${DataManager.wallet}")
-            trys ++
-            DataManager.countQuestion ++
-            rightAnswerDialog.startRightAnswerDialog()
+            trys++
+            if (DataManager.totalQleft == 0 && DataManager.countCountries == 10){
+                finishDialog.startFinishDialog()
+
+            }
+            else{
+                DataManager.countQuestion++
+                rightAnswerDialog.startRightAnswerDialog()
+            }
+
 
         }
         else {
