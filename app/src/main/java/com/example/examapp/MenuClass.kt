@@ -41,13 +41,14 @@ open abstract class MenuClass : AppCompatActivity()  {
                 doubleCheckMenu("restart")
                 return true
             }
+
             R.id.about -> {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://jjtsai0907.wordpress.com/"))
                 startActivity(intent)
                 return true
             }
             R.id.history -> {
-                historyDialog.startProgressDialog()
+                historyDialog.startHistoryDialog()
                 return true
             }
 
@@ -60,7 +61,7 @@ open abstract class MenuClass : AppCompatActivity()  {
         val dialogBuilder = AlertDialog.Builder(this)
 
         dialogBuilder.setTitle("Are you sure?")
-            .setMessage("Do you want to leave this page and $clickedMenuItem the game? All progress will be lost.")
+            .setMessage("Do you want to leave this page and $clickedMenuItem the game? You will not be able to continue with your current progress.")
             .setPositiveButton("Sure") {dialog, which ->
 
                 if (clickedMenuItem == "restart"){
@@ -112,6 +113,14 @@ open abstract class MenuClass : AppCompatActivity()  {
         }
 
     }
+
+    /*fun clearProgress (){
+
+        /*GlobalScope.launch(Dispatchers.IO){
+            db.databaseDao().delete()
+        }*/
+
+    }*/
 
 
 }
