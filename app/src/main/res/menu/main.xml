@@ -18,7 +18,12 @@
         android:id="@+id/about"
         android:title="About Me" />
 
+    <item android:id="@+id/history"
+        android:icon="@drawable/ic_history"
 
+        android:title="Player History"
+        app:showAsAction="always"
+        />
 
 
 

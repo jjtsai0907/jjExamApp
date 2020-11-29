@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 open abstract class MenuClass : AppCompatActivity()  {
 
     var pp: ProgressDialog = ProgressDialog(this)
+    var historyDialog = HistoryDialog(this)
     lateinit var db: AppDatabase
 
 
@@ -45,6 +46,11 @@ open abstract class MenuClass : AppCompatActivity()  {
                 startActivity(intent)
                 return true
             }
+            R.id.history -> {
+                historyDialog.startProgressDialog()
+                return true
+            }
+
             else -> {
                 return super.onOptionsItemSelected(item)
             }
