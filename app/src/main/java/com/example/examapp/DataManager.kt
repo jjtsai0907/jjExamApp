@@ -1,6 +1,8 @@
 package com.example.examapp
 
+import android.content.Context
 import android.widget.TextView
+import androidx.room.Room
 import com.google.android.gms.maps.model.LatLng
 
 //singleton
@@ -16,6 +18,9 @@ object DataManager {
     lateinit var userName: String
     var countryBeenTo: MutableList<String> = mutableListOf("Sweden")
     var totalQleft: Int = 3
+
+
+
 
     init{
         createMockData()
